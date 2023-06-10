@@ -1,0 +1,227 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:admin@localhost:3306/ecom"
+}
+
+model accessories {
+  id               Int            @id @default(autoincrement())
+  name             String
+  description      String
+  rarity           Int
+  order            Int
+  boost_attack     Float          @default(0)
+  boost_defense    Float          @default(0)
+  boost_hp         Float          @default(0)
+  boost_sp_attack  Float          @default(0)
+  boost_sp_defense Float          @default(0)
+  boost_speed      Float          @default(0)
+  boost_farming    Float          @default(0)
+  boost_steeling   Float          @default(0)
+  boost_wooding    Float          @default(0)
+  power_points     Float          @default(0)
+  avatar           String         @default("accesory_null.png")
+  created_at       DateTime       @default(now())
+  Player_Hero_Id   Int
+  players_heroes   players_heroes @relation(fields: [Player_Hero_Id], references: [id], map: "Accessories_Player_Hero_Id_fkey")
+
+  @@index([Player_Hero_Id], map: "Accessories_Player_Hero_Id_fkey")
+}
+
+model castles {
+  id         Int          @id @default(autoincrement())
+  guildId    Int          @unique(map: "Castles_guildId_key")
+  leaderId   Int
+  furnitures furnitures[]
+}
+
+model furnitures {
+  id        Int     @id @default(autoincrement())
+  castleId  Int
+  name      String
+  positionX Int
+  positionY Int
+  Avatar    String
+  castles   castles @relation(fields: [castleId], references: [id], map: "Furnitures_castleId_fkey")
+
+  @@index([castleId], map: "Furnitures_castleId_fkey")
+}
+
+model guildmemberships {
+  id        Int      @id @default(autoincrement())
+  guildId   Int
+  playerId  Int
+  title     String
+  wood      Int
+  steel     Int
+  food      Int
+  gold      Int
+  createdAt DateTime @default(now())
+  guilds    guilds   @relation(fields: [guildId], references: [id], map: "GuildMemberships_guildId_fkey")
+  players   players  @relation(fields: [playerId], references: [id], map: "GuildMemberships_playerId_fkey")
+
+  @@index([guildId], map: "GuildMemberships_guildId_fkey")
+  @@index([playerId], map: "GuildMemberships_playerId_fkey")
+}
+
+model guilds {
+  id               Int                @id @default(autoincrement())
+  name             String
+  description      String
+  experience       Int
+  level            Int
+  wood             Int
+  steel            Int
+  food             Int
+  gold             Int
+  castleId         Int
+  quantityPlayers  Int
+  guildmemberships guildmemberships[]
+}
+
+model heroes {
+  id              Int              @id @default(autoincrement())
+  name            String           @unique(map: "Heroes_name_key")
+  description     String?
+  world           String?
+  gatchaCatchRate Int?
+  avatar          String?
+  created_at      DateTime?
+  rarityId        Int
+  natureId        Int
+  typeId          Int
+  heroes_nature   heroes_nature    @relation(fields: [natureId], references: [id], map: "Heroes_natureId_fkey")
+  heroes_rarity   heroes_rarity    @relation(fields: [rarityId], references: [id], map: "Heroes_rarityId_fkey")
+  heroes_type     heroes_type      @relation(fields: [typeId], references: [id], map: "Heroes_typeId_fkey")
+  heroes_level    heroes_level[]
+  players_heroes  players_heroes[]
+
+  @@index([natureId], map: "Heroes_natureId_fkey")
+  @@index([rarityId], map: "Heroes_rarityId_fkey")
+  @@index([typeId], map: "Heroes_typeId_fkey")
+}
+
+model heroes_level {
+  id           Int      @id @default(autoincrement())
+  heroId       Int
+  level        Int      @default(0)
+  attack       Float    @default(0)
+  defense      Float    @default(0)
+  hp           Float    @default(0)
+  sp_attack    Float    @default(0)
+  sp_defense   Float    @default(0)
+  speed        Float    @default(0)
+  farming      Float    @default(0)
+  steeling     Float    @default(0)
+  wooding      Float    @default(0)
+  exp_needed   Int      @default(0)
+  created_at   DateTime @default(now())
+  power_points Int      @default(0)
+  heroes       heroes   @relation(fields: [heroId], references: [id], map: "Heroes_Level_heroId_fkey")
+
+  @@index([heroId], map: "Heroes_Level_heroId_fkey")
+}
+
+model heroes_nature {
+  id               Int      @id @default(autoincrement())
+  name             String   @unique(map: "Heroes_Nature_name_key")
+  description      String   @default("No description")
+  boost_attack     Float    @default(0)
+  boost_defense    Float    @default(0)
+  boost_hp         Float    @default(0)
+  boost_sp_attack  Float    @default(0)
+  boost_sp_defense Float    @default(0)
+  boost_speed      Float    @default(0)
+  boost_farming    Float    @default(0)
+  boost_steeling   Float    @default(0)
+  boost_wooding    Float    @default(0)
+  created_at       DateTime @default(now())
+  heroes           heroes[]
+}
+
+model heroes_rarity {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique(map: "Heroes_Rarity_name_key")
+  description String
+  avatar      String   @default("rarity_Null.png")
+  created_at  DateTime @default(now())
+  heroes      heroes[]
+}
+
+model heroes_type {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique(map: "Heroes_Type_name_key")
+  description String   @default("No description")
+  heroes      heroes[]
+}
+
+model players {
+  id               Int                @id @default(autoincrement())
+  id_google        String?
+  id_facebook      String?
+  id_apple         String?
+  mail             String?
+  nickname         String
+  firstname        String?
+  lastname         String?
+  phrase           String?
+  coins            Int                @default(100)
+  diamonds         Int                @default(100)
+  experience       Int                @default(0)
+  level            Int                @default(1)
+  loginDays        Int                @default(0)
+  avatar           String             @default("avatar.jpg")
+  block_avatar     String             @default("m_avatar.jpg")
+  created_at       DateTime           @default(now())
+  guildmemberships guildmemberships[]
+  players_heroes   players_heroes[]
+  players_wallet   players_wallet[]
+}
+
+model players_heroes {
+  id           Int           @id @default(autoincrement())
+  playerId     Int
+  heroId       Int
+  level        Int           @default(0)
+  experience   Int           @default(0)
+  id_placement Int?
+  power_point  Int           @default(0)
+  created_at   DateTime      @default(now())
+  accessories  accessories[]
+  heroes       heroes        @relation(fields: [heroId], references: [id], map: "Players_Heroes_heroId_fkey")
+  players      players       @relation(fields: [playerId], references: [id], map: "Players_Heroes_playerId_fkey")
+
+  @@index([heroId], map: "Players_Heroes_heroId_fkey")
+  @@index([playerId], map: "Players_Heroes_playerId_fkey")
+}
+
+model players_wallet {
+  id           Int     @id @default(autoincrement())
+  exp_rarity   Int
+  exp_quantity Int     @default(0)
+  playerId     Int
+  players      players @relation(fields: [playerId], references: [id], map: "Players_Wallet_playerId_fkey")
+
+  @@index([playerId], map: "Players_Wallet_playerId_fkey")
+}
+
+model Terrain {
+  id         Int          @id @default(autoincrement())
+  playerId   Int          @unique(map: "Player_TerrainId_fkey")
+  houses     Houses[]
+}
+
+model Houses {
+  id        Int     @id @default(autoincrement())
+  TerrainId Int
+  name      String
+  positionX Int
+  positionY Int
+  Avatar    String
+  terrain   Terrain @relation(fields: [TerrainId], references: [id], map: "Houses_TerrainId_fkey")
+
+  @@index([TerrainId], map: "Houses_TerrainId_fkey")
+}
