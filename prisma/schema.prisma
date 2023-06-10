@@ -171,10 +171,12 @@ model players {
   coins            Int                @default(100)
   diamonds         Int                @default(100)
   experience       Int                @default(0)
-  level            Int                @default(1)
-  loginDays        Int                @default(0)
+  level            Int                @default(1) 
   avatar           String             @default("avatar.jpg")
   block_avatar     String             @default("m_avatar.jpg")
+  loginDays        Int                @default(0)
+  last_login       DateTime           @default(now())
+  is_active        Boolean            @default(true)
   created_at       DateTime           @default(now())
   guildmemberships guildmemberships[]
   players_heroes   players_heroes[]
