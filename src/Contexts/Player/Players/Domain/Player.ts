@@ -15,6 +15,7 @@ import { PlayerAvatarBlock } from './value-object/PlayerAvatarBlock';
 import { PlayerLoginDays } from './value-object/PlayerLoginDays';
 
 export class Player {
+  id: number;
   googleId: string | null;
   facebookId: string| null;
   appleId: string| null;
@@ -35,6 +36,7 @@ export class Player {
   createdAt: Date;
 
   constructor(
+    __id: number,
     _googleId: string | null,
     _facebookId: string | null,
     _appleId: string | null,
@@ -54,6 +56,7 @@ export class Player {
     _isActive: boolean,
     _createdAt: Date
   ) {
+    this.id = __id;
     this.googleId = new PlayerGoogleId(_googleId).getValue();
     this.facebookId =  new PlayerFacebookId(_facebookId).getValue();
     this.appleId = new PlayerAppleId(_appleId).getValue();

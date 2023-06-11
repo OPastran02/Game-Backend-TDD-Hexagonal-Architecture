@@ -183,14 +183,6 @@ model players {
   players_wallet   players_wallet[]
 }
 
-model orders {
-  id        Int      @id @default(autoincrement())
-  orderId   Int
-  productId Int
-  total     Int
-  createdAt DateTime @default(now())
-}
-
 model players_heroes {
   id           Int           @id @default(autoincrement())
   playerId     Int

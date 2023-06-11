@@ -28,4 +28,12 @@ export class PlayerRepositoryPrismaMySQL implements IPlayerRepository {
       }
     });
   }
+
+  public async findPlayerById(playerId: number): Promise<Player> {
+    return await prisma.players.findFirstOrThrow({
+      where: {
+        id : playerId,
+      }
+    })
+  }
 }
