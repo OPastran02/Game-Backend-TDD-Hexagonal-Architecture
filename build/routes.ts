@@ -3,31 +3,34 @@
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, HttpStatusCodeLiteral, TsoaResponse, fetchMiddlewares } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { OrderController } from './../src/order-management/infraestructure/controllers/order.controller';
-// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { ProductController } from './../src/product-management/infraestructure/controllers/product.controller';
+import { PlayerController } from './../src/Contexts/Player/Players/Infrastructure/controllers/Player.controller';
 import type { RequestHandler, Router } from 'express';
 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
-    "Order": {
+    "Player": {
         "dataType": "refObject",
         "properties": {
-            "orderId": {"dataType":"double","required":true},
-            "total": {"dataType":"double","required":true},
-            "productId": {"dataType":"double","required":true},
+            "id": {"dataType":"string","required":true},
+            "googleId": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}],"required":true},
+            "facebookId": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}],"required":true},
+            "appleId": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}],"required":true},
+            "mail": {"dataType":"string","required":true},
+            "nickname": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}],"required":true},
+            "firstname": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}],"required":true},
+            "lastname": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}],"required":true},
+            "phrase": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}],"required":true},
+            "coins": {"dataType":"double","required":true},
+            "diamonds": {"dataType":"double","required":true},
+            "experience": {"dataType":"double","required":true},
+            "level": {"dataType":"double","required":true},
+            "avatar": {"dataType":"string","required":true},
+            "avatarBlock": {"dataType":"string","required":true},
+            "loginDays": {"dataType":"double","required":true},
+            "lastLogin": {"dataType":"datetime","required":true},
+            "isActive": {"dataType":"boolean","required":true},
             "createdAt": {"dataType":"datetime","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Product": {
-        "dataType": "refObject",
-        "properties": {
-            "productId": {"dataType":"double","required":true},
-            "name": {"dataType":"string","required":true},
-            "price": {"dataType":"double","required":true},
         },
         "additionalProperties": false,
     },
@@ -42,13 +45,13 @@ export function RegisterRoutes(app: Router) {
     //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
     //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
     // ###########################################################################################################
-        app.post('/order',
-            ...(fetchMiddlewares<RequestHandler>(OrderController)),
-            ...(fetchMiddlewares<RequestHandler>(OrderController.prototype.addOrder)),
+        app.post('/player/add',
+            ...(fetchMiddlewares<RequestHandler>(PlayerController)),
+            ...(fetchMiddlewares<RequestHandler>(PlayerController.prototype.addPlayer)),
 
-            function OrderController_addOrder(request: any, response: any, next: any) {
+            function PlayerController_addPlayer(request: any, response: any, next: any) {
             const args = {
-                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"total":{"dataType":"double","required":true},"productId":{"dataType":"double","required":true}}},
+                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"createdAt":{"dataType":"datetime","required":true},"isActive":{"dataType":"boolean","required":true},"lastLogin":{"dataType":"datetime","required":true},"loginDays":{"dataType":"double","required":true},"avatarBlock":{"dataType":"string","required":true},"avatar":{"dataType":"string","required":true},"level":{"dataType":"double","required":true},"experience":{"dataType":"double","required":true},"diamonds":{"dataType":"double","required":true},"coins":{"dataType":"double","required":true},"phrase":{"dataType":"string","required":true},"lastname":{"dataType":"string","required":true},"firstname":{"dataType":"string","required":true},"nickname":{"dataType":"string","required":true},"mail":{"dataType":"string","required":true},"appleId":{"dataType":"string","required":true},"facebookId":{"dataType":"string","required":true},"googleId":{"dataType":"string","required":true},"id":{"dataType":"string","required":true}}},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -57,23 +60,23 @@ export function RegisterRoutes(app: Router) {
             try {
                 validatedArgs = getValidatedArgs(args, request, response);
 
-                const controller = new OrderController();
+                const controller = new PlayerController();
 
 
-              const promise = controller.addOrder.apply(controller, validatedArgs as any);
+              const promise = controller.addPlayer.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.post('/product',
-            ...(fetchMiddlewares<RequestHandler>(ProductController)),
-            ...(fetchMiddlewares<RequestHandler>(ProductController.prototype.addProduct)),
+        app.post('/player/findById',
+            ...(fetchMiddlewares<RequestHandler>(PlayerController)),
+            ...(fetchMiddlewares<RequestHandler>(PlayerController.prototype.playerFindById)),
 
-            function ProductController_addProduct(request: any, response: any, next: any) {
+            function PlayerController_playerFindById(request: any, response: any, next: any) {
             const args = {
-                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"price":{"dataType":"double","required":true},"name":{"dataType":"string","required":true}}},
+                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"string","required":true}}},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -82,10 +85,35 @@ export function RegisterRoutes(app: Router) {
             try {
                 validatedArgs = getValidatedArgs(args, request, response);
 
-                const controller = new ProductController();
+                const controller = new PlayerController();
 
 
-              const promise = controller.addProduct.apply(controller, validatedArgs as any);
+              const promise = controller.playerFindById.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.post('/player/deactivate',
+            ...(fetchMiddlewares<RequestHandler>(PlayerController)),
+            ...(fetchMiddlewares<RequestHandler>(PlayerController.prototype.playerDeactivate)),
+
+            function PlayerController_playerDeactivate(request: any, response: any, next: any) {
+            const args = {
+                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"string","required":true}}},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new PlayerController();
+
+
+              const promise = controller.playerDeactivate.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);

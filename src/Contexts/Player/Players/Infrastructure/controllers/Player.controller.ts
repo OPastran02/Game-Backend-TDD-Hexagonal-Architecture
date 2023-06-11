@@ -19,7 +19,7 @@ export class PlayerController extends Controller {
     this._playerDeactivate = new PlayerDeactivate(playerRepository)
   }
 
-  @Post() 
+  @Post('/add')
   public async addPlayer(
     @Body() requestBody: 
         {id:string,googleId: string, facebookId: string, appleId: string, mail: string, nickname: string, firstname: string, lastname: string, phrase: string,
@@ -37,14 +37,14 @@ export class PlayerController extends Controller {
       );
   }
 
-  @Post() 
+  @Post('/findById')
   public async playerFindById(@Body() requestBody:{id:string}): Promise<Player | null> {
       const {id} = requestBody;
       return await this._playerFindById.playerFindById(id);
   }
   
 
-  @Post() 
+  @Post('/deactivate')
   public async playerDeactivate(@Body() requestBody:{id:string}): Promise<void> {
       const {id} = requestBody;
       await this._playerDeactivate.playerDeactivate(id);

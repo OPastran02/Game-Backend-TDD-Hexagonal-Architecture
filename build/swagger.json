@@ -6,19 +6,74 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
-			"Order": {
+			"Player": {
 				"properties": {
-					"orderId": {
+					"id": {
+						"type": "string"
+					},
+					"googleId": {
+						"type": "string",
+						"nullable": true
+					},
+					"facebookId": {
+						"type": "string",
+						"nullable": true
+					},
+					"appleId": {
+						"type": "string",
+						"nullable": true
+					},
+					"mail": {
+						"type": "string"
+					},
+					"nickname": {
+						"type": "string",
+						"nullable": true
+					},
+					"firstname": {
+						"type": "string",
+						"nullable": true
+					},
+					"lastname": {
+						"type": "string",
+						"nullable": true
+					},
+					"phrase": {
+						"type": "string",
+						"nullable": true
+					},
+					"coins": {
 						"type": "number",
 						"format": "double"
 					},
-					"total": {
+					"diamonds": {
 						"type": "number",
 						"format": "double"
 					},
-					"productId": {
+					"experience": {
 						"type": "number",
 						"format": "double"
+					},
+					"level": {
+						"type": "number",
+						"format": "double"
+					},
+					"avatar": {
+						"type": "string"
+					},
+					"avatarBlock": {
+						"type": "string"
+					},
+					"loginDays": {
+						"type": "number",
+						"format": "double"
+					},
+					"lastLogin": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"isActive": {
+						"type": "boolean"
 					},
 					"createdAt": {
 						"type": "string",
@@ -26,32 +81,25 @@
 					}
 				},
 				"required": [
-					"orderId",
-					"total",
-					"productId",
+					"id",
+					"googleId",
+					"facebookId",
+					"appleId",
+					"mail",
+					"nickname",
+					"firstname",
+					"lastname",
+					"phrase",
+					"coins",
+					"diamonds",
+					"experience",
+					"level",
+					"avatar",
+					"avatarBlock",
+					"loginDays",
+					"lastLogin",
+					"isActive",
 					"createdAt"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"Product": {
-				"properties": {
-					"productId": {
-						"type": "number",
-						"format": "double"
-					},
-					"name": {
-						"type": "string"
-					},
-					"price": {
-						"type": "number",
-						"format": "double"
-					}
-				},
-				"required": [
-					"productId",
-					"name",
-					"price"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -69,16 +117,16 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/order": {
+		"/player/add": {
 			"post": {
-				"operationId": "AddOrder",
+				"operationId": "AddPlayer",
 				"responses": {
 					"200": {
 						"description": "Ok",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/Order"
+									"$ref": "#/components/schemas/Player"
 								}
 							}
 						}
@@ -92,18 +140,91 @@
 						"application/json": {
 							"schema": {
 								"properties": {
-									"total": {
+									"createdAt": {
+										"type": "string",
+										"format": "date-time"
+									},
+									"isActive": {
+										"type": "boolean"
+									},
+									"lastLogin": {
+										"type": "string",
+										"format": "date-time"
+									},
+									"loginDays": {
 										"type": "number",
 										"format": "double"
 									},
-									"productId": {
+									"avatarBlock": {
+										"type": "string"
+									},
+									"avatar": {
+										"type": "string"
+									},
+									"level": {
 										"type": "number",
 										"format": "double"
+									},
+									"experience": {
+										"type": "number",
+										"format": "double"
+									},
+									"diamonds": {
+										"type": "number",
+										"format": "double"
+									},
+									"coins": {
+										"type": "number",
+										"format": "double"
+									},
+									"phrase": {
+										"type": "string"
+									},
+									"lastname": {
+										"type": "string"
+									},
+									"firstname": {
+										"type": "string"
+									},
+									"nickname": {
+										"type": "string"
+									},
+									"mail": {
+										"type": "string"
+									},
+									"appleId": {
+										"type": "string"
+									},
+									"facebookId": {
+										"type": "string"
+									},
+									"googleId": {
+										"type": "string"
+									},
+									"id": {
+										"type": "string"
 									}
 								},
 								"required": [
-									"total",
-									"productId"
+									"createdAt",
+									"isActive",
+									"lastLogin",
+									"loginDays",
+									"avatarBlock",
+									"avatar",
+									"level",
+									"experience",
+									"diamonds",
+									"coins",
+									"phrase",
+									"lastname",
+									"firstname",
+									"nickname",
+									"mail",
+									"appleId",
+									"facebookId",
+									"googleId",
+									"id"
 								],
 								"type": "object"
 							}
@@ -112,16 +233,21 @@
 				}
 			}
 		},
-		"/product": {
+		"/player/findById": {
 			"post": {
-				"operationId": "AddProduct",
+				"operationId": "PlayerFindById",
 				"responses": {
 					"200": {
 						"description": "Ok",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/Product"
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Player"
+										}
+									],
+									"nullable": true
 								}
 							}
 						}
@@ -135,17 +261,42 @@
 						"application/json": {
 							"schema": {
 								"properties": {
-									"price": {
-										"type": "number",
-										"format": "double"
-									},
-									"name": {
+									"id": {
 										"type": "string"
 									}
 								},
 								"required": [
-									"price",
-									"name"
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/player/deactivate": {
+			"post": {
+				"operationId": "PlayerDeactivate",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"id": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"id"
 								],
 								"type": "object"
 							}
