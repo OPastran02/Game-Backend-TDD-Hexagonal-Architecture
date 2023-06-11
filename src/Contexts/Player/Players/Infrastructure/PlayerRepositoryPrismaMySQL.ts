@@ -7,6 +7,7 @@ export class PlayerRepositoryPrismaMySQL implements IPlayerRepository {
   public async addPlayer(player: Player): Promise<Player> {
     return await prisma.players.create({
       data: {
+        id: player.id,
         googleId: player.googleId,
         facebookId: player.facebookId,
         appleId: player.appleId,
@@ -29,7 +30,7 @@ export class PlayerRepositoryPrismaMySQL implements IPlayerRepository {
     });
   }
 
-  public async findPlayerById(playerId: number): Promise<Player> {
+  public async findPlayerById(playerId: string): Promise<Player> {
     return await prisma.players.findFirstOrThrow({
       where: {
         id : playerId,

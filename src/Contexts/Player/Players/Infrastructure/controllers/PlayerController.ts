@@ -19,7 +19,7 @@ export class PlayerController extends Controller {
   @Post() 
   public async addPlayer(
     @Body() requestBody: 
-        {id:number,googleId: string, facebookId: string, appleId: string, mail: string, nickname: string, firstname: string, lastname: string, phrase: string,
+        {id:string,googleId: string, facebookId: string, appleId: string, mail: string, nickname: string, firstname: string, lastname: string, phrase: string,
           coins: number, diamonds: number, experience: number, level: number, avatar: string, avatarBlock: string, loginDays: number,lastLogin: Date,
           isActive: boolean, createdAt: Date
         } 
@@ -35,7 +35,7 @@ export class PlayerController extends Controller {
   }
 
   @Post() 
-  public async findPlayerById(@Body() requestBody:{id:number}): Promise<Player | null> {
+  public async findPlayerById(@Body() requestBody:{id:string}): Promise<Player | null> {
       const {id} = requestBody;
       return await this.playerFindById.findPlayerById(id);
   }

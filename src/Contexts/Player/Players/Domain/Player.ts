@@ -16,7 +16,7 @@ import { PlayerLoginDays } from './value-object/PlayerLoginDays';
 import { v4 as uuidv4 } from 'uuid';
 
 export class Player {
-  id: string | null;
+  id: string;
   googleId: string | null;
   facebookId: string| null;
   appleId: string| null;
@@ -37,7 +37,7 @@ export class Player {
   createdAt: Date;
 
   constructor(
-    __id: string | null,
+    __id: string,
     _googleId: string | null,
     _facebookId: string | null,
     _appleId: string | null,

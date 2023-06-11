@@ -9,7 +9,7 @@ export class PlayerCreateUseCase {
   }
 
   public async addPlayer(
-    _id:number,
+    _id:string,
     _googleId: string|null,
     _facebookId: string|null,
     _appleId: string|null,

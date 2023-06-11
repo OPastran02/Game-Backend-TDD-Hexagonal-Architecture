@@ -3,6 +3,9 @@ import { PlayerCreateUseCase } from '../src/Contexts/Player/Players/Application/
 import { PlayerFindById } from '../src/Contexts/Player/Players/Application/PlayerFindById';
 import { IPlayerRepository } from '../src/Contexts/Player/Players/Domain/Interfaces/Player.interface';
 import { Player } from '../src/Contexts/Player/Players/Domain/Player';
+
+import { v4 as uuid } from 'uuid';
+
 class MockPlayerRepository implements IPlayerRepository {
   private player: Player[] = [];
 
@@ -11,7 +14,7 @@ class MockPlayerRepository implements IPlayerRepository {
     return player;
   }
 
-  async findPlayerById(playerId: number) {
+  async findPlayerById(playerId: string) {
     const foundPlayer = this.player.find(player => player.id === playerId);
     return foundPlayer || null;
   }
@@ -29,7 +32,7 @@ describe('PlayerService', () => {
 
   test("addPlayer adds a player to the database", async () => {
     const player: Player = new Player(
-        1,
+        uuid(), // Generar un ID único
         "googleId",
         "face",
         "apple",
@@ -50,7 +53,7 @@ describe('PlayerService', () => {
         new Date(2023, 5, 7)
     );
     const addedOrder = await playerCreateUser.addPlayer(
-        1,
+        uuid(), // Generar un ID único
         "googleId",
         "face",
         "apple",
@@ -76,8 +79,9 @@ describe('PlayerService', () => {
 })
 
     test("findPlayerById returns the correct player", async () => {
+    const playerId = uuid(); // Generar un ID único
     const player: Player =new Player(
-        1,
+        playerId, // Generar un ID único
         "googleId",
         "face",
         "apple",
@@ -98,7 +102,7 @@ describe('PlayerService', () => {
         new Date(2023, 5, 7)
     );
     await playerCreateUser.addPlayer(
-        1,
+        playerId, // Generar un ID único
         "googleId",
         "face",
         "apple",
@@ -119,7 +123,7 @@ describe('PlayerService', () => {
         new Date(2023, 5, 7)
     );
   
-    const foundPlayer = await playerFindById.findPlayerById(1);
+    const foundPlayer = await playerFindById.findPlayerById(playerId);
   
     expect(foundPlayer).toEqual(player);
   });

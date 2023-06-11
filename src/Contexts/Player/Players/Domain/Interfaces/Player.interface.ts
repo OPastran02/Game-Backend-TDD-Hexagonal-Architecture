@@ -5,7 +5,7 @@ export interface IPlayerRepository {
     
     addPlayer(player: Player): Promise<Player>; //Agrega un player completo
 
-    findPlayerById(playerId: number): Promise<Player | null>; //busca un player por Id
+    findPlayerById(playerId: string): Promise<Player | null>; //busca un player por Id
 
 /*
     deletePlayer(playerId: PlayerId): Promise<void>; 

@@ -8,7 +8,7 @@ export class PlayerFindById {
     this.playerRepository = playerRepository;
   }
 
-  public async findPlayerById(id: number): Promise<Player | null> {
+  public async findPlayerById(id: string): Promise<Player | null> {
     return await this.playerRepository.findPlayerById(id);
   }
 }
