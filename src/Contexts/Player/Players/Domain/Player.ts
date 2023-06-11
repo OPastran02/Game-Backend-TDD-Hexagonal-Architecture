@@ -15,7 +15,7 @@ import { PlayerAvatarBlock } from './value-object/PlayerAvatarBlock';
 import { PlayerLoginDays } from './value-object/PlayerLoginDays';
 
 export class Player {
-  id: number;
+  id: number | null;
   googleId: string | null;
   facebookId: string| null;
   appleId: string| null;
@@ -36,7 +36,7 @@ export class Player {
   createdAt: Date;
 
   constructor(
-    __id: number,
+    __id: number | null,
     _googleId: string | null,
     _facebookId: string | null,
     _appleId: string | null,

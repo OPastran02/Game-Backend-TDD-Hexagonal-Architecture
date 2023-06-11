@@ -50,10 +50,11 @@ describe('PlayerService', () => {
         new Date(2023, 5, 7)
     );
     const addedOrder = await playerCreateUser.addPlayer(
+        1,
         "googleId",
         "face",
         "apple",
-        "mail",
+        "mail@mail.com",
         "sephyneko",
         "oscar",
         "pastran",
@@ -97,10 +98,11 @@ describe('PlayerService', () => {
         new Date(2023, 5, 7)
     );
     await playerCreateUser.addPlayer(
+        1,
         "googleId",
         "face",
         "apple",
-        "mail",
+        "mail@mail.com",
         "sephyneko",
         "oscar",
         "pastran",

@@ -19,16 +19,16 @@ export class PlayerController extends Controller {
   @Post() 
   public async addPlayer(
     @Body() requestBody: 
-        {googleId: string, facebookId: string, appleId: string, mail: string, nickname: string, firstname: string, lastname: string, phrase: string,
+        {id:number,googleId: string, facebookId: string, appleId: string, mail: string, nickname: string, firstname: string, lastname: string, phrase: string,
           coins: number, diamonds: number, experience: number, level: number, avatar: string, avatarBlock: string, loginDays: number,lastLogin: Date,
           isActive: boolean, createdAt: Date
         } 
       ): Promise<Player> {
       
-        const {googleId,facebookId,appleId,mail,nickname,firstname,lastname,phrase,coins,diamonds,experience,
+        const {id,googleId,facebookId,appleId,mail,nickname,firstname,lastname,phrase,coins,diamonds,experience,
         level, avatar, avatarBlock, loginDays,lastLogin,isActive,createdAt} = requestBody;
 
-      return await this.playerService.addPlayer(
+      return await this.playerService.addPlayer(id,
         googleId,facebookId,appleId,mail,nickname,firstname,lastname,phrase,coins,diamonds,experience,
         level, avatar, avatarBlock, loginDays,lastLogin,isActive,createdAt
       );

@@ -9,6 +9,7 @@ export class PlayerCreateUseCase {
   }
 
   public async addPlayer(
+    _id:number,
     _googleId: string,
     _facebookId: string,
     _appleId: string,
@@ -29,6 +30,7 @@ export class PlayerCreateUseCase {
     _createdAt: Date
   ): Promise<Player> {
     const player: Player = new Player(
+      _id,
       _googleId,
       _facebookId,
       _appleId,
