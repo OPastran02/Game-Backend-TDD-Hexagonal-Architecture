@@ -1,19 +1,22 @@
 import { PlayerCreateUseCase } from "../../Application/PlayerCreateUseCase";
 import { PlayerFindById } from "../../Application/PlayerFindById";
+import { PlayerDeactivate } from "../../Application/PlayerDeactivate";
 import { Body, Controller, Post, Route } from "tsoa";
 import { PlayerRepositoryPrismaMySQL } from "../PlayerRepositoryPrismaMySQL";
 import { Player } from '../../Domain/Player';
 
 @Route('player')
 export class PlayerController extends Controller {
-  private readonly playerService: PlayerCreateUseCase;
-  private readonly playerFindById: PlayerFindById;
+  private readonly _playerService: PlayerCreateUseCase;
+  private readonly _playerFindById: PlayerFindById;
+  private readonly _playerDeactivate: PlayerDeactivate;
 
   constructor() {
     super();
     var playerRepository = new PlayerRepositoryPrismaMySQL();
-    this.playerService = new PlayerCreateUseCase(playerRepository)
-    this.playerFindById = new PlayerFindById(playerRepository)
+    this._playerService = new PlayerCreateUseCase(playerRepository)
+    this._playerFindById = new PlayerFindById(playerRepository)
+    this._playerDeactivate = new PlayerDeactivate(playerRepository)
   }
 
   @Post() 
@@ -28,16 +31,22 @@ export class PlayerController extends Controller {
         const {id,googleId,facebookId,appleId,mail,nickname,firstname,lastname,phrase,coins,diamonds,experience,
         level, avatar, avatarBlock, loginDays,lastLogin,isActive,createdAt} = requestBody;
 
-      return await this.playerService.addPlayer(id,
+      return await this._playerService.addPlayer(id,
         googleId,facebookId,appleId,mail,nickname,firstname,lastname,phrase,coins,diamonds,experience,
         level, avatar, avatarBlock, loginDays,lastLogin,isActive,createdAt
       );
   }
 
   @Post() 
-  public async findPlayerById(@Body() requestBody:{id:string}): Promise<Player | null> {
+  public async playerFindById(@Body() requestBody:{id:string}): Promise<Player | null> {
       const {id} = requestBody;
-      return await this.playerFindById.findPlayerById(id);
+      return await this._playerFindById.playerFindById(id);
   }
   
+
+  @Post() 
+  public async playerDeactivate(@Body() requestBody:{id:string}): Promise<void> {
+      const {id} = requestBody;
+      await this._playerDeactivate.playerDeactivate(id);
+  }
  }

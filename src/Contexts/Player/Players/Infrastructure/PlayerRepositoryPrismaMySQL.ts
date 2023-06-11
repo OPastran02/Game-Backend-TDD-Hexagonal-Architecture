@@ -37,4 +37,15 @@ export class PlayerRepositoryPrismaMySQL implements IPlayerRepository {
       }
     })
   }
+
+  public async playerDeactivate(playerId: string): Promise<void> {
+    await prisma.players.update({
+      where: {
+        id: playerId,
+      },
+      data: {
+        isActive: false, // Cambia el valor de isActive a false
+      },
+    });
+  }
 }

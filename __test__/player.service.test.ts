@@ -1,86 +1,22 @@
-
-import { PlayerCreateUseCase } from '../src/Contexts/Player/Players/Application/PlayerCreateUseCase';
-import { PlayerFindById } from '../src/Contexts/Player/Players/Application/PlayerFindById';
-import { IPlayerRepository } from '../src/Contexts/Player/Players/Domain/Interfaces/Player.interface';
 import { Player } from '../src/Contexts/Player/Players/Domain/Player';
-
+import { PrismaClient } from '@prisma/client';
 import { v4 as uuid } from 'uuid';
 
-class MockPlayerRepository implements IPlayerRepository {
-  private player: Player[] = [];
-
-  async addPlayer(player: Player) {
-    this.player.push(player);
-    return player;
-  }
-
-  async findPlayerById(playerId: string) {
-    const foundPlayer = this.player.find(player => player.id === playerId);
-    return foundPlayer || null;
-  }
-}
 
 describe('PlayerService', () => {
-  let playerCreateUser: PlayerCreateUseCase;
-  let playerFindById: PlayerFindById;
+  let prisma: PrismaClient; // Agrega el Prisma Client
 
-  beforeEach(() => {
-    var mockPlayerRepository = new MockPlayerRepository();
-    playerCreateUser = new PlayerCreateUseCase(mockPlayerRepository);
-    playerFindById = new PlayerFindById(mockPlayerRepository);
+  beforeAll(() => {
+    prisma = new PrismaClient(); // Inicializa el Prisma Client
+  });
+
+  afterAll(async () => {
+    await prisma.$disconnect(); // Cierra la conexión del Prisma Client al finalizar las pruebas
   });
 
   test("addPlayer adds a player to the database", async () => {
-    const player: Player = new Player(
-        uuid(), // Generar un ID único
-        "googleId",
-        "face",
-        "apple",
-        "mail@mail.com",
-        "sephyneko",
-        "oscar",
-        "pastran",
-        "boludooooo",
-        100,
-        1000,
-        1000,
-        1,
-        "avatar.jpg",
-        "avatar.jpg",
-        1,
-        new Date(2023, 5, 7),
-        true,
-        new Date(2023, 5, 7)
-    );
-    const addedOrder = await playerCreateUser.addPlayer(
-        uuid(), // Generar un ID único
-        "googleId",
-        "face",
-        "apple",
-        "mail@mail.com",
-        "sephyneko",
-        "oscar",
-        "pastran",
-        "boludooooo",
-        100,
-        1000,
-        1000,
-        1,
-        "avatar.jpg",
-        "avatar.jpg",
-        1,
-        new Date(2023, 5, 7),
-        true,
-        new Date(2023, 5, 7)
-    );
-
-    expect(addedOrder.googleId).toBe(player.googleId);
-    expect(addedOrder.appleId).toBe(player.appleId);
-})
-
-    test("findPlayerById returns the correct player", async () => {
     const playerId = uuid(); // Generar un ID único
-    const player: Player =new Player(
+    const player: Player = new Player(
         playerId, // Generar un ID único
         "googleId",
         "face",
@@ -101,30 +37,44 @@ describe('PlayerService', () => {
         true,
         new Date(2023, 5, 7)
     );
-    await playerCreateUser.addPlayer(
-        playerId, // Generar un ID único
-        "googleId",
-        "face",
-        "apple",
-        "mail@mail.com",
-        "sephyneko",
-        "oscar",
-        "pastran",
-        "boludooooo",
-        100,
-        1000,
-        1000,
-        1,
-        "avatar.jpg",
-        "avatar.jpg",
-        1,
-        new Date(2023, 5, 7),
-        true,
-        new Date(2023, 5, 7)
-    );
-  
-    const foundPlayer = await playerFindById.findPlayerById(playerId);
-  
-    expect(foundPlayer).toEqual(player);
+
+    const addedPlayer = await prisma.players.create({
+      data: player,
+    });
+
+    expect(addedPlayer.googleId).toBe(player.googleId);
+    expect(addedPlayer.appleId).toBe(player.appleId);
   });
-})
+
+  test("findPlayerById returns the correct player", async () => {
+    const ultimoPlayer: Player = new Player(
+      "1c08c7de-1bb8-4ac3-8742-6c69099c081d",
+      "googleId",
+      "face",
+      "apple",
+      "mail@mail.com",
+      "sephyneko",
+      "oscar",
+      "pastran",
+      "boludooooo",
+      100,
+      1000,
+      1000,
+      1,
+      "avatar.jpg",
+      "avatar.jpg",
+      1,
+      new Date(2023, 5, 7),
+      true,
+      new Date(2023, 5, 7)
+    );
+  
+    const foundPlayer = await prisma.players.findUnique({
+      where: {
+        id:"1c08c7de-1bb8-4ac3-8742-6c69099c081d"
+      }
+    })
+  
+    expect(foundPlayer).toEqual(ultimoPlayer);
+  });
+});

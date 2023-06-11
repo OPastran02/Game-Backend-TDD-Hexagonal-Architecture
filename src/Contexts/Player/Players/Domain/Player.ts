@@ -37,7 +37,7 @@ export class Player {
   createdAt: Date;
 
   constructor(
-    __id: string,
+    __id: string | undefined,
     _googleId: string | null,
     _facebookId: string | null,
     _appleId: string | null,
@@ -57,7 +57,11 @@ export class Player {
     _isActive: boolean,
     _createdAt: Date
   ) {
-    this.id = uuidv4();
+    if (__id) {
+      this.id = __id; // Usar el ID especificado si se proporciona
+    } else {
+      this.id = uuidv4(); // Generar un UUID si no se proporciona un ID
+    }
     this.googleId = new PlayerGoogleId(_googleId).getValue();
     this.facebookId =  new PlayerFacebookId(_facebookId).getValue();
     this.appleId = new PlayerAppleId(_appleId).getValue();
