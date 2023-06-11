@@ -30,7 +30,7 @@ export class PlayerRepositoryPrismaMySQL implements IPlayerRepository {
     });
   }
 
-  public async findPlayerById(playerId: string): Promise<Player> {
+  public async playerFindById(playerId: string): Promise<Player> {
     return await prisma.players.findFirstOrThrow({
       where: {
         id : playerId,

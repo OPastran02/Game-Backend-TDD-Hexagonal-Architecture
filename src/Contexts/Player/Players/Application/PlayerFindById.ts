@@ -8,8 +8,8 @@ export class PlayerFindById {
     this.playerRepository = playerRepository;
   }
 
-  public async findPlayerById(id: string): Promise<Player | null> {
-    return await this.playerRepository.findPlayerById(id);
+  public async playerFindById(id: string): Promise<Player | null> {
+    return await this.playerRepository.playerFindById(id);
   }
 }
 
