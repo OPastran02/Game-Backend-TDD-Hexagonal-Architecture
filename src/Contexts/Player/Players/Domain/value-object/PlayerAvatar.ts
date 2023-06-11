@@ -1,16 +1,24 @@
-import { StringValueObject } from '../../../../Shared/Domain/value-object/StringValueObject';
 import { InvalidArgumentError } from '../../../../Shared/Domain/value-object/InvalidArgumentError';
 
-export class PlayerAvatar extends StringValueObject {
+export class PlayerAvatar {
+  MAX_LENGTH = 15
+  FIELD_NAME = "PlayerAvatar"
+  value: string;
+
   constructor(value: string) {
-    super(value);
-    this.ensureLengthIsLessThanAvailableCharacters(value);
+    if (value !== null) {
+      this.ensureLengthIsLessThanAvailableCharacters(value);
+    }
+    this.value = value;
   }
 
   private ensureLengthIsLessThanAvailableCharacters(value: string): void {
-    var quantity = 15;
-    if (value.length > quantity) {
-      throw new InvalidArgumentError(`The Player Avatar <${value}> has more than ${quantity} characters`);
+    if (value.length > this.MAX_LENGTH) {
+      throw new InvalidArgumentError(`The Player ${this.FIELD_NAME} <${value}> has more than ${this.MAX_LENGTH} characters`);
     }
+  }
+
+  getValue(): string {
+    return this.value;
   }
 }

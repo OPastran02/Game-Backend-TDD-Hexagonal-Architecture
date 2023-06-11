@@ -1,16 +1,20 @@
-import { StringValueObject } from '../../../../Shared/Domain/value-object/StringValueObject';
 import { InvalidArgumentError } from '../../../../Shared/Domain/value-object/InvalidArgumentError';
 
-export class PlayerMail extends StringValueObject {
+export class PlayerMail{
+  emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  FIELD_NAME = "mail"
+  value: string;
+
   constructor(value: string) {
-    super(value);
-    this.ensureIsValidEmail(value);
+    if (value !== null) {
+      this.ensureIsValidEmail(value);
+    }
+    this.value = value;
   }
 
   private ensureIsValidEmail(value: string): void {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!emailRegex.test(value)) {
+    if (!this.emailRegex.test(value)) {
       throw new InvalidArgumentError(`Player email format: <${value}>`);
     }
   }

@@ -3,11 +3,13 @@ import { Order } from '../domain/order';
 import prisma from '../../../prisma/index';
 
 export class OrderRepositoryPrismaSqlite implements IOrderRepository {
-  public async addOrder(order: Order): Promise<Order> {
-    return await prisma.orders.create({
+  public async addOrder(pelotudo: Order): Promise<Order> {
+    return prisma.orders.create({
       data: {
-        total: order.total,
-        productId: order.productId
+        orderId: pelotudo.orderId,
+        total: pelotudo.total,
+        productId: pelotudo.productId,
+        createdAt: pelotudo.createdAt
       }
     })
   }

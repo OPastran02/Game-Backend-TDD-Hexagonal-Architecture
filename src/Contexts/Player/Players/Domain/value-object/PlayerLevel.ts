@@ -1,17 +1,22 @@
-import { NumberValueObject } from '../../../../Shared/Domain/value-object/NumberValueObject';
 import { InvalidArgumentError } from '../../../../Shared/Domain/value-object/InvalidArgumentError';
 
-export class PlayerLevel extends NumberValueObject {
+export class PlayerLevel{
+  LIMIT=99999;
+  FIELD_NAME="PlayerLevel";
+  value: number;
+
   constructor(value: number) {
-    super(value);
     this.ensureValueWithinLimit(value);
+    this.value = value;
   }
 
   private ensureValueWithinLimit(value: number): void {
-    const limit = 100;
-
-    if (value > limit) {
-      throw new InvalidArgumentError(`Player Level Value exceeds the limit of ${limit}: ${value}`);
+    if (value > this.LIMIT) {
+      throw new InvalidArgumentError(`Player ${this.FIELD_NAME} Value exceeds the limit of ${this.LIMIT}: ${value}`);
     }
+  }
+
+  getValue(): number {
+    return this.value;
   }
 }

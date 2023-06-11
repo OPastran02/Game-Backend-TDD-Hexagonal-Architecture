@@ -160,33 +160,35 @@ model heroes_type {
 
 model players {
   id               Int                @id @default(autoincrement())
-  id_google        String?
-  id_facebook      String?
-  id_apple         String?
-  mail             String?
-  nickname         String
+  googleId         String?
+  facebookId       String?
+  appleId          String?
+  mail             String
+  nickname         String?
   firstname        String?
   lastname         String?
   phrase           String?
   coins            Int                @default(100)
   diamonds         Int                @default(100)
   experience       Int                @default(0)
-  level            Int                @default(1) 
+  level            Int                @default(1)
   avatar           String             @default("avatar.jpg")
-  block_avatar     String             @default("m_avatar.jpg")
+  avatarBlock      String             @default("m_avatar.jpg")
   loginDays        Int                @default(0)
-  last_login       DateTime           @default(now())
-  is_active        Boolean            @default(true)
-  created_at       DateTime           @default(now())
+  lastLogin        DateTime           @default(now())
+  isActive         Boolean            @default(true)
+  createdAt        DateTime           @default(now())
   guildmemberships guildmemberships[]
   players_heroes   players_heroes[]
   players_wallet   players_wallet[]
 }
 
 model orders {
-  id               Int                @id @default(autoincrement())
-  total  Int
-  ProductId Int
+  id        Int      @id @default(autoincrement())
+  orderId   Int
+  productId Int
+  total     Int
+  createdAt DateTime @default(now())
 }
 
 model players_heroes {
@@ -217,9 +219,9 @@ model players_wallet {
 }
 
 model Terrain {
-  id         Int          @id @default(autoincrement())
-  playerId   Int          @unique(map: "Player_TerrainId_fkey")
-  houses     Houses[]
+  id       Int      @id @default(autoincrement())
+  playerId Int      @unique(map: "Player_TerrainId_fkey")
+  houses   Houses[]
 }
 
 model Houses {
