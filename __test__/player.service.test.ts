@@ -119,7 +119,7 @@ describe('PlayerService', () => {
         new Date(2023, 5, 7)
     );
   
-    const foundPlayer = await playerFindById.findPlayerById(player.id);
+    const foundPlayer = await playerFindById.findPlayerById(1);
   
     expect(foundPlayer).toEqual(player);
   });

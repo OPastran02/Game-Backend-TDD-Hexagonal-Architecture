@@ -13,9 +13,10 @@ import { PlayerLevel } from './value-object/PlayerLevel';
 import { PlayerAvatar } from './value-object/PlayerAvatar';
 import { PlayerAvatarBlock } from './value-object/PlayerAvatarBlock';
 import { PlayerLoginDays } from './value-object/PlayerLoginDays';
+import { v4 as uuidv4 } from 'uuid';
 
 export class Player {
-  id: number | null;
+  id: string | null;
   googleId: string | null;
   facebookId: string| null;
   appleId: string| null;
@@ -36,7 +37,7 @@ export class Player {
   createdAt: Date;
 
   constructor(
-    __id: number | null,
+    __id: string | null,
     _googleId: string | null,
     _facebookId: string | null,
     _appleId: string | null,
@@ -56,7 +57,7 @@ export class Player {
     _isActive: boolean,
     _createdAt: Date
   ) {
-    this.id = __id;
+    this.id = uuidv4();
     this.googleId = new PlayerGoogleId(_googleId).getValue();
     this.facebookId =  new PlayerFacebookId(_facebookId).getValue();
     this.appleId = new PlayerAppleId(_appleId).getValue();

@@ -53,7 +53,7 @@ model furnitures {
 model guildmemberships {
   id        Int      @id @default(autoincrement())
   guildId   Int
-  playerId  Int
+  playerId  String
   title     String
   wood      Int
   steel     Int
@@ -159,7 +159,7 @@ model heroes_type {
 }
 
 model players {
-  id               Int                @id @default(autoincrement())
+  id               String             @id @default(uuid())
   googleId         String?
   facebookId       String?
   appleId          String?
@@ -185,7 +185,7 @@ model players {
 
 model players_heroes {
   id           Int           @id @default(autoincrement())
-  playerId     Int
+  playerId     String
   heroId       Int
   level        Int           @default(0)
   experience   Int           @default(0)
@@ -204,7 +204,7 @@ model players_wallet {
   id           Int     @id @default(autoincrement())
   exp_rarity   Int
   exp_quantity Int     @default(0)
-  playerId     Int
+  playerId     String
   players      players @relation(fields: [playerId], references: [id], map: "Players_Wallet_playerId_fkey")
 
   @@index([playerId], map: "Players_Wallet_playerId_fkey")
