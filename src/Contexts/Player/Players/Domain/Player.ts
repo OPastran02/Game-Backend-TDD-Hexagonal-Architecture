@@ -57,10 +57,10 @@ export class Player {
     _isActive: boolean,
     _createdAt: Date
   ) {
-    if (__id) {
-      this.id = __id; // Usar el ID especificado si se proporciona
-    } else {
+    if (!__id || __id=="0") {
       this.id = uuidv4(); // Generar un UUID si no se proporciona un ID
+    } else {
+      this.id = __id; // Usar el ID especificado si se proporciona
     }
     this.googleId = new PlayerGoogleId(_googleId).getValue();
     this.facebookId =  new PlayerFacebookId(_facebookId).getValue();

@@ -1,0 +1,314 @@
+{
+    "components": {
+        "examples": {},
+        "headers": {},
+        "parameters": {},
+        "requestBodies": {},
+        "responses": {},
+        "schemas": {
+            "Player": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "googleId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "facebookId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "appleId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "mail": {
+                        "type": "string"
+                    },
+                    "nickname": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "firstname": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "phrase": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "coins": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "diamonds": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "experience": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "level": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "avatar": {
+                        "type": "string"
+                    },
+                    "avatarBlock": {
+                        "type": "string"
+                    },
+                    "loginDays": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "lastLogin": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "id",
+                    "googleId",
+                    "facebookId",
+                    "appleId",
+                    "mail",
+                    "nickname",
+                    "firstname",
+                    "lastname",
+                    "phrase",
+                    "coins",
+                    "diamonds",
+                    "experience",
+                    "level",
+                    "avatar",
+                    "avatarBlock",
+                    "loginDays",
+                    "lastLogin",
+                    "isActive",
+                    "createdAt"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            }
+        },
+        "securitySchemes": {}
+    },
+    "info": {
+        "title": "hexagon-architecture",
+        "version": "1.0.0",
+        "license": {
+            "name": "ISC"
+        },
+        "contact": {}
+    },
+    "openapi": "3.0.0",
+    "paths": {
+        "/player/add": {
+            "post": {
+                "operationId": "AddPlayer",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Player"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "isActive": {
+                                        "type": "boolean"
+                                    },
+                                    "lastLogin": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "loginDays": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
+                                    "avatarBlock": {
+                                        "type": "string"
+                                    },
+                                    "avatar": {
+                                        "type": "string"
+                                    },
+                                    "level": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
+                                    "experience": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
+                                    "diamonds": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
+                                    "coins": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
+                                    "phrase": {
+                                        "type": "string"
+                                    },
+                                    "lastname": {
+                                        "type": "string"
+                                    },
+                                    "firstname": {
+                                        "type": "string"
+                                    },
+                                    "nickname": {
+                                        "type": "string"
+                                    },
+                                    "mail": {
+                                        "type": "string"
+                                    },
+                                    "appleId": {
+                                        "type": "string"
+                                    },
+                                    "facebookId": {
+                                        "type": "string"
+                                    },
+                                    "googleId": {
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "isActive",
+                                    "lastLogin",
+                                    "loginDays",
+                                    "avatarBlock",
+                                    "avatar",
+                                    "level",
+                                    "experience",
+                                    "diamonds",
+                                    "coins",
+                                    "phrase",
+                                    "lastname",
+                                    "firstname",
+                                    "nickname",
+                                    "mail",
+                                    "appleId",
+                                    "facebookId",
+                                    "googleId",
+                                    "id"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/player/findById": {
+            "post": {
+                "operationId": "PlayerFindById",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/Player"
+                                        }
+                                    ],
+                                    "nullable": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "id"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/player/deactivate": {
+            "post": {
+                "operationId": "PlayerDeactivate",
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                },
+                "security": [],
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "id"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "servers": [
+        {
+            "url": "/"
+        }
+    ]
+}
