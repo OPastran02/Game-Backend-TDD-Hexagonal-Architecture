@@ -1,6 +1,7 @@
 import { PlayerCreateUseCase } from "../../Application/PlayerCreateUseCase";
 import { PlayerFindById } from "../../Application/PlayerFindById";
 import { PlayerDeactivate } from "../../Application/PlayerDeactivate";
+import { PlayerUpdateLastLogin } from "../../Application/PlayerUpdateLastLogin";
 import { Body, Controller, Post, Route } from "tsoa";
 import { PlayerRepositoryPrismaMySQL } from "../PlayerRepositoryPrismaMySQL";
 import { Player } from '../../Domain/Player';
@@ -10,6 +11,7 @@ export class PlayerController extends Controller {
   private readonly _playerService: PlayerCreateUseCase;
   private readonly _playerFindById: PlayerFindById;
   private readonly _playerDeactivate: PlayerDeactivate;
+  private readonly _playerUpdateLastLogin: PlayerUpdateLastLogin;
 
   constructor() {
     super();
@@ -17,6 +19,7 @@ export class PlayerController extends Controller {
     this._playerService = new PlayerCreateUseCase(playerRepository)
     this._playerFindById = new PlayerFindById(playerRepository)
     this._playerDeactivate = new PlayerDeactivate(playerRepository)
+    this._playerUpdateLastLogin = new PlayerUpdateLastLogin(playerRepository)
   }
 
   @Post('/add')
@@ -48,5 +51,11 @@ export class PlayerController extends Controller {
   public async playerDeactivate(@Body() requestBody:{id:string}): Promise<void> {
       const {id} = requestBody;
       await this._playerDeactivate.playerDeactivate(id);
+  }
+
+  @Post('/updateLastLogin')
+  public async playerUpdateLastLogin(@Body() requestBody:{id:string}): Promise<void> {
+      const {id} = requestBody;
+      await this._playerUpdateLastLogin.playerUpdateLastLogin(id);
   }
  }

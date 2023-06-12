@@ -7,7 +7,9 @@ export interface IPlayerRepository {
 
     playerFindById(playerId: string): Promise<Player | null>; //busca un player por Id
 
-    playerDeactivate(playerId: string): Promise<void>; 
+    playerDeactivate(playerId: string): Promise<void>; //desactivo jugador
+
+    playerUpdateLastLogin(playerId: string): Promise<void>; //update lastlogin
 
 /*
     deletePlayer(playerId: PlayerId): Promise<void>; 

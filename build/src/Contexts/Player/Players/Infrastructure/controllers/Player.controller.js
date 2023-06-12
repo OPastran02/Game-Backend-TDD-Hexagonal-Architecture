@@ -16,6 +16,7 @@ exports.PlayerController = void 0;
 const PlayerCreateUseCase_1 = require("../../Application/PlayerCreateUseCase");
 const PlayerFindById_1 = require("../../Application/PlayerFindById");
 const PlayerDeactivate_1 = require("../../Application/PlayerDeactivate");
+const PlayerUpdateLastLogin_1 = require("../../Application/PlayerUpdateLastLogin");
 const tsoa_1 = require("tsoa");
 const PlayerRepositoryPrismaMySQL_1 = require("../PlayerRepositoryPrismaMySQL");
 let PlayerController = class PlayerController extends tsoa_1.Controller {
@@ -25,6 +26,7 @@ let PlayerController = class PlayerController extends tsoa_1.Controller {
         this._playerService = new PlayerCreateUseCase_1.PlayerCreateUseCase(playerRepository);
         this._playerFindById = new PlayerFindById_1.PlayerFindById(playerRepository);
         this._playerDeactivate = new PlayerDeactivate_1.PlayerDeactivate(playerRepository);
+        this._playerUpdateLastLogin = new PlayerUpdateLastLogin_1.PlayerUpdateLastLogin(playerRepository);
     }
     async addPlayer(requestBody) {
         const { id, googleId, facebookId, appleId, mail, nickname, firstname, lastname, phrase, coins, diamonds, experience, level, avatar, avatarBlock, loginDays, lastLogin, isActive, createdAt } = requestBody;
@@ -37,6 +39,10 @@ let PlayerController = class PlayerController extends tsoa_1.Controller {
     async playerDeactivate(requestBody) {
         const { id } = requestBody;
         await this._playerDeactivate.playerDeactivate(id);
+    }
+    async playerUpdateLastLogin(requestBody) {
+        const { id } = requestBody;
+        await this._playerUpdateLastLogin.playerUpdateLastLogin(id);
     }
 };
 __decorate([
@@ -60,6 +66,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], PlayerController.prototype, "playerDeactivate", null);
+__decorate([
+    (0, tsoa_1.Post)('/updateLastLogin'),
+    __param(0, (0, tsoa_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PlayerController.prototype, "playerUpdateLastLogin", null);
 PlayerController = __decorate([
     (0, tsoa_1.Route)('player'),
     __metadata("design:paramtypes", [])

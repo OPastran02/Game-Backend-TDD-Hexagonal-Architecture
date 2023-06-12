@@ -19,11 +19,11 @@ const PlayerLoginDays_1 = require("./value-object/PlayerLoginDays");
 const uuid_1 = require("uuid");
 class Player {
     constructor(__id, _googleId, _facebookId, _appleId, _mail, _nickname, _firstname, _lastname, _phrase, _coins, _diamonds, _experience, _level, _avatar, _avatarBlock, _loginDays, _lastLogin, _isActive, _createdAt) {
-        if (__id) {
-            this.id = __id; // Usar el ID especificado si se proporciona
+        if (!__id || __id == "0") {
+            this.id = (0, uuid_1.v4)(); // Generar un UUID si no se proporciona un ID
         }
         else {
-            this.id = (0, uuid_1.v4)(); // Generar un UUID si no se proporciona un ID
+            this.id = __id; // Usar el ID especificado si se proporciona
         }
         this.googleId = new PlayerGoogleId_1.PlayerGoogleId(_googleId).getValue();
         this.facebookId = new PlayerFacebookId_1.PlayerFacebookId(_facebookId).getValue();

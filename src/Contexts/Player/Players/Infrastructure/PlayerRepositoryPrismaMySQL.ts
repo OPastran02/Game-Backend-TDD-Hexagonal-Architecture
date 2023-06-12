@@ -1,6 +1,8 @@
 import { IPlayerRepository } from '../Domain/Interfaces/Player.interface';
 import { Player } from '../Domain/Player';
 import prisma from '../../../../../prisma/index';
+import { differenceInDays } from 'date-fns';
+
 
 export class PlayerRepositoryPrismaMySQL implements IPlayerRepository {
   
@@ -47,5 +49,46 @@ export class PlayerRepositoryPrismaMySQL implements IPlayerRepository {
         isActive: false, // Cambia el valor de isActive a false
       },
     });
+  }
+
+  public async playerUpdateLastLogin(playerId: string): Promise<void> {
+    const player = await prisma.players.findUnique({
+      where: {
+        id: playerId,
+      },
+    });
+
+    if (player) {
+      const lastLogin = player.lastLogin;
+  
+      // Obtener la fecha actual
+      const currentDate = new Date();
+  
+      // Calcular la diferencia en días entre lastLogin y currentDate
+      const difference = differenceInDays(currentDate, lastLogin);
+  
+      // Si la diferencia es de un día, actualizar loginDays sumando 1
+      if (difference === 1) {
+        const updatedLoginDays = (player.loginDays || 0) + 1;
+  
+        await prisma.players.update({
+          where: {
+            id: playerId,
+          },
+          data: {
+            loginDays: updatedLoginDays,
+          },
+        });
+      }else if (difference > 1) {
+        await prisma.players.update({
+          where: {
+            id: playerId,
+          },
+          data: {
+            loginDays: 1,
+          },
+        });
+      }
+    }
   }
 }
