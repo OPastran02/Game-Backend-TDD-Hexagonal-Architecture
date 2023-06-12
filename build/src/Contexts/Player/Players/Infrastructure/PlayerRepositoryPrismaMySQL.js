@@ -57,11 +57,8 @@ class PlayerRepositoryPrismaMySQL {
         });
         if (player) {
             const lastLogin = player.lastLogin;
-            // Obtener la fecha actual
             const currentDate = new Date();
-            // Calcular la diferencia en días entre lastLogin y currentDate
             const difference = (0, date_fns_1.differenceInDays)(currentDate, lastLogin);
-            // Si la diferencia es de un día, actualizar loginDays sumando 1
             if (difference === 1) {
                 const updatedLoginDays = (player.loginDays || 0) + 1;
                 await index_1.default.players.update({
@@ -69,6 +66,7 @@ class PlayerRepositoryPrismaMySQL {
                         id: playerId,
                     },
                     data: {
+                        lastLogin: currentDate,
                         loginDays: updatedLoginDays,
                     },
                 });
@@ -79,6 +77,7 @@ class PlayerRepositoryPrismaMySQL {
                         id: playerId,
                     },
                     data: {
+                        lastLogin: currentDate,
                         loginDays: 1,
                     },
                 });
