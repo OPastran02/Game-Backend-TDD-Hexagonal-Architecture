@@ -85,4 +85,30 @@ export class PlayerRepositoryPrismaMySQL implements IPlayerRepository {
       },
     });
   }
+
+  public async playerUpdateIds(playerId: string, _googleId: string, _facebookId: string, _appleId: string): Promise<void> {
+    await prisma.players.update({
+      where: {
+        id: playerId,
+      },
+      data: {
+        googleId: _googleId, 
+        facebookId: _facebookId, 
+        appleId: _appleId
+      },
+    });
+  }
+
+  public async playerUpdateNames(playerId: string, _googleId: string, _facebookId: string, _appleId: string): Promise<void> {
+    await prisma.players.update({
+      where: {
+        id: playerId,
+      },
+      data: {
+        googleId: _googleId, 
+        facebookId: _facebookId, 
+        appleId: _appleId
+      },
+    });
+  }
 }

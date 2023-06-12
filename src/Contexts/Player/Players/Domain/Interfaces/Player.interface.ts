@@ -3,19 +3,23 @@ import { Player } from '../Player';
 
 export interface IPlayerRepository {
     
-    addPlayer(player: Player): Promise<Player>; //Agrega un player completo
+    addPlayer(player: Player): Promise<Player>;
 
-    playerFindById(playerId: string): Promise<Player | null>; //busca un player por Id
+    playerFindById(playerId: string): Promise<Player | null>; 
 
-    playerDeactivate(playerId: string): Promise<void>; //desactivo jugador
+    playerDeactivate(playerId: string): Promise<void>;
 
-    playerUpdateLastLogin(playerId: string, loginDays: number): Promise<void>; //update lastlogin
+    playerUpdateLastLogin(playerId: string, loginDays: number): Promise<void>; 
 
-    playerUpdateAvatar(playerId: string, playerAvatar:string): Promise<void>; //update lastlogin
+    playerUpdateAvatar(playerId: string, playerAvatar:string): Promise<void>; 
 
-    playerUpdateAvatarBlock(playerId: string, playerAvatar:string): Promise<void>; //update lastlogin
+    playerUpdateAvatarBlock(playerId: string, playerAvatar:string): Promise<void>; 
 
-/*
+    playerUpdateIds(playerId: string, facebookId:string | null, googleId:string | null, appleId:string | null): Promise<void>; 
+
+    playerUpdateNames(playerId: string, nickname:string | null, lastname:string | null, appleId:string | null): Promise<void>;
+
+    /*
     deletePlayer(playerId: PlayerId): Promise<void>; 
     updatePlayerEmail(playerId: PlayerId, newEmail: PlayerMail): Promise<void>;
 */

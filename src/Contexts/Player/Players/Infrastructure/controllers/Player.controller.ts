@@ -2,8 +2,10 @@ import { PlayerCreateUseCase } from "../../Application/PlayerCreateUseCase";
 import { PlayerFindByIdUseCase } from "../../Application/PlayerFindByIdUseCase";
 import { PlayerDeactivateUseCase } from "../../Application/PlayerDeactivateUseCase";
 import { PlayerUpdateLastLoginUseCase } from "../../Application/PlayerUpdateLastLoginUseCase";
-import { PlayerUpdateAvatarUseCase } from "../../Application/PlayerUpdateAvatarUseCase";
+import { PlayerUpdateAvatarUseCase } from "../../Application/PlayerUpdateAvatarUseCaseUseCase";
 import { PlayerUpdateAvatarBlockUseCase } from "../../Application/PlayerUpdateAvatarBlockUseCase";
+import { PlayerUpdateIdsUseCase } from "../../Application/PlayerUpdateIdsUseCase";
+import { PlayerUpdateNamesUseCase } from "../../Application/playerUpdateNamesUseCase";
 
 import { Body, Controller, Post, Route } from "tsoa";
 import { PlayerRepositoryPrismaMySQL } from "../PlayerRepositoryPrismaMySQL";
@@ -17,6 +19,8 @@ export class PlayerController extends Controller {
   private readonly _playerUpdateLastLogin: PlayerUpdateLastLoginUseCase;
   private readonly _playerUpdateAvatar: PlayerUpdateAvatarUseCase;
   private readonly _playerUpdateAvatarBlock: PlayerUpdateAvatarBlockUseCase;
+  private readonly _playerUpdateIdsUseCase: PlayerUpdateIdsUseCase;
+  private readonly _playerUpdateNamesUseCase: PlayerUpdateNamesUseCase;
 
   constructor() {
     super();
@@ -27,6 +31,8 @@ export class PlayerController extends Controller {
     this._playerUpdateLastLogin = new PlayerUpdateLastLoginUseCase(playerRepository)
     this._playerUpdateAvatar = new PlayerUpdateAvatarUseCase(playerRepository)
     this._playerUpdateAvatarBlock = new PlayerUpdateAvatarBlockUseCase(playerRepository)
+    this._playerUpdateIdsUseCase = new PlayerUpdateIdsUseCase(playerRepository)
+    this._playerUpdateNamesUseCase = new PlayerUpdateNamesUseCase(playerRepository)
   }
 
   @Post('/add')
@@ -75,5 +81,18 @@ export class PlayerController extends Controller {
   public async playerUpdateAvatarBlock(@Body() requestBody:{id:string, avatar: string}): Promise<void> {
       const {id,avatar} = requestBody;
       await this._playerUpdateAvatarBlock.playerUpdateAvatarBlock(id, avatar);
+  }
+
+  
+  @Post('/updateIds')
+  public async playerUpdateIds(@Body() requestBody:{id:string, googleId: string, facebookId: string, appleId: string}): Promise<void> {
+      const {id, googleId, facebookId, appleId} = requestBody;
+      await this._playerUpdateIdsUseCase.playerUpdateIds(id, googleId, facebookId, appleId);
+  }
+
+  @Post('/updateNames')
+  public async playerUpdateNames(@Body() requestBody:{id:string, nickName: string, firstName: string, lastName: string}): Promise<void> {
+      const {id, nickName, firstName, lastName} = requestBody;
+      await this._playerUpdateNamesUseCase.playerUpdateNames(id, nickName, firstName, lastName);
   }
  }
