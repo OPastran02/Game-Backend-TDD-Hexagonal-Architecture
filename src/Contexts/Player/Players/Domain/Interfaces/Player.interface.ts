@@ -19,8 +19,18 @@ export interface IPlayerRepository {
 
     playerUpdateNames(playerId: string, nickname:string | null, lastname:string | null, appleId:string | null): Promise<void>;
 
-    /*
-    deletePlayer(playerId: PlayerId): Promise<void>; 
-    updatePlayerEmail(playerId: PlayerId, newEmail: PlayerMail): Promise<void>;
-*/
+    playerUpdateMail(playerId: string, playerMail:string): Promise<void>; 
+
+    playerAddCoins(playerId: string, coins:number): Promise<void>; 
+
+    playerAddDiamons(playerId: string, diamonds:number): Promise<void>; 
+
+    playerAddExperience(playerId: string, experience:number): Promise<void>;
+
+    playerAddPhrase(playerId: string, phrase:string): Promise<void>;
+
+    playerAddBattlePass(playerId: string): Promise<void>;
+
+    playerAddYearPass(playerId: string): Promise<void>;
+
 }

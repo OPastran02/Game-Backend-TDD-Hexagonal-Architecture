@@ -111,4 +111,81 @@ export class PlayerRepositoryPrismaMySQL implements IPlayerRepository {
       },
     });
   }
+
+  public async playerUpdateMail(playerId: string, _mail: string): Promise<void> {
+    await prisma.players.update({
+      where: {
+        id: playerId,
+      },
+      data: {
+        mail: _mail,
+      },
+    });
+  }
+
+  public async playerAddCoins(playerId: string, _coins: number): Promise<void> {
+    await prisma.players.update({
+      where: {
+        id: playerId,
+      },
+      data: {
+        coins: _coins,
+      },
+    });
+  }
+
+  public async playerAddDiamons(playerId: string, _diamonds: number): Promise<void> {
+    await prisma.players.update({
+      where: {
+        id: playerId,
+      },
+      data: {
+        diamonds: _diamonds,
+      },
+    });
+  }
+
+  public async playerAddExperience(playerId: string, _experience: number): Promise<void> {
+    await prisma.players.update({
+      where: {
+        id: playerId,
+      },
+      data: {
+        experience: _experience,
+      },
+    });
+  }
+
+  public async playerAddPhrase(playerId: string, _phrase: string): Promise<void> {
+    await prisma.players.update({
+      where: {
+        id: playerId,
+      },
+      data: {
+        phrase: _phrase,
+      },
+    });
+  }
+
+  public async playerAddBattlePass(playerId: string): Promise<void> {
+    await prisma.players.update({
+      where: {
+        id: playerId,
+      },
+      data: {
+        hasBattlePass: true, // Cambia el valor de isActive a false
+      },
+    });
+  }
+
+  public async playerAddYearPass(playerId: string): Promise<void> {
+    await prisma.players.update({
+      where: {
+        id: playerId,
+      },
+      data: {
+        hasYearPass: true, // Cambia el valor de isActive a false
+      },
+    });
+  }
 }
