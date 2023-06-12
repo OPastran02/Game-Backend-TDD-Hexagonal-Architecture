@@ -31,6 +31,8 @@ export class Player {
   level: number;
   avatar: string;
   avatarBlock: string;
+  hasBattlePass: boolean;
+  hasYearPass: boolean;
   loginDays: number;
   lastLogin: Date;
   isActive: boolean;
@@ -52,6 +54,8 @@ export class Player {
     _level: number,
     _avatar: string,
     _avatarBlock: string,
+    _hasBattlePass: boolean,
+    _hasYearPass: boolean,
     _loginDays: number,
     _lastLogin: Date,
     _isActive: boolean,
@@ -76,6 +80,8 @@ export class Player {
     this.level = new PlayerLevel(_level).getValue();
     this.avatar = new PlayerAvatar(_avatar).getValue();
     this.avatarBlock = new PlayerAvatarBlock(_avatarBlock).getValue();
+    this.hasBattlePass =_hasBattlePass,
+    this.hasYearPass = _hasYearPass,
     this.loginDays = new PlayerLoginDays(_loginDays).getValue();
     this.lastLogin = _lastLogin;
     this.isActive = _isActive;
