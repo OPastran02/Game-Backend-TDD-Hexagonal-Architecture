@@ -22,8 +22,8 @@ export class PlayerUpdateLastLogin {
         updatedLoginDays =  player.loginDays
       }
     }  
+    
     await this.playerRepository.playerUpdateLastLogin(playerId,updatedLoginDays);
-
   }
 }
 
