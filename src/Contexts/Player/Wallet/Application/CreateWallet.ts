@@ -9,7 +9,7 @@ export class CreateWallet {
   }
 
   public async createWallet(
-    _id: number,
+    _ids: number,
     exp_rarity: number,
     exp_quantity: number,
     gameId: number,
