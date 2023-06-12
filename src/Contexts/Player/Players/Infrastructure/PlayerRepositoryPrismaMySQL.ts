@@ -23,6 +23,8 @@ export class PlayerRepositoryPrismaMySQL implements IPlayerRepository {
           level: player.level,
           avatar: player.avatar,
           avatarBlock: player.avatarBlock,
+          hasBattlePass: player.hasBattlePass,
+          hasYearPass: player.hasYearPass,
           loginDays: player.loginDays,
           lastLogin: player.lastLogin,
           isActive: player.isActive,
