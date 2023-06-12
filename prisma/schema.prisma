@@ -183,7 +183,7 @@ model players {
   guildmemberships guildmemberships[]
   players_heroes   players_heroes[]
   players_wallet   players_wallet[]
-  players_titles   players_Titles[]
+
 }
 
 model players_heroes {
@@ -207,21 +207,13 @@ model players_wallet {
   id           Int     @id @default(autoincrement())
   exp_rarity   Int
   exp_quantity Int     @default(0)
+  gameId       Int
   playerId     String
   players      players @relation(fields: [playerId], references: [id], map: "Players_Wallet_playerId_fkey")
 
   @@index([playerId], map: "Players_Wallet_playerId_fkey")
 }
 
-model players_Titles {
-  id        Int     @id @default(autoincrement())
-  title     String
-  available Boolean
-  playerId  String
-  players   players @relation(fields: [playerId], references: [id], map: "Players_Title_playerId_fkey")
-
-  @@index([playerId], map: "Players_Titles_playerId_fkey")
-}
 
 model Terrain {
   id       Int      @id @default(autoincrement())
