@@ -2,7 +2,7 @@ import { IPlayerRepository } from '../Domain/Interfaces/Player.interface';
 import { Player } from '../Domain/Player';
 import { PlayerAvatarBlock } from '../Domain/value-object/PlayerAvatarBlock';
 
-export class PlayerUpdateAvatarBlock {
+export class PlayerUpdateAvatarBlockUseCase {
   private playerRepository: IPlayerRepository;
 
   constructor(playerRepository: IPlayerRepository) {

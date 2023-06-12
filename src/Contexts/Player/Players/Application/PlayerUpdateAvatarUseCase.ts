@@ -3,7 +3,7 @@ import { Player } from '../Domain/Player';
 import { PlayerAvatar } from '../Domain/value-object/PlayerAvatar';
 
 
-export class PlayerUpdateAvatar {
+export class PlayerUpdateAvatarUseCase {
   private playerRepository: IPlayerRepository;
 
   constructor(playerRepository: IPlayerRepository) {

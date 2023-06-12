@@ -1,7 +1,7 @@
 import { IPlayerRepository } from '../Domain/Interfaces/Player.interface';
 //import { Player } from '../Domain/Player';
 
-export class PlayerDeactivate {
+export class PlayerDeactivateUseCase {
   private playerRepository: IPlayerRepository;
 
   constructor(playerRepository: IPlayerRepository) {

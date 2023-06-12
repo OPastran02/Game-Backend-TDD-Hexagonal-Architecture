@@ -2,7 +2,7 @@ import { IPlayerRepository } from '../Domain/Interfaces/Player.interface';
 import { Player } from '../Domain/Player';
 import { differenceInDays } from 'date-fns';
 
-export class PlayerUpdateLastLogin {
+export class PlayerUpdateLastLoginUseCase {
   private playerRepository: IPlayerRepository;
 
   constructor(playerRepository: IPlayerRepository) {

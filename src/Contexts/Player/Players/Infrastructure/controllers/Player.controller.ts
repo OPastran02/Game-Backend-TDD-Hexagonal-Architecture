@@ -1,9 +1,9 @@
 import { PlayerCreateUseCase } from "../../Application/PlayerCreateUseCase";
-import { PlayerFindById } from "../../Application/PlayerFindById";
-import { PlayerDeactivate } from "../../Application/PlayerDeactivate";
-import { PlayerUpdateLastLogin } from "../../Application/PlayerUpdateLastLogin";
-import { PlayerUpdateAvatar } from "../../Application/PlayerUpdateAvatar";
-import { PlayerUpdateAvatarBlock } from "../../Application/PlayerUpdateAvatarBlock";
+import { PlayerFindByIdUseCase } from "../../Application/PlayerFindByIdUseCase";
+import { PlayerDeactivateUseCase } from "../../Application/PlayerDeactivateUseCase";
+import { PlayerUpdateLastLoginUseCase } from "../../Application/PlayerUpdateLastLoginUseCase";
+import { PlayerUpdateAvatarUseCase } from "../../Application/PlayerUpdateAvatarUseCase";
+import { PlayerUpdateAvatarBlockUseCase } from "../../Application/PlayerUpdateAvatarBlockUseCase";
 
 import { Body, Controller, Post, Route } from "tsoa";
 import { PlayerRepositoryPrismaMySQL } from "../PlayerRepositoryPrismaMySQL";
@@ -12,21 +12,21 @@ import { Player } from '../../Domain/Player';
 @Route('player')
 export class PlayerController extends Controller {
   private readonly _playerService: PlayerCreateUseCase;
-  private readonly _playerFindById: PlayerFindById;
-  private readonly _playerDeactivate: PlayerDeactivate;
-  private readonly _playerUpdateLastLogin: PlayerUpdateLastLogin;
-  private readonly _playerUpdateAvatar: PlayerUpdateAvatar;
-  private readonly _playerUpdateAvatarBlock: PlayerUpdateAvatarBlock;
+  private readonly _playerFindById: PlayerFindByIdUseCase;
+  private readonly _playerDeactivate: PlayerDeactivateUseCase;
+  private readonly _playerUpdateLastLogin: PlayerUpdateLastLoginUseCase;
+  private readonly _playerUpdateAvatar: PlayerUpdateAvatarUseCase;
+  private readonly _playerUpdateAvatarBlock: PlayerUpdateAvatarBlockUseCase;
 
   constructor() {
     super();
     var playerRepository = new PlayerRepositoryPrismaMySQL();
     this._playerService = new PlayerCreateUseCase(playerRepository)
-    this._playerFindById = new PlayerFindById(playerRepository)
-    this._playerDeactivate = new PlayerDeactivate(playerRepository)
-    this._playerUpdateLastLogin = new PlayerUpdateLastLogin(playerRepository)
-    this._playerUpdateAvatar = new PlayerUpdateAvatar(playerRepository)
-    this._playerUpdateAvatarBlock = new PlayerUpdateAvatarBlock(playerRepository)
+    this._playerFindById = new PlayerFindByIdUseCase(playerRepository)
+    this._playerDeactivate = new PlayerDeactivateUseCase(playerRepository)
+    this._playerUpdateLastLogin = new PlayerUpdateLastLoginUseCase(playerRepository)
+    this._playerUpdateAvatar = new PlayerUpdateAvatarUseCase(playerRepository)
+    this._playerUpdateAvatarBlock = new PlayerUpdateAvatarBlockUseCase(playerRepository)
   }
 
   @Post('/add')
