@@ -88,4 +88,26 @@ export class PlayerRepositoryPrismaMySQL implements IPlayerRepository {
       }
     }
   }
+
+  public async playerUpdateAvatar(playerId: string, _avatar: string): Promise<void> {
+    await prisma.players.update({
+      where: {
+        id: playerId,
+      },
+      data: {
+        avatar: _avatar, 
+      },
+    });
+  }
+
+  public async playerUpdateAvatarBlock(playerId: string, _avatarBlock: string): Promise<void> {
+    await prisma.players.update({
+      where: {
+        id: playerId,
+      },
+      data: {
+        avatarBlock: _avatarBlock, 
+      },
+    });
+  }
 }

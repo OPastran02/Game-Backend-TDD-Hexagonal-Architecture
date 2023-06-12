@@ -5,4 +5,6 @@ export declare class PlayerRepositoryPrismaMySQL implements IPlayerRepository {
     playerFindById(playerId: string): Promise<Player>;
     playerDeactivate(playerId: string): Promise<void>;
     playerUpdateLastLogin(playerId: string): Promise<void>;
+    playerUpdateAvatar(playerId: string, _avatar: string): Promise<void>;
+    playerUpdateAvatarBlock(playerId: string, _avatarBlock: string): Promise<void>;
 }

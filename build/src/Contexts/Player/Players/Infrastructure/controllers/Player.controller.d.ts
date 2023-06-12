@@ -5,6 +5,8 @@ export declare class PlayerController extends Controller {
     private readonly _playerFindById;
     private readonly _playerDeactivate;
     private readonly _playerUpdateLastLogin;
+    private readonly _playerUpdateAvatar;
+    private readonly _playerUpdateAvatarBlock;
     constructor();
     addPlayer(requestBody: {
         id: string;
@@ -35,5 +37,13 @@ export declare class PlayerController extends Controller {
     }): Promise<void>;
     playerUpdateLastLogin(requestBody: {
         id: string;
+    }): Promise<void>;
+    playerUpdateAvatar(requestBody: {
+        id: string;
+        avatar: string;
+    }): Promise<void>;
+    playerUpdateAvatarBlock(requestBody: {
+        id: string;
+        avatar: string;
     }): Promise<void>;
 }

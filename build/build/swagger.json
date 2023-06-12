@@ -334,6 +334,74 @@
                     }
                 }
             }
+        },
+        "/player/updateAvatar": {
+            "post": {
+                "operationId": "PlayerUpdateAvatar",
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                },
+                "security": [],
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "avatar": {
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "avatar",
+                                    "id"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/player/updateAvatarBlock": {
+            "post": {
+                "operationId": "PlayerUpdateAvatarBlock",
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                },
+                "security": [],
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "avatar": {
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "avatar",
+                                    "id"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "servers": [

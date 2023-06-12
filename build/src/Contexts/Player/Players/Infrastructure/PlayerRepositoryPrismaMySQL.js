@@ -84,6 +84,26 @@ class PlayerRepositoryPrismaMySQL {
             }
         }
     }
+    async playerUpdateAvatar(playerId, _avatar) {
+        await index_1.default.players.update({
+            where: {
+                id: playerId,
+            },
+            data: {
+                avatar: _avatar,
+            },
+        });
+    }
+    async playerUpdateAvatarBlock(playerId, _avatarBlock) {
+        await index_1.default.players.update({
+            where: {
+                id: playerId,
+            },
+            data: {
+                avatarBlock: _avatarBlock,
+            },
+        });
+    }
 }
 exports.PlayerRepositoryPrismaMySQL = PlayerRepositoryPrismaMySQL;
 //# sourceMappingURL=PlayerRepositoryPrismaMySQL.js.map

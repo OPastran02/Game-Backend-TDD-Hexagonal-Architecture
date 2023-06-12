@@ -17,6 +17,8 @@ const PlayerCreateUseCase_1 = require("../../Application/PlayerCreateUseCase");
 const PlayerFindById_1 = require("../../Application/PlayerFindById");
 const PlayerDeactivate_1 = require("../../Application/PlayerDeactivate");
 const PlayerUpdateLastLogin_1 = require("../../Application/PlayerUpdateLastLogin");
+const PlayerUpdateAvatar_1 = require("../../Application/PlayerUpdateAvatar");
+const PlayerUpdateAvatarBlock_1 = require("../../Application/PlayerUpdateAvatarBlock");
 const tsoa_1 = require("tsoa");
 const PlayerRepositoryPrismaMySQL_1 = require("../PlayerRepositoryPrismaMySQL");
 let PlayerController = class PlayerController extends tsoa_1.Controller {
@@ -27,6 +29,8 @@ let PlayerController = class PlayerController extends tsoa_1.Controller {
         this._playerFindById = new PlayerFindById_1.PlayerFindById(playerRepository);
         this._playerDeactivate = new PlayerDeactivate_1.PlayerDeactivate(playerRepository);
         this._playerUpdateLastLogin = new PlayerUpdateLastLogin_1.PlayerUpdateLastLogin(playerRepository);
+        this._playerUpdateAvatar = new PlayerUpdateAvatar_1.PlayerUpdateAvatar(playerRepository);
+        this._playerUpdateAvatarBlock = new PlayerUpdateAvatarBlock_1.PlayerUpdateAvatarBlock(playerRepository);
     }
     async addPlayer(requestBody) {
         const { id, googleId, facebookId, appleId, mail, nickname, firstname, lastname, phrase, coins, diamonds, experience, level, avatar, avatarBlock, loginDays, lastLogin, isActive, createdAt } = requestBody;
@@ -43,6 +47,14 @@ let PlayerController = class PlayerController extends tsoa_1.Controller {
     async playerUpdateLastLogin(requestBody) {
         const { id } = requestBody;
         await this._playerUpdateLastLogin.playerUpdateLastLogin(id);
+    }
+    async playerUpdateAvatar(requestBody) {
+        const { id, avatar } = requestBody;
+        await this._playerUpdateAvatar.playerUpdateAvatar(id, avatar);
+    }
+    async playerUpdateAvatarBlock(requestBody) {
+        const { id, avatar } = requestBody;
+        await this._playerUpdateAvatarBlock.playerUpdateAvatarBlock(id, avatar);
     }
 };
 __decorate([
@@ -73,6 +85,20 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], PlayerController.prototype, "playerUpdateLastLogin", null);
+__decorate([
+    (0, tsoa_1.Post)('/updateAvatar'),
+    __param(0, (0, tsoa_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PlayerController.prototype, "playerUpdateAvatar", null);
+__decorate([
+    (0, tsoa_1.Post)('/updateAvatarBlock'),
+    __param(0, (0, tsoa_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PlayerController.prototype, "playerUpdateAvatarBlock", null);
 PlayerController = __decorate([
     (0, tsoa_1.Route)('player'),
     __metadata("design:paramtypes", [])
