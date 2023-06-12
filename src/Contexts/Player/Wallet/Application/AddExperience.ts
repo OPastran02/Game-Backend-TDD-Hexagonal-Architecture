@@ -1,5 +1,5 @@
 import { IWalletRepository } from '../Domain/interfaces/Wallet.interface';
-import { Wallet } from '../Domain/wallet';
+import { Wallet } from '../Domain/Wallet';
 import { ExperienceQuantity } from '../Domain/value-object/ExperienceQuantity';
 
 export class AddExperience {
