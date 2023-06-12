@@ -9,7 +9,7 @@ export interface IPlayerRepository {
 
     playerDeactivate(playerId: string): Promise<void>; //desactivo jugador
 
-    playerUpdateLastLogin(playerId: string): Promise<void>; //update lastlogin
+    playerUpdateLastLogin(playerId: string, loginDays: number): Promise<void>; //update lastlogin
 
     playerUpdateAvatar(playerId: string, playerAvatar:string): Promise<void>; //update lastlogin
 

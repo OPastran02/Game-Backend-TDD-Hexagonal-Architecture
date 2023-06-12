@@ -1,7 +1,6 @@
 import { IPlayerRepository } from '../Domain/Interfaces/Player.interface';
 import { Player } from '../Domain/Player';
 import prisma from '../../../../../prisma/index';
-import { differenceInDays } from 'date-fns';
 
 
 export class PlayerRepositoryPrismaMySQL implements IPlayerRepository {
@@ -51,42 +50,16 @@ export class PlayerRepositoryPrismaMySQL implements IPlayerRepository {
     });
   }
 
-  public async playerUpdateLastLogin(playerId: string): Promise<void> {
-    const player = await prisma.players.findUnique({
-      where: {
-        id: playerId,
-      },
-    });
-
-    if (player) {
-      const lastLogin = player.lastLogin;
-      const currentDate = new Date();
-      const difference = differenceInDays(currentDate, lastLogin);
-  
-      if (difference === 1) {
-        const updatedLoginDays = (player.loginDays || 0) + 1;
-  
-        await prisma.players.update({
-          where: {
-            id: playerId,
-          },
-          data: {
-            lastLogin: currentDate,
-            loginDays: updatedLoginDays,
-          },
-        });
-      }else if (difference > 1) {
-        await prisma.players.update({
-          where: {
-            id: playerId,
-          },
-          data: {
-            lastLogin: currentDate,
-            loginDays: 1,
-          },
-        });
-      }
-    }
+  public async playerUpdateLastLogin(playerId: string, _loginDays: number): Promise<void> {
+      await prisma.players.update({
+        where: {
+          id: playerId,
+        },
+        data: {
+          lastLogin: new Date(),
+          loginDays: _loginDays,
+        },
+      });
   }
 
   public async playerUpdateAvatar(playerId: string, _avatar: string): Promise<void> {

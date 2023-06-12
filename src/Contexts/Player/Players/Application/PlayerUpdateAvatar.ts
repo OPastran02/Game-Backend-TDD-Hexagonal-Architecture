@@ -15,7 +15,7 @@ export class PlayerUpdateAvatar {
     const player: Player | null = await this.playerRepository.playerFindById(playerId);
     if (player) {
       player.avatar = avatar.getValue();
-      await this.playerRepository.playerUpdateAvatar(playerId, playerAvatar);
+      await this.playerRepository.playerUpdateAvatar(playerId, player.avatar);
     }
   }
 }
