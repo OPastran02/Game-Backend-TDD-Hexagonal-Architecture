@@ -5,7 +5,7 @@ import { PlayerUpdateLastLoginUseCase } from "../../Application/PlayerUpdateLast
 import { PlayerUpdateAvatarUseCase } from "../../Application/PlayerUpdateAvatarUseCaseUseCase";
 import { PlayerUpdateAvatarBlockUseCase } from "../../Application/PlayerUpdateAvatarBlockUseCase";
 import { PlayerUpdateIdsUseCase } from "../../Application/PlayerUpdateIdsUseCase";
-import { PlayerUpdateNamesUseCase } from "../../Application/playerUpdateNamesUseCase";
+import { PlayerUpdateNamesUseCase } from "../../Application/PlayerUpdateNamesUseCase";
 import { PlayerUpdateMail } from "../../Application/PlayerUpdateMail";
 import { PlayerAddCoinsUseCase } from "../../Application/PlayerAddCoinsUseCase";
 import { playerAddDiamonsUseCase } from "../../Application/playerAddDiamonsUseCase";
