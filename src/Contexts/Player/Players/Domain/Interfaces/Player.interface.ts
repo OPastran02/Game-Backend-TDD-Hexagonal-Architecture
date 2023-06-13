@@ -13,7 +13,7 @@ export interface IPlayerRepository {
 
     playerUpdateAvatar(playerId: string, playerAvatar:string): Promise<void>; 
 
-    playerUpdateAvatarBlock(playerId: string, playerAvatar:string): Promise<void>; 
+    playerUpdateAvatarBlock(playerId: string, playerAvatarBlock:string): Promise<void>; 
 
     playerUpdateIds(playerId: string, facebookId:string | null, googleId:string | null, appleId:string | null): Promise<void>; 
 
