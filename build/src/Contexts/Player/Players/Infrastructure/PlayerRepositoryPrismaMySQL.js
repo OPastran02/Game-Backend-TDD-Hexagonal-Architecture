@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PlayerRepositoryPrismaMySQL = void 0;
 const index_1 = __importDefault(require("../../../../../prisma/index"));
-const date_fns_1 = require("date-fns");
 class PlayerRepositoryPrismaMySQL {
     async addPlayer(player) {
         return await index_1.default.players.create({
@@ -25,6 +24,8 @@ class PlayerRepositoryPrismaMySQL {
                 level: player.level,
                 avatar: player.avatar,
                 avatarBlock: player.avatarBlock,
+                hasBattlePass: player.hasBattlePass,
+                hasYearPass: player.hasYearPass,
                 loginDays: player.loginDays,
                 lastLogin: player.lastLogin,
                 isActive: player.isActive,
@@ -49,40 +50,16 @@ class PlayerRepositoryPrismaMySQL {
             },
         });
     }
-    async playerUpdateLastLogin(playerId) {
-        const player = await index_1.default.players.findUnique({
+    async playerUpdateLastLogin(playerId, _loginDays) {
+        await index_1.default.players.update({
             where: {
                 id: playerId,
             },
+            data: {
+                lastLogin: new Date(),
+                loginDays: _loginDays,
+            },
         });
-        if (player) {
-            const lastLogin = player.lastLogin;
-            const currentDate = new Date();
-            const difference = (0, date_fns_1.differenceInDays)(currentDate, lastLogin);
-            if (difference === 1) {
-                const updatedLoginDays = (player.loginDays || 0) + 1;
-                await index_1.default.players.update({
-                    where: {
-                        id: playerId,
-                    },
-                    data: {
-                        lastLogin: currentDate,
-                        loginDays: updatedLoginDays,
-                    },
-                });
-            }
-            else if (difference > 1) {
-                await index_1.default.players.update({
-                    where: {
-                        id: playerId,
-                    },
-                    data: {
-                        lastLogin: currentDate,
-                        loginDays: 1,
-                    },
-                });
-            }
-        }
     }
     async playerUpdateAvatar(playerId, _avatar) {
         await index_1.default.players.update({
@@ -101,6 +78,100 @@ class PlayerRepositoryPrismaMySQL {
             },
             data: {
                 avatarBlock: _avatarBlock,
+            },
+        });
+    }
+    async playerUpdateIds(playerId, _googleId, _facebookId, _appleId) {
+        await index_1.default.players.update({
+            where: {
+                id: playerId,
+            },
+            data: {
+                googleId: _googleId,
+                facebookId: _facebookId,
+                appleId: _appleId
+            },
+        });
+    }
+    async playerUpdateNames(playerId, _googleId, _facebookId, _appleId) {
+        await index_1.default.players.update({
+            where: {
+                id: playerId,
+            },
+            data: {
+                googleId: _googleId,
+                facebookId: _facebookId,
+                appleId: _appleId
+            },
+        });
+    }
+    async playerUpdateMail(playerId, _mail) {
+        await index_1.default.players.update({
+            where: {
+                id: playerId,
+            },
+            data: {
+                mail: _mail,
+            },
+        });
+    }
+    async playerAddCoins(playerId, _coins) {
+        await index_1.default.players.update({
+            where: {
+                id: playerId,
+            },
+            data: {
+                coins: _coins,
+            },
+        });
+    }
+    async playerAddDiamons(playerId, _diamonds) {
+        await index_1.default.players.update({
+            where: {
+                id: playerId,
+            },
+            data: {
+                diamonds: _diamonds,
+            },
+        });
+    }
+    async playerAddExperience(playerId, _experience) {
+        await index_1.default.players.update({
+            where: {
+                id: playerId,
+            },
+            data: {
+                experience: _experience,
+            },
+        });
+    }
+    async playerAddPhrase(playerId, _phrase) {
+        await index_1.default.players.update({
+            where: {
+                id: playerId,
+            },
+            data: {
+                phrase: _phrase,
+            },
+        });
+    }
+    async playerAddBattlePass(playerId) {
+        await index_1.default.players.update({
+            where: {
+                id: playerId,
+            },
+            data: {
+                hasBattlePass: true, // Cambia el valor de isActive a false
+            },
+        });
+    }
+    async playerAddYearPass(playerId) {
+        await index_1.default.players.update({
+            where: {
+                id: playerId,
+            },
+            data: {
+                hasYearPass: true, // Cambia el valor de isActive a false
             },
         });
     }

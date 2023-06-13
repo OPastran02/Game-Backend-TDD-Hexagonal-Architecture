@@ -14,11 +14,20 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PlayerController = void 0;
 const PlayerCreateUseCase_1 = require("../../Application/PlayerCreateUseCase");
-const PlayerFindById_1 = require("../../Application/PlayerFindById");
-const PlayerDeactivate_1 = require("../../Application/PlayerDeactivate");
-const PlayerUpdateLastLogin_1 = require("../../Application/PlayerUpdateLastLogin");
-const PlayerUpdateAvatar_1 = require("../../Application/PlayerUpdateAvatar");
-const PlayerUpdateAvatarBlock_1 = require("../../Application/PlayerUpdateAvatarBlock");
+const PlayerFindByIdUseCase_1 = require("../../Application/PlayerFindByIdUseCase");
+const PlayerDeactivateUseCase_1 = require("../../Application/PlayerDeactivateUseCase");
+const PlayerUpdateLastLoginUseCase_1 = require("../../Application/PlayerUpdateLastLoginUseCase");
+const PlayerUpdateAvatarUseCaseUseCase_1 = require("../../Application/PlayerUpdateAvatarUseCaseUseCase");
+const PlayerUpdateAvatarBlockUseCase_1 = require("../../Application/PlayerUpdateAvatarBlockUseCase");
+const PlayerUpdateIdsUseCase_1 = require("../../Application/PlayerUpdateIdsUseCase");
+const PlayerUpdateNamesUseCase_1 = require("../../Application/PlayerUpdateNamesUseCase");
+const PlayerUpdateMail_1 = require("../../Application/PlayerUpdateMail");
+const PlayerAddCoinsUseCase_1 = require("../../Application/PlayerAddCoinsUseCase");
+const playerAddDiamonsUseCase_1 = require("../../Application/playerAddDiamonsUseCase");
+const playerAddExperienceUseCase_1 = require("../../Application/playerAddExperienceUseCase");
+const playerAddPhraseUseCase_1 = require("../../Application/playerAddPhraseUseCase");
+const playerAddBattlePassUseCase_1 = require("../../Application/playerAddBattlePassUseCase");
+const playerAddYearPassUseCase_1 = require("../../Application/playerAddYearPassUseCase");
 const tsoa_1 = require("tsoa");
 const PlayerRepositoryPrismaMySQL_1 = require("../PlayerRepositoryPrismaMySQL");
 let PlayerController = class PlayerController extends tsoa_1.Controller {
@@ -26,15 +35,24 @@ let PlayerController = class PlayerController extends tsoa_1.Controller {
         super();
         var playerRepository = new PlayerRepositoryPrismaMySQL_1.PlayerRepositoryPrismaMySQL();
         this._playerService = new PlayerCreateUseCase_1.PlayerCreateUseCase(playerRepository);
-        this._playerFindById = new PlayerFindById_1.PlayerFindById(playerRepository);
-        this._playerDeactivate = new PlayerDeactivate_1.PlayerDeactivate(playerRepository);
-        this._playerUpdateLastLogin = new PlayerUpdateLastLogin_1.PlayerUpdateLastLogin(playerRepository);
-        this._playerUpdateAvatar = new PlayerUpdateAvatar_1.PlayerUpdateAvatar(playerRepository);
-        this._playerUpdateAvatarBlock = new PlayerUpdateAvatarBlock_1.PlayerUpdateAvatarBlock(playerRepository);
+        this._playerFindById = new PlayerFindByIdUseCase_1.PlayerFindByIdUseCase(playerRepository);
+        this._playerDeactivate = new PlayerDeactivateUseCase_1.PlayerDeactivateUseCase(playerRepository);
+        this._playerUpdateLastLogin = new PlayerUpdateLastLoginUseCase_1.PlayerUpdateLastLoginUseCase(playerRepository);
+        this._playerUpdateAvatar = new PlayerUpdateAvatarUseCaseUseCase_1.PlayerUpdateAvatarUseCase(playerRepository);
+        this._playerUpdateAvatarBlock = new PlayerUpdateAvatarBlockUseCase_1.PlayerUpdateAvatarBlockUseCase(playerRepository);
+        this._playerUpdateIdsUseCase = new PlayerUpdateIdsUseCase_1.PlayerUpdateIdsUseCase(playerRepository);
+        this._playerUpdateNamesUseCase = new PlayerUpdateNamesUseCase_1.PlayerUpdateNamesUseCase(playerRepository);
+        this._playerUpdateMail = new PlayerUpdateMail_1.PlayerUpdateMail(playerRepository);
+        this._playerAddCoinsUseCase = new PlayerAddCoinsUseCase_1.PlayerAddCoinsUseCase(playerRepository);
+        this._playerAddDiamonsUseCase = new playerAddDiamonsUseCase_1.playerAddDiamonsUseCase(playerRepository);
+        this._playerAddExperienceUseCase = new playerAddExperienceUseCase_1.playerAddExperienceUseCase(playerRepository);
+        this._playerAddPhraseUseCase = new playerAddPhraseUseCase_1.playerAddPhraseUseCase(playerRepository);
+        this._playerAddBattlePassUseCase = new playerAddBattlePassUseCase_1.playerAddBattlePassUseCase(playerRepository);
+        this._playerAddYearPassUseCase = new playerAddYearPassUseCase_1.playerAddYearPassUseCase(playerRepository);
     }
     async addPlayer(requestBody) {
-        const { id, googleId, facebookId, appleId, mail, nickname, firstname, lastname, phrase, coins, diamonds, experience, level, avatar, avatarBlock, loginDays, lastLogin, isActive, createdAt } = requestBody;
-        return await this._playerService.addPlayer(id, googleId, facebookId, appleId, mail, nickname, firstname, lastname, phrase, coins, diamonds, experience, level, avatar, avatarBlock, loginDays, lastLogin, isActive, createdAt);
+        const { id, googleId, facebookId, appleId, mail, nickname, firstname, lastname, phrase, coins, diamonds, experience, level, avatar, avatarBlock, hasBattlePass, hasYearPass, loginDays, lastLogin, isActive, createdAt } = requestBody;
+        return await this._playerService.addPlayer(id, googleId, facebookId, appleId, mail, nickname, firstname, lastname, phrase, coins, diamonds, experience, level, avatar, avatarBlock, hasBattlePass, hasYearPass, loginDays, lastLogin, isActive, createdAt);
     }
     async playerFindById(requestBody) {
         const { id } = requestBody;
@@ -55,6 +73,42 @@ let PlayerController = class PlayerController extends tsoa_1.Controller {
     async playerUpdateAvatarBlock(requestBody) {
         const { id, avatar } = requestBody;
         await this._playerUpdateAvatarBlock.playerUpdateAvatarBlock(id, avatar);
+    }
+    async playerUpdateIds(requestBody) {
+        const { id, googleId, facebookId, appleId } = requestBody;
+        await this._playerUpdateIdsUseCase.playerUpdateIds(id, googleId, facebookId, appleId);
+    }
+    async playerUpdateNames(requestBody) {
+        const { id, nickName, firstName, lastName } = requestBody;
+        await this._playerUpdateNamesUseCase.playerUpdateNames(id, nickName, firstName, lastName);
+    }
+    async playerUpdateMail(requestBody) {
+        const { id, mail } = requestBody;
+        await this._playerUpdateMail.playerUpdateMail(id, mail);
+    }
+    async playerAddCoins(requestBody) {
+        const { id, coins } = requestBody;
+        await this._playerAddCoinsUseCase.playerAddcoins(id, coins);
+    }
+    async playerAddDiamons(requestBody) {
+        const { id, diamonds } = requestBody;
+        await this._playerAddDiamonsUseCase.playerAddDiamonds(id, diamonds);
+    }
+    async playerAddExperience(requestBody) {
+        const { id, experience } = requestBody;
+        await this._playerAddExperienceUseCase.playerAddExperience(id, experience);
+    }
+    async playerAddPhrase(requestBody) {
+        const { id, phrase } = requestBody;
+        await this._playerAddPhraseUseCase.playerAddPhrase(id, phrase);
+    }
+    async playerAddBattlePass(requestBody) {
+        const { id } = requestBody;
+        await this._playerAddBattlePassUseCase.playeraddBatlePass(id);
+    }
+    async playerYearPass(requestBody) {
+        const { id } = requestBody;
+        await this._playerAddYearPassUseCase.playerAddYearPass(id);
     }
 };
 __decorate([
@@ -99,6 +153,69 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], PlayerController.prototype, "playerUpdateAvatarBlock", null);
+__decorate([
+    (0, tsoa_1.Post)('/updateIds'),
+    __param(0, (0, tsoa_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PlayerController.prototype, "playerUpdateIds", null);
+__decorate([
+    (0, tsoa_1.Post)('/updateNames'),
+    __param(0, (0, tsoa_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PlayerController.prototype, "playerUpdateNames", null);
+__decorate([
+    (0, tsoa_1.Post)('/updateMail'),
+    __param(0, (0, tsoa_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PlayerController.prototype, "playerUpdateMail", null);
+__decorate([
+    (0, tsoa_1.Post)('/addCoins'),
+    __param(0, (0, tsoa_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PlayerController.prototype, "playerAddCoins", null);
+__decorate([
+    (0, tsoa_1.Post)('/addDiamonds'),
+    __param(0, (0, tsoa_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PlayerController.prototype, "playerAddDiamons", null);
+__decorate([
+    (0, tsoa_1.Post)('/addExperience'),
+    __param(0, (0, tsoa_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PlayerController.prototype, "playerAddExperience", null);
+__decorate([
+    (0, tsoa_1.Post)('/addPhrase'),
+    __param(0, (0, tsoa_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PlayerController.prototype, "playerAddPhrase", null);
+__decorate([
+    (0, tsoa_1.Post)('/addBattlePass'),
+    __param(0, (0, tsoa_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PlayerController.prototype, "playerAddBattlePass", null);
+__decorate([
+    (0, tsoa_1.Post)('/addYearPass'),
+    __param(0, (0, tsoa_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PlayerController.prototype, "playerYearPass", null);
 PlayerController = __decorate([
     (0, tsoa_1.Route)('player'),
     __metadata("design:paramtypes", [])

@@ -64,6 +64,12 @@
 					"avatarBlock": {
 						"type": "string"
 					},
+					"hasBattlePass": {
+						"type": "boolean"
+					},
+					"hasYearPass": {
+						"type": "boolean"
+					},
 					"loginDays": {
 						"type": "number",
 						"format": "double"
@@ -96,10 +102,39 @@
 					"level",
 					"avatar",
 					"avatarBlock",
+					"hasBattlePass",
+					"hasYearPass",
 					"loginDays",
 					"lastLogin",
 					"isActive",
 					"createdAt"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Wallet": {
+				"properties": {
+					"exp_rarity": {
+						"type": "number",
+						"format": "double"
+					},
+					"exp_quantity": {
+						"type": "number",
+						"format": "double"
+					},
+					"gameId": {
+						"type": "number",
+						"format": "double"
+					},
+					"playerId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"exp_rarity",
+					"exp_quantity",
+					"gameId",
+					"playerId"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -140,6 +175,12 @@
 						"application/json": {
 							"schema": {
 								"properties": {
+									"hasYearPass": {
+										"type": "boolean"
+									},
+									"hasBattlePass": {
+										"type": "boolean"
+									},
 									"createdAt": {
 										"type": "string",
 										"format": "date-time"
@@ -206,6 +247,8 @@
 									}
 								},
 								"required": [
+									"hasYearPass",
+									"hasBattlePass",
 									"createdAt",
 									"isActive",
 									"lastLogin",
@@ -395,6 +438,523 @@
 								"required": [
 									"avatar",
 									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/player/updateIds": {
+			"post": {
+				"operationId": "PlayerUpdateIds",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"appleId": {
+										"type": "string"
+									},
+									"facebookId": {
+										"type": "string"
+									},
+									"googleId": {
+										"type": "string"
+									},
+									"id": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"appleId",
+									"facebookId",
+									"googleId",
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/player/updateNames": {
+			"post": {
+				"operationId": "PlayerUpdateNames",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"lastName": {
+										"type": "string"
+									},
+									"firstName": {
+										"type": "string"
+									},
+									"nickName": {
+										"type": "string"
+									},
+									"id": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"lastName",
+									"firstName",
+									"nickName",
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/player/updateMail": {
+			"post": {
+				"operationId": "PlayerUpdateMail",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"mail": {
+										"type": "string"
+									},
+									"id": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"mail",
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/player/addCoins": {
+			"post": {
+				"operationId": "PlayerAddCoins",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"coins": {
+										"type": "number",
+										"format": "double"
+									},
+									"id": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"coins",
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/player/addDiamonds": {
+			"post": {
+				"operationId": "PlayerAddDiamons",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"diamonds": {
+										"type": "number",
+										"format": "double"
+									},
+									"id": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"diamonds",
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/player/addExperience": {
+			"post": {
+				"operationId": "PlayerAddExperience",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"experience": {
+										"type": "number",
+										"format": "double"
+									},
+									"id": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"experience",
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/player/addPhrase": {
+			"post": {
+				"operationId": "PlayerAddPhrase",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"phrase": {
+										"type": "string"
+									},
+									"id": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"phrase",
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/player/addBattlePass": {
+			"post": {
+				"operationId": "PlayerAddBattlePass",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"id": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/player/addYearPass": {
+			"post": {
+				"operationId": "PlayerYearPass",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"id": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/wallet/create": {
+			"post": {
+				"operationId": "CreateWallet",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Wallet"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"playerId": {
+										"type": "string"
+									},
+									"gameId": {
+										"type": "number",
+										"format": "double"
+									},
+									"exp_quantity": {
+										"type": "number",
+										"format": "double"
+									},
+									"exp_rarity": {
+										"type": "number",
+										"format": "double"
+									},
+									"_id": {
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"playerId",
+									"gameId",
+									"exp_quantity",
+									"exp_rarity",
+									"_id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/wallet/findByPlayerId": {
+			"post": {
+				"operationId": "FindWalletsByPlayerId",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Wallet"
+									},
+									"type": "array",
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"playerId": {
+										"type": "string"
+									},
+									"gameId": {
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"playerId",
+									"gameId"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/wallet/findByPlayerIdRarity": {
+			"post": {
+				"operationId": "FindWalletsByPlayerIdRarity",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Wallet"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"exp_rarity": {
+										"type": "number",
+										"format": "double"
+									},
+									"playerId": {
+										"type": "string"
+									},
+									"gameId": {
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"exp_rarity",
+									"playerId",
+									"gameId"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/wallet/addExperience": {
+			"post": {
+				"operationId": "AddExperience",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"_exp_quantity": {
+										"type": "number",
+										"format": "double"
+									},
+									"exp_rarity": {
+										"type": "number",
+										"format": "double"
+									},
+									"playerId": {
+										"type": "string"
+									},
+									"gameId": {
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"_exp_quantity",
+									"exp_rarity",
+									"playerId",
+									"gameId"
 								],
 								"type": "object"
 							}

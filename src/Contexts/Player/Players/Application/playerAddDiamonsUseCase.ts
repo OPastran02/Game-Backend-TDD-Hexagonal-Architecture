@@ -14,7 +14,7 @@ export class playerAddDiamonsUseCase {
     const player: Player | null = await this.playerRepository.playerFindById(playerId);
     if (player) {
       player.diamonds = diamonds.getValue();
-      await this.playerRepository.playerAddDiamonds(playerId, player.diamonds);
+      await this.playerRepository.playerAddDiamons(playerId, player.diamonds);
     }
   }
 }

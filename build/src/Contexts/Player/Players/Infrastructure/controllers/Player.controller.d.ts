@@ -7,6 +7,15 @@ export declare class PlayerController extends Controller {
     private readonly _playerUpdateLastLogin;
     private readonly _playerUpdateAvatar;
     private readonly _playerUpdateAvatarBlock;
+    private readonly _playerUpdateIdsUseCase;
+    private readonly _playerUpdateNamesUseCase;
+    private readonly _playerUpdateMail;
+    private readonly _playerAddCoinsUseCase;
+    private readonly _playerAddDiamonsUseCase;
+    private readonly _playerAddExperienceUseCase;
+    private readonly _playerAddPhraseUseCase;
+    private readonly _playerAddBattlePassUseCase;
+    private readonly _playerAddYearPassUseCase;
     constructor();
     addPlayer(requestBody: {
         id: string;
@@ -28,6 +37,8 @@ export declare class PlayerController extends Controller {
         lastLogin: Date;
         isActive: boolean;
         createdAt: Date;
+        hasBattlePass: boolean;
+        hasYearPass: boolean;
     }): Promise<Player>;
     playerFindById(requestBody: {
         id: string;
@@ -45,5 +56,43 @@ export declare class PlayerController extends Controller {
     playerUpdateAvatarBlock(requestBody: {
         id: string;
         avatar: string;
+    }): Promise<void>;
+    playerUpdateIds(requestBody: {
+        id: string;
+        googleId: string;
+        facebookId: string;
+        appleId: string;
+    }): Promise<void>;
+    playerUpdateNames(requestBody: {
+        id: string;
+        nickName: string;
+        firstName: string;
+        lastName: string;
+    }): Promise<void>;
+    playerUpdateMail(requestBody: {
+        id: string;
+        mail: string;
+    }): Promise<void>;
+    playerAddCoins(requestBody: {
+        id: string;
+        coins: number;
+    }): Promise<void>;
+    playerAddDiamons(requestBody: {
+        id: string;
+        diamonds: number;
+    }): Promise<void>;
+    playerAddExperience(requestBody: {
+        id: string;
+        experience: number;
+    }): Promise<void>;
+    playerAddPhrase(requestBody: {
+        id: string;
+        phrase: string;
+    }): Promise<void>;
+    playerAddBattlePass(requestBody: {
+        id: string;
+    }): Promise<void>;
+    playerYearPass(requestBody: {
+        id: string;
     }): Promise<void>;
 }

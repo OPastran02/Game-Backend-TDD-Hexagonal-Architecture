@@ -102,9 +102,9 @@ export class PlayerController extends Controller {
   }
 
   @Post('/updateAvatarBlock')
-  public async playerUpdateAvatarBlock(@Body() requestBody:{id:string, avatar: string}): Promise<void> {
-      const {id,avatar} = requestBody;
-      await this._playerUpdateAvatarBlock.playerUpdateAvatarBlock(id, avatar);
+  public async playerUpdateAvatarBlock(@Body() requestBody:{id:string, avatarBlock: string}): Promise<void> {
+      const {id,avatarBlock} = requestBody;
+      await this._playerUpdateAvatarBlock.playerUpdateAvatarBlock(id, avatarBlock);
   }
   
   @Post('/updateIds')

@@ -8,6 +8,8 @@ const runtime_1 = require("@tsoa/runtime");
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 const Player_controller_1 = require("./../src/Contexts/Player/Players/Infrastructure/controllers/Player.controller");
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+const Wallet_controller_1 = require("./../src/Contexts/Player/Wallet/Infrastructure/controllers/Wallet.controller");
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 const models = {
     "Player": {
         "dataType": "refObject",
@@ -27,10 +29,23 @@ const models = {
             "level": { "dataType": "double", "required": true },
             "avatar": { "dataType": "string", "required": true },
             "avatarBlock": { "dataType": "string", "required": true },
+            "hasBattlePass": { "dataType": "boolean", "required": true },
+            "hasYearPass": { "dataType": "boolean", "required": true },
             "loginDays": { "dataType": "double", "required": true },
             "lastLogin": { "dataType": "datetime", "required": true },
             "isActive": { "dataType": "boolean", "required": true },
             "createdAt": { "dataType": "datetime", "required": true },
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Wallet": {
+        "dataType": "refObject",
+        "properties": {
+            "exp_rarity": { "dataType": "double", "required": true },
+            "exp_quantity": { "dataType": "double", "required": true },
+            "gameId": { "dataType": "double", "required": true },
+            "playerId": { "dataType": "string", "required": true },
         },
         "additionalProperties": false,
     },
@@ -45,7 +60,7 @@ function RegisterRoutes(app) {
     // ###########################################################################################################
     app.post('/player/add', ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController)), ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController.prototype.addPlayer)), function PlayerController_addPlayer(request, response, next) {
         const args = {
-            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "createdAt": { "dataType": "datetime", "required": true }, "isActive": { "dataType": "boolean", "required": true }, "lastLogin": { "dataType": "datetime", "required": true }, "loginDays": { "dataType": "double", "required": true }, "avatarBlock": { "dataType": "string", "required": true }, "avatar": { "dataType": "string", "required": true }, "level": { "dataType": "double", "required": true }, "experience": { "dataType": "double", "required": true }, "diamonds": { "dataType": "double", "required": true }, "coins": { "dataType": "double", "required": true }, "phrase": { "dataType": "string", "required": true }, "lastname": { "dataType": "string", "required": true }, "firstname": { "dataType": "string", "required": true }, "nickname": { "dataType": "string", "required": true }, "mail": { "dataType": "string", "required": true }, "appleId": { "dataType": "string", "required": true }, "facebookId": { "dataType": "string", "required": true }, "googleId": { "dataType": "string", "required": true }, "id": { "dataType": "string", "required": true } } },
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "hasYearPass": { "dataType": "boolean", "required": true }, "hasBattlePass": { "dataType": "boolean", "required": true }, "createdAt": { "dataType": "datetime", "required": true }, "isActive": { "dataType": "boolean", "required": true }, "lastLogin": { "dataType": "datetime", "required": true }, "loginDays": { "dataType": "double", "required": true }, "avatarBlock": { "dataType": "string", "required": true }, "avatar": { "dataType": "string", "required": true }, "level": { "dataType": "double", "required": true }, "experience": { "dataType": "double", "required": true }, "diamonds": { "dataType": "double", "required": true }, "coins": { "dataType": "double", "required": true }, "phrase": { "dataType": "string", "required": true }, "lastname": { "dataType": "string", "required": true }, "firstname": { "dataType": "string", "required": true }, "nickname": { "dataType": "string", "required": true }, "mail": { "dataType": "string", "required": true }, "appleId": { "dataType": "string", "required": true }, "facebookId": { "dataType": "string", "required": true }, "googleId": { "dataType": "string", "required": true }, "id": { "dataType": "string", "required": true } } },
         };
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         let validatedArgs = [];
@@ -138,6 +153,227 @@ function RegisterRoutes(app) {
             validatedArgs = getValidatedArgs(args, request, response);
             const controller = new Player_controller_1.PlayerController();
             const promise = controller.playerUpdateAvatarBlock.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, undefined, next);
+        }
+        catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.post('/player/updateIds', ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController)), ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController.prototype.playerUpdateIds)), function PlayerController_playerUpdateIds(request, response, next) {
+        const args = {
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "appleId": { "dataType": "string", "required": true }, "facebookId": { "dataType": "string", "required": true }, "googleId": { "dataType": "string", "required": true }, "id": { "dataType": "string", "required": true } } },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+            const controller = new Player_controller_1.PlayerController();
+            const promise = controller.playerUpdateIds.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, undefined, next);
+        }
+        catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.post('/player/updateNames', ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController)), ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController.prototype.playerUpdateNames)), function PlayerController_playerUpdateNames(request, response, next) {
+        const args = {
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "lastName": { "dataType": "string", "required": true }, "firstName": { "dataType": "string", "required": true }, "nickName": { "dataType": "string", "required": true }, "id": { "dataType": "string", "required": true } } },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+            const controller = new Player_controller_1.PlayerController();
+            const promise = controller.playerUpdateNames.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, undefined, next);
+        }
+        catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.post('/player/updateMail', ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController)), ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController.prototype.playerUpdateMail)), function PlayerController_playerUpdateMail(request, response, next) {
+        const args = {
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "mail": { "dataType": "string", "required": true }, "id": { "dataType": "string", "required": true } } },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+            const controller = new Player_controller_1.PlayerController();
+            const promise = controller.playerUpdateMail.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, undefined, next);
+        }
+        catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.post('/player/addCoins', ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController)), ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController.prototype.playerAddCoins)), function PlayerController_playerAddCoins(request, response, next) {
+        const args = {
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "coins": { "dataType": "double", "required": true }, "id": { "dataType": "string", "required": true } } },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+            const controller = new Player_controller_1.PlayerController();
+            const promise = controller.playerAddCoins.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, undefined, next);
+        }
+        catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.post('/player/addDiamonds', ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController)), ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController.prototype.playerAddDiamons)), function PlayerController_playerAddDiamons(request, response, next) {
+        const args = {
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "diamonds": { "dataType": "double", "required": true }, "id": { "dataType": "string", "required": true } } },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+            const controller = new Player_controller_1.PlayerController();
+            const promise = controller.playerAddDiamons.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, undefined, next);
+        }
+        catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.post('/player/addExperience', ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController)), ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController.prototype.playerAddExperience)), function PlayerController_playerAddExperience(request, response, next) {
+        const args = {
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "experience": { "dataType": "double", "required": true }, "id": { "dataType": "string", "required": true } } },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+            const controller = new Player_controller_1.PlayerController();
+            const promise = controller.playerAddExperience.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, undefined, next);
+        }
+        catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.post('/player/addPhrase', ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController)), ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController.prototype.playerAddPhrase)), function PlayerController_playerAddPhrase(request, response, next) {
+        const args = {
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "phrase": { "dataType": "string", "required": true }, "id": { "dataType": "string", "required": true } } },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+            const controller = new Player_controller_1.PlayerController();
+            const promise = controller.playerAddPhrase.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, undefined, next);
+        }
+        catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.post('/player/addBattlePass', ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController)), ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController.prototype.playerAddBattlePass)), function PlayerController_playerAddBattlePass(request, response, next) {
+        const args = {
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "id": { "dataType": "string", "required": true } } },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+            const controller = new Player_controller_1.PlayerController();
+            const promise = controller.playerAddBattlePass.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, undefined, next);
+        }
+        catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.post('/player/addYearPass', ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController)), ...((0, runtime_1.fetchMiddlewares)(Player_controller_1.PlayerController.prototype.playerYearPass)), function PlayerController_playerYearPass(request, response, next) {
+        const args = {
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "id": { "dataType": "string", "required": true } } },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+            const controller = new Player_controller_1.PlayerController();
+            const promise = controller.playerYearPass.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, undefined, next);
+        }
+        catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.post('/wallet/create', ...((0, runtime_1.fetchMiddlewares)(Wallet_controller_1.WalletController)), ...((0, runtime_1.fetchMiddlewares)(Wallet_controller_1.WalletController.prototype.createWallet)), function WalletController_createWallet(request, response, next) {
+        const args = {
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "playerId": { "dataType": "string", "required": true }, "gameId": { "dataType": "double", "required": true }, "exp_quantity": { "dataType": "double", "required": true }, "exp_rarity": { "dataType": "double", "required": true }, "_id": { "dataType": "double", "required": true } } },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+            const controller = new Wallet_controller_1.WalletController();
+            const promise = controller.createWallet.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, undefined, next);
+        }
+        catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.post('/wallet/findByPlayerId', ...((0, runtime_1.fetchMiddlewares)(Wallet_controller_1.WalletController)), ...((0, runtime_1.fetchMiddlewares)(Wallet_controller_1.WalletController.prototype.findWalletsByPlayerId)), function WalletController_findWalletsByPlayerId(request, response, next) {
+        const args = {
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "playerId": { "dataType": "string", "required": true }, "gameId": { "dataType": "double", "required": true } } },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+            const controller = new Wallet_controller_1.WalletController();
+            const promise = controller.findWalletsByPlayerId.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, undefined, next);
+        }
+        catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.post('/wallet/findByPlayerIdRarity', ...((0, runtime_1.fetchMiddlewares)(Wallet_controller_1.WalletController)), ...((0, runtime_1.fetchMiddlewares)(Wallet_controller_1.WalletController.prototype.findWalletsByPlayerIdRarity)), function WalletController_findWalletsByPlayerIdRarity(request, response, next) {
+        const args = {
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "exp_rarity": { "dataType": "double", "required": true }, "playerId": { "dataType": "string", "required": true }, "gameId": { "dataType": "double", "required": true } } },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+            const controller = new Wallet_controller_1.WalletController();
+            const promise = controller.findWalletsByPlayerIdRarity.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, undefined, next);
+        }
+        catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.post('/wallet/addExperience', ...((0, runtime_1.fetchMiddlewares)(Wallet_controller_1.WalletController)), ...((0, runtime_1.fetchMiddlewares)(Wallet_controller_1.WalletController.prototype.addExperience)), function WalletController_addExperience(request, response, next) {
+        const args = {
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "_exp_quantity": { "dataType": "double", "required": true }, "exp_rarity": { "dataType": "double", "required": true }, "playerId": { "dataType": "string", "required": true }, "gameId": { "dataType": "double", "required": true } } },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+            const controller = new Wallet_controller_1.WalletController();
+            const promise = controller.addExperience.apply(controller, validatedArgs);
             promiseHandler(controller, promise, response, undefined, next);
         }
         catch (err) {
