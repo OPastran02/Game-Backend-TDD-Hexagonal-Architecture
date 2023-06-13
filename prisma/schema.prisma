@@ -82,29 +82,48 @@ model guilds {
   guildmemberships guildmemberships[]
 }
 
+model players_heroes {
+  id           Int           @id @default(autoincrement())
+  playerId     String
+  heroId       Int
+  level        Int           @default(0)
+  experience   Int           @default(0)
+  id_placement Int?
+  power_point  Int           @default(0)
+  created_at   DateTime      @default(now())
+  accessories  accessories[]
+  heroes       heroes        @relation(fields: [heroId], references: [id], map: "Players_Heroes_heroId_fkey")
+  players      players       @relation(fields: [playerId], references: [id], map: "Players_Heroes_playerId_fkey")
+
+  @@index([heroId], map: "Players_Heroes_heroId_fkey")
+  @@index([playerId], map: "Players_Heroes_playerId_fkey")
+}
+
+
 model heroes {
   id              Int              @id @default(autoincrement())
   name            String           @unique(map: "Heroes_name_key")
   description     String?
   world           String?
-  gatchaCatchRate Int?
   avatar          String?
   created_at      DateTime?
   rarityId        Int
   natureId        Int
   typeId          Int
+  statsId         Int
   heroes_nature   heroes_nature    @relation(fields: [natureId], references: [id], map: "Heroes_natureId_fkey")
   heroes_rarity   heroes_rarity    @relation(fields: [rarityId], references: [id], map: "Heroes_rarityId_fkey")
   heroes_type     heroes_type      @relation(fields: [typeId], references: [id], map: "Heroes_typeId_fkey")
-  heroes_level    heroes_level[]
+  heroes_stats    heroes_stats     @relation(fields: [typeId], references: [id], map: "Heroes_statsId_fkey")
   players_heroes  players_heroes[]
 
   @@index([natureId], map: "Heroes_natureId_fkey")
   @@index([rarityId], map: "Heroes_rarityId_fkey")
   @@index([typeId], map: "Heroes_typeId_fkey")
+  @@index([typeId], map: "Heroes_statsId_fkey")
 }
 
-model heroes_level {
+model heroes_stats {
   id           Int      @id @default(autoincrement())
   heroId       Int
   level        Int      @default(0)
@@ -120,9 +139,7 @@ model heroes_level {
   exp_needed   Int      @default(0)
   created_at   DateTime @default(now())
   power_points Int      @default(0)
-  heroes       heroes   @relation(fields: [heroId], references: [id], map: "Heroes_Level_heroId_fkey")
-
-  @@index([heroId], map: "Heroes_Level_heroId_fkey")
+  heroes       heroes[]
 }
 
 model heroes_nature {
@@ -158,6 +175,7 @@ model heroes_type {
   heroes      heroes[]
 }
 
+// Ya esta hecho
 model players {
   id               String             @id @default(uuid())
   googleId         String?
@@ -186,23 +204,7 @@ model players {
 
 }
 
-model players_heroes {
-  id           Int           @id @default(autoincrement())
-  playerId     String
-  heroId       Int
-  level        Int           @default(0)
-  experience   Int           @default(0)
-  id_placement Int?
-  power_point  Int           @default(0)
-  created_at   DateTime      @default(now())
-  accessories  accessories[]
-  heroes       heroes        @relation(fields: [heroId], references: [id], map: "Players_Heroes_heroId_fkey")
-  players      players       @relation(fields: [playerId], references: [id], map: "Players_Heroes_playerId_fkey")
-
-  @@index([heroId], map: "Players_Heroes_heroId_fkey")
-  @@index([playerId], map: "Players_Heroes_playerId_fkey")
-}
-
+// Ya esta hecho
 model players_wallet {
   id           Int     @id @default(autoincrement())
   exp_rarity   Int
@@ -213,7 +215,6 @@ model players_wallet {
 
   @@index([playerId], map: "Players_Wallet_playerId_fkey")
 }
-
 
 model Terrain {
   id       Int      @id @default(autoincrement())
