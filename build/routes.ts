@@ -191,7 +191,7 @@ export function RegisterRoutes(app: Router) {
 
             function PlayerController_playerUpdateAvatarBlock(request: any, response: any, next: any) {
             const args = {
-                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"avatar":{"dataType":"string","required":true},"id":{"dataType":"string","required":true}}},
+                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"avatarBlock":{"dataType":"string","required":true},"id":{"dataType":"string","required":true}}},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

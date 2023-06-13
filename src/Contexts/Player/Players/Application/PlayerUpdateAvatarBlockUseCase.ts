@@ -14,7 +14,7 @@ export class PlayerUpdateAvatarBlockUseCase {
     const player: Player | null = await this.playerRepository.playerFindById(playerId);
     if (player) {
       player.avatarBlock = avatar.getValue();
-      await this.playerRepository.playerUpdateAvatar(playerId, playerAvatar);
+      await this.playerRepository.playerUpdateAvatar(playerId, player.avatarBlock);
     }
   }
 }

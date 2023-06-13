@@ -55,7 +55,7 @@ export declare class PlayerController extends Controller {
     }): Promise<void>;
     playerUpdateAvatarBlock(requestBody: {
         id: string;
-        avatar: string;
+        avatarBlock: string;
     }): Promise<void>;
     playerUpdateIds(requestBody: {
         id: string;

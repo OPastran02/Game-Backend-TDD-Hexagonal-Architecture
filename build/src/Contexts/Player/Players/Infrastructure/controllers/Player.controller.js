@@ -71,8 +71,8 @@ let PlayerController = class PlayerController extends tsoa_1.Controller {
         await this._playerUpdateAvatar.playerUpdateAvatar(id, avatar);
     }
     async playerUpdateAvatarBlock(requestBody) {
-        const { id, avatar } = requestBody;
-        await this._playerUpdateAvatarBlock.playerUpdateAvatarBlock(id, avatar);
+        const { id, avatarBlock } = requestBody;
+        await this._playerUpdateAvatarBlock.playerUpdateAvatarBlock(id, avatarBlock);
     }
     async playerUpdateIds(requestBody) {
         const { id, googleId, facebookId, appleId } = requestBody;

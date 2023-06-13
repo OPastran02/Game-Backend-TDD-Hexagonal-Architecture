@@ -428,7 +428,7 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "avatar": {
+                                    "avatarBlock": {
                                         "type": "string"
                                     },
                                     "id": {
@@ -436,7 +436,7 @@
                                     }
                                 },
                                 "required": [
-                                    "avatar",
+                                    "avatarBlock",
                                     "id"
                                 ],
                                 "type": "object"
