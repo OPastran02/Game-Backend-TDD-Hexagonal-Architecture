@@ -17,7 +17,7 @@ export class Wallet {
   ) {
     this.exp_rarity = new ExperienceRarity(_exp_rarity).getValue();
     this.exp_quantity = new ExperienceQuantity(_exp_quantity).getValue();
-    this.gameId = new GameId(_exp_rarity).getValue();
+    this.gameId = new GameId(_gameId).getValue();
     this.playerId = _playerId;
   }
 }

@@ -13,7 +13,7 @@ export class AddExperience {
     const exp_quantity = new ExperienceQuantity(_exp_quantity);
     const wallet: Wallet | null = await this.walletRepository.findWalletsByPlayerIdRarity(gameId, playerId, exp_rarity);
     if (wallet) {
-        wallet.exp_quantity = exp_quantity.getValue();
+        wallet.exp_quantity += exp_quantity.getValue();
       await this.walletRepository.addExperience(gameId, playerId,wallet.exp_rarity,wallet.exp_quantity);
     }
   }
