@@ -4,7 +4,7 @@ exports.PlayerPhrase = void 0;
 const InvalidArgumentError_1 = require("../../../../Shared/Domain/value-object/InvalidArgumentError");
 class PlayerPhrase {
     constructor(value) {
-        this.MAX_LENGTH = 15;
+        this.MAX_LENGTH = 200;
         this.FIELD_NAME = "PlayerPhrase";
         if (value !== null) {
             this.ensureLengthIsLessThanAvailableCharacters(value);

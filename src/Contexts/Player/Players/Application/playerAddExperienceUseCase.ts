@@ -13,7 +13,7 @@ export class playerAddExperienceUseCase {
     const experience = new PlayerExperience(_experience);
     const player: Player | null = await this.playerRepository.playerFindById(playerId);
     if (player) {
-      player.experience = experience.getValue();
+      player.experience += experience.getValue();
       await this.playerRepository.playerAddExperience(playerId, player.experience);
     }
   }

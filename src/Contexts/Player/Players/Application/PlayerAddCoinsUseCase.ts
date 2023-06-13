@@ -13,7 +13,7 @@ export class PlayerAddCoinsUseCase {
     const coins = new PlayerCoins(_coins);
     const player: Player | null = await this.playerRepository.playerFindById(playerId);
     if (player) {
-      player.coins = coins.getValue();
+      player.coins += coins.getValue();
       await this.playerRepository.playerAddCoins(playerId, player.coins);
     }
   }

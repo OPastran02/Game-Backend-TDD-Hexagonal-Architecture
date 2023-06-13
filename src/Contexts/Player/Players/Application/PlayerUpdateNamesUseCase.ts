@@ -19,9 +19,9 @@ export class PlayerUpdateNamesUseCase {
     const playerLastName = new PlayerLastName(_playerLastName);
     const player: Player | null = await this.playerRepository.playerFindById(playerId);
     if (player) {
-      player.nickname = playerNickname.getValue();
-      player.firstname = playerFirstName.getValue();
-      player.lastname = playerLastName.getValue();
+      player.nickname = (playerNickname.getValue() == null || playerNickname.getValue() == "") ? player.nickname : playerNickname.getValue();
+      player.firstname = (playerFirstName.getValue() == null || playerFirstName.getValue() == "") ? player.firstname : playerFirstName.getValue();
+      player.lastname = (playerLastName.getValue() == null)  || playerLastName.getValue() == "" ? player.lastname : playerLastName.getValue();
       await this.playerRepository.playerUpdateNames(playerId, player.nickname, player.firstname, player.lastname);
     }
   }

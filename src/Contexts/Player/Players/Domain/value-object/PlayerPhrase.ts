@@ -1,7 +1,7 @@
 import { InvalidArgumentError } from '../../../../Shared/Domain/value-object/InvalidArgumentError';
 
 export class PlayerPhrase {
-  MAX_LENGTH = 15
+  MAX_LENGTH = 200
   FIELD_NAME = "PlayerPhrase"
   value: string | null;
 
