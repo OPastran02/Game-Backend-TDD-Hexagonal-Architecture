@@ -5,8 +5,8 @@ import { Body, Controller, Post, Route } from "tsoa";
 import { TypeRepositoryPrismaMySQL } from "../TypeRepositoryPrismaMySQL";
 import { Type } from '../../Domain/Type';
 
-@Route('player')
-export class PlayerController extends Controller {
+@Route('type')
+export class TypeController extends Controller {
   private readonly _createType: CreateType;
   private readonly _findById: FindById;
 
