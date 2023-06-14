@@ -85,7 +85,7 @@ model guilds {
 model players_heroes {
   id           Int           @id @default(autoincrement())
   playerId     String
-  heroId       Int
+  heroId       String
   level        Int           @default(0)
   experience   Int           @default(0)
   id_placement Int?
@@ -99,23 +99,22 @@ model players_heroes {
   @@index([playerId], map: "Players_Heroes_playerId_fkey")
 }
 
-
 model heroes {
-  id              Int              @id @default(autoincrement())
-  name            String           @unique(map: "Heroes_name_key")
-  description     String?
-  world           String?
-  avatar          String?
-  created_at      DateTime?
-  rarityId        Int
-  natureId        Int
-  typeId          Int
-  statsId         Int
-  heroes_nature   heroes_nature    @relation(fields: [natureId], references: [id], map: "Heroes_natureId_fkey")
-  heroes_rarity   heroes_rarity    @relation(fields: [rarityId], references: [id], map: "Heroes_rarityId_fkey")
-  heroes_type     heroes_type      @relation(fields: [typeId], references: [id], map: "Heroes_typeId_fkey")
-  heroes_stats    heroes_stats     @relation(fields: [typeId], references: [id], map: "Heroes_statsId_fkey")
-  players_heroes  players_heroes[]
+  id             String           @id @default(uuid())
+  name           String           @unique(map: "Heroes_name_key")
+  description    String?
+  world          String?
+  avatar         String?
+  created_at     DateTime?
+  rarityId       Int
+  natureId       Int
+  typeId         Int
+  statsId        Int
+  heroes_nature  heroes_nature    @relation(fields: [natureId], references: [id], map: "Heroes_natureId_fkey")
+  heroes_rarity  heroes_rarity    @relation(fields: [rarityId], references: [id], map: "Heroes_rarityId_fkey")
+  heroes_type    heroes_type      @relation(fields: [typeId], references: [id], map: "Heroes_typeId_fkey")
+  heroes_stats   heroes_stats     @relation(fields: [typeId], references: [id], map: "Heroes_statsId_fkey")
+  players_heroes players_heroes[]
 
   @@index([natureId], map: "Heroes_natureId_fkey")
   @@index([rarityId], map: "Heroes_rarityId_fkey")
@@ -124,22 +123,29 @@ model heroes {
 }
 
 model heroes_stats {
-  id           Int      @id @default(autoincrement())
-  heroId       Int
-  level        Int      @default(0)
-  attack       Float    @default(0)
-  defense      Float    @default(0)
-  hp           Float    @default(0)
-  sp_attack    Float    @default(0)
-  sp_defense   Float    @default(0)
-  speed        Float    @default(0)
-  farming      Float    @default(0)
-  steeling     Float    @default(0)
-  wooding      Float    @default(0)
-  exp_needed   Int      @default(0)
-  created_at   DateTime @default(now())
-  power_points Int      @default(0)
-  heroes       heroes[]
+  id            Int      @id @default(autoincrement())
+  heroId        Int
+  attack        Float    @default(0)
+  defense       Float    @default(0)
+  hp            Float    @default(0)
+  sp_attack     Float    @default(0)
+  sp_defense    Float    @default(0)
+  speed         Float    @default(0)
+  farming       Float    @default(0)
+  steeling      Float    @default(0)
+  wooding       Float    @default(0)
+  attackBst     Float    @default(0)
+  defenseBst    Float    @default(0)
+  hpBst         Float    @default(0)
+  sp_attackBst  Float    @default(0)
+  sp_defenseBst Float    @default(0)
+  speedBst      Float    @default(0)
+  farmingBst    Float    @default(0)
+  steelingBst   Float    @default(0)
+  woodingBst    Float    @default(0)
+  created_at    DateTime @default(now())
+  power_points  Int      @default(0)
+  heroes        heroes[]
 }
 
 model heroes_nature {
@@ -175,6 +181,27 @@ model heroes_type {
   heroes      heroes[]
 }
 
+//Por ahora no
+model Terrain {
+  id       Int      @id @default(autoincrement())
+  playerId Int      @unique(map: "Player_TerrainId_fkey")
+  houses   Houses[]
+}
+
+//Por ahora no
+
+model Houses {
+  id        Int     @id @default(autoincrement())
+  TerrainId Int
+  name      String
+  positionX Int
+  positionY Int
+  Avatar    String
+  terrain   Terrain @relation(fields: [TerrainId], references: [id], map: "Houses_TerrainId_fkey")
+
+  @@index([TerrainId], map: "Houses_TerrainId_fkey")
+}
+
 // Ya esta hecho
 model players {
   id               String             @id @default(uuid())
@@ -201,7 +228,6 @@ model players {
   guildmemberships guildmemberships[]
   players_heroes   players_heroes[]
   players_wallet   players_wallet[]
-
 }
 
 // Ya esta hecho
@@ -216,20 +242,53 @@ model players_wallet {
   @@index([playerId], map: "Players_Wallet_playerId_fkey")
 }
 
-model Terrain {
-  id       Int      @id @default(autoincrement())
-  playerId Int      @unique(map: "Player_TerrainId_fkey")
-  houses   Houses[]
-}
-
-model Houses {
-  id        Int     @id @default(autoincrement())
-  TerrainId Int
-  name      String
-  positionX Int
-  positionY Int
-  Avatar    String
-  terrain   Terrain @relation(fields: [TerrainId], references: [id], map: "Houses_TerrainId_fkey")
-
-  @@index([TerrainId], map: "Houses_TerrainId_fkey")
+//Ya esta hecho
+model AvailableHeroes {
+  id               String   @id @default(uuid())
+  name             String
+  description      String
+  world            String
+  avatar           String
+  avatarBlock      String
+  rarityId         Int
+  natureId         Int
+  typeId           Int
+  attackMin        Int      @default(0)
+  attackMax        Int      @default(0)
+  attackBstMin     Int      @default(0)
+  attackBstMax     Int      @default(0)
+  defenseMin       Int      @default(0)
+  defenseMax       Int      @default(0)
+  defenseBstMin    Int      @default(0)
+  defenseBstMax    Int      @default(0)
+  hpMin            Int      @default(0)
+  hpMax            Int      @default(0)
+  hpBstMin         Int      @default(0)
+  hpBstMax         Int      @default(0)
+  sp_attackMin     Int      @default(0)
+  sp_attackMax     Int      @default(0)
+  sp_attackBstMin  Int      @default(0)
+  sp_attackBstMax  Int      @default(0)
+  sp_defenseMin    Int      @default(0)
+  sp_defenseMax    Int      @default(0)
+  sp_defenseBstMin Int      @default(0)
+  sp_defenseBstMax Int      @default(0)
+  speedMin         Int      @default(0)
+  speedMax         Int      @default(0)
+  speedBstMin      Int      @default(0)
+  speedBstMax      Int      @default(0)
+  farmingMin       Int      @default(0)
+  farmingMax       Int      @default(0)
+  farmingBstMin    Int      @default(0)
+  farmingBstMax    Int      @default(0)
+  steelingMin      Int      @default(0)
+  steelingMax      Int      @default(0)
+  steelingBstMin   Int      @default(0)
+  steelingBstMax   Int      @default(0)
+  woodingMin       Int      @default(0)
+  woodingMax       Int      @default(0)
+  woodingBstMin    Int      @default(0)
+  woodingBstMax    Int      @default(0)
+  catchRate        Int      @default(0)
+  created_at       DateTime
 }
