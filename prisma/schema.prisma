@@ -124,7 +124,7 @@ model heroes {
 
 model heroes_stats {
   id            Int      @id @default(autoincrement())
-  heroId        Int
+  heroId        String
   attack        Int    @default(0)
   defense       Int    @default(0)
   hp            Int    @default(0)

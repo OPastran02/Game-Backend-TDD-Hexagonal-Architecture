@@ -2,7 +2,7 @@ import { Stat } from './value-object/Stat';
 
 export class Stats {
     id:            number;      
-    heroId:        String;
+    heroId:        string;
     attack:        number;  
     defense:       number;  
     hp:            number;  
@@ -25,7 +25,7 @@ export class Stats {
     power_points:  number;     
   constructor(
     _id:            number,      
-    _heroId:        String,
+    _heroId:        string,
     _attack:        number,  
     _defense:       number,  
     _hp:            number,  

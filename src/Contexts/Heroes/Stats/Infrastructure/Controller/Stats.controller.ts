@@ -2,8 +2,8 @@ import { Create } from "../../Application/Create";
 import { FindById } from "../../Application/FindById";
 
 import { Body, Controller, Post, Route } from "tsoa";
-import { NatureRepositoryPrismaMySQL } from "../NatureRepositoryPrismaMySQL";
-import { Nature } from '../../Domain/Nature';
+import { StatsRepositoryPrismaMySQL } from "../StatsRepositoryPrismaMySQL";
+import { Stats } from '../../Domain/Stats';
 
 @Route('stats')
 export class StatsController extends Controller {
@@ -12,7 +12,7 @@ export class StatsController extends Controller {
 
   constructor() {
     super();
-    var repository = new NatureRepositoryPrismaMySQL();
+    var repository = new StatsRepositoryPrismaMySQL();
     this._create = new Create(repository);
     this._findById = new FindById(repository);
   }
@@ -21,57 +21,84 @@ export class StatsController extends Controller {
   public async create(
     @Body() requestBody: 
         { 
-          id:                 number,
-          name:               string,
-          description:        string,
-          boost_attack:       number,  
-          boost_defense:      number,  
-          boost_hp:           number,  
-          boost_sp_attack:    number,  
-          boost_sp_defense:   number,  
-          boost_speed:        number,  
-          boost_farming:      number,  
-          boost_steeling:     number,  
-          boost_wooding:      number,   
-          created_at:         Date
-        }  
-      ): Promise<Nature> {
+          _id:           number,      
+          heroId:        string,
+          attack:        number,  
+          defense:       number,  
+          hp:            number,  
+          sp_attack:     number,  
+          sp_defense:    number,  
+          speed:         number,  
+          farming:       number,  
+          steeling:      number,  
+          wooding:       number,  
+          attackBst:     number,  
+          defenseBst:    number,  
+          hpBst:         number,  
+          sp_attackBst:  number,  
+          sp_defenseBst: number,  
+          speedBst:      number,  
+          farmingBst:    number,  
+          steelingBst:   number,  
+          woodingBst:    number,  
+          created_at:    Date, 
+          power_points:  number,   
+        } 
+      ): Promise<Stats> {
       
         const {          
-          id,                 
-          name,               
-          description,        
-          boost_attack,         
-          boost_defense,        
-          boost_hp,             
-          boost_sp_attack,      
-          boost_sp_defense,     
-          boost_speed,          
-          boost_farming,        
-          boost_steeling,       
-          boost_wooding,         
-          created_at         
+          _id,     
+          heroId,
+          attack, 
+          defense, 
+          hp, 
+          sp_attack, 
+          sp_defense, 
+          speed, 
+          farming, 
+          steeling, 
+          wooding, 
+          attackBst, 
+          defenseBst, 
+          hpBst, 
+          sp_attackBst, 
+          sp_defenseBst , 
+          speedBst, 
+          farmingBst, 
+          steelingBst, 
+          woodingBst, 
+          created_at,
+          power_points          
         } = requestBody;
 
       return await this._create.create(
-        id,                 
-        name,               
-        description,        
-        boost_attack,         
-        boost_defense,        
-        boost_hp,             
-        boost_sp_attack,      
-        boost_sp_defense,     
-        boost_speed,          
-        boost_farming,        
-        boost_steeling,       
-        boost_wooding,         
-        created_at 
+        _id,     
+        heroId,
+        attack, 
+        defense, 
+        hp, 
+        sp_attack, 
+        sp_defense, 
+        speed, 
+        farming, 
+        steeling, 
+        wooding, 
+        attackBst, 
+        defenseBst, 
+        hpBst, 
+        sp_attackBst, 
+        sp_defenseBst , 
+        speedBst, 
+        farmingBst, 
+        steelingBst, 
+        woodingBst, 
+        created_at,
+        power_points  
       );
   }
 
   @Post('/findById')
-  public async findById(@Body() requestBody:{id:number}): Promise<Nature | null> {
+  public async findById(@Body() requestBody:{id:number}): Promise<Stats | null> {
       const {id} = requestBody;
       return await this._findById.findById(id);
   }

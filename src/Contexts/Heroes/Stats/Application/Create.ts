@@ -10,7 +10,7 @@ export class Create {
 
   public async create(    
       _id:            number,    
-      _heroId:        String,
+      _heroId:        string,
       _attack:        number,    
       _defense:       number,    
       _hp:            number,    
