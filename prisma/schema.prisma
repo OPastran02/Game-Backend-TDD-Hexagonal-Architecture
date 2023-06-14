@@ -122,6 +122,7 @@ model heroes {
   @@index([typeId], map: "Heroes_statsId_fkey")
 }
 
+// Ya esta hecho
 model heroes_stats {
   id            Int      @id @default(autoincrement())
   heroId        String
@@ -148,6 +149,7 @@ model heroes_stats {
   heroes        heroes[]
 }
 
+// Ya esta hecho
 model heroes_nature {
   id               Int      @id @default(autoincrement())
   name             String   @unique(map: "Heroes_Nature_name_key")
