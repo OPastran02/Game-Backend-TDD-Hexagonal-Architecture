@@ -5,7 +5,7 @@ import { Body, Controller, Post, Route } from "tsoa";
 import { RarityRepositoryPrismaMySQL } from "../RarityRepositoryPrismaMySQL";
 import { Rarity } from '../../Domain/Rarity';
 
-@Route('type')
+@Route('rarity')
 export class RarityController extends Controller {
   private readonly _create: Create;
   private readonly _findById: FindById;

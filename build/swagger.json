@@ -6,6 +6,482 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
+			"AvailableHeroes": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"world": {
+						"type": "string"
+					},
+					"avatar": {
+						"type": "string"
+					},
+					"avatarBlock": {
+						"type": "string"
+					},
+					"rarityId": {
+						"type": "number",
+						"format": "double"
+					},
+					"natureId": {
+						"type": "number",
+						"format": "double"
+					},
+					"typeId": {
+						"type": "number",
+						"format": "double"
+					},
+					"attackMin": {
+						"type": "number",
+						"format": "double"
+					},
+					"attackMax": {
+						"type": "number",
+						"format": "double"
+					},
+					"attackBstMin": {
+						"type": "number",
+						"format": "double"
+					},
+					"attackBstMax": {
+						"type": "number",
+						"format": "double"
+					},
+					"defenseMin": {
+						"type": "number",
+						"format": "double"
+					},
+					"defenseMax": {
+						"type": "number",
+						"format": "double"
+					},
+					"defenseBstMin": {
+						"type": "number",
+						"format": "double"
+					},
+					"defenseBstMax": {
+						"type": "number",
+						"format": "double"
+					},
+					"hpMin": {
+						"type": "number",
+						"format": "double"
+					},
+					"hpMax": {
+						"type": "number",
+						"format": "double"
+					},
+					"hpBstMin": {
+						"type": "number",
+						"format": "double"
+					},
+					"hpBstMax": {
+						"type": "number",
+						"format": "double"
+					},
+					"sp_attackMin": {
+						"type": "number",
+						"format": "double"
+					},
+					"sp_attackMax": {
+						"type": "number",
+						"format": "double"
+					},
+					"sp_attackBstMin": {
+						"type": "number",
+						"format": "double"
+					},
+					"sp_attackBstMax": {
+						"type": "number",
+						"format": "double"
+					},
+					"sp_defenseMin": {
+						"type": "number",
+						"format": "double"
+					},
+					"sp_defenseMax": {
+						"type": "number",
+						"format": "double"
+					},
+					"sp_defenseBstMin": {
+						"type": "number",
+						"format": "double"
+					},
+					"sp_defenseBstMax": {
+						"type": "number",
+						"format": "double"
+					},
+					"speedMin": {
+						"type": "number",
+						"format": "double"
+					},
+					"speedMax": {
+						"type": "number",
+						"format": "double"
+					},
+					"speedBstMin": {
+						"type": "number",
+						"format": "double"
+					},
+					"speedBstMax": {
+						"type": "number",
+						"format": "double"
+					},
+					"farmingMin": {
+						"type": "number",
+						"format": "double"
+					},
+					"farmingMax": {
+						"type": "number",
+						"format": "double"
+					},
+					"farmingBstMin": {
+						"type": "number",
+						"format": "double"
+					},
+					"farmingBstMax": {
+						"type": "number",
+						"format": "double"
+					},
+					"steelingMin": {
+						"type": "number",
+						"format": "double"
+					},
+					"steelingMax": {
+						"type": "number",
+						"format": "double"
+					},
+					"steelingBstMin": {
+						"type": "number",
+						"format": "double"
+					},
+					"steelingBstMax": {
+						"type": "number",
+						"format": "double"
+					},
+					"woodingMin": {
+						"type": "number",
+						"format": "double"
+					},
+					"woodingMax": {
+						"type": "number",
+						"format": "double"
+					},
+					"woodingBstMin": {
+						"type": "number",
+						"format": "double"
+					},
+					"woodingBstMax": {
+						"type": "number",
+						"format": "double"
+					},
+					"catchRate": {
+						"type": "number",
+						"format": "double"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"description",
+					"world",
+					"avatar",
+					"avatarBlock",
+					"rarityId",
+					"natureId",
+					"typeId",
+					"attackMin",
+					"attackMax",
+					"attackBstMin",
+					"attackBstMax",
+					"defenseMin",
+					"defenseMax",
+					"defenseBstMin",
+					"defenseBstMax",
+					"hpMin",
+					"hpMax",
+					"hpBstMin",
+					"hpBstMax",
+					"sp_attackMin",
+					"sp_attackMax",
+					"sp_attackBstMin",
+					"sp_attackBstMax",
+					"sp_defenseMin",
+					"sp_defenseMax",
+					"sp_defenseBstMin",
+					"sp_defenseBstMax",
+					"speedMin",
+					"speedMax",
+					"speedBstMin",
+					"speedBstMax",
+					"farmingMin",
+					"farmingMax",
+					"farmingBstMin",
+					"farmingBstMax",
+					"steelingMin",
+					"steelingMax",
+					"steelingBstMin",
+					"steelingBstMax",
+					"woodingMin",
+					"woodingMax",
+					"woodingBstMin",
+					"woodingBstMax",
+					"catchRate",
+					"created_at"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Nature": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"boost_attack": {
+						"type": "number",
+						"format": "double"
+					},
+					"boost_defense": {
+						"type": "number",
+						"format": "double"
+					},
+					"boost_hp": {
+						"type": "number",
+						"format": "double"
+					},
+					"boost_sp_attack": {
+						"type": "number",
+						"format": "double"
+					},
+					"boost_sp_defense": {
+						"type": "number",
+						"format": "double"
+					},
+					"boost_speed": {
+						"type": "number",
+						"format": "double"
+					},
+					"boost_farming": {
+						"type": "number",
+						"format": "double"
+					},
+					"boost_steeling": {
+						"type": "number",
+						"format": "double"
+					},
+					"boost_wooding": {
+						"type": "number",
+						"format": "double"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"description",
+					"boost_attack",
+					"boost_defense",
+					"boost_hp",
+					"boost_sp_attack",
+					"boost_sp_defense",
+					"boost_speed",
+					"boost_farming",
+					"boost_steeling",
+					"boost_wooding",
+					"created_at"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Rarity": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"avatar": {
+						"type": "string"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"description",
+					"avatar",
+					"created_at"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Stats": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"heroId": {
+						"type": "string"
+					},
+					"attack": {
+						"type": "number",
+						"format": "double"
+					},
+					"defense": {
+						"type": "number",
+						"format": "double"
+					},
+					"hp": {
+						"type": "number",
+						"format": "double"
+					},
+					"sp_attack": {
+						"type": "number",
+						"format": "double"
+					},
+					"sp_defense": {
+						"type": "number",
+						"format": "double"
+					},
+					"speed": {
+						"type": "number",
+						"format": "double"
+					},
+					"farming": {
+						"type": "number",
+						"format": "double"
+					},
+					"steeling": {
+						"type": "number",
+						"format": "double"
+					},
+					"wooding": {
+						"type": "number",
+						"format": "double"
+					},
+					"attackBst": {
+						"type": "number",
+						"format": "double"
+					},
+					"defenseBst": {
+						"type": "number",
+						"format": "double"
+					},
+					"hpBst": {
+						"type": "number",
+						"format": "double"
+					},
+					"sp_attackBst": {
+						"type": "number",
+						"format": "double"
+					},
+					"sp_defenseBst": {
+						"type": "number",
+						"format": "double"
+					},
+					"speedBst": {
+						"type": "number",
+						"format": "double"
+					},
+					"farmingBst": {
+						"type": "number",
+						"format": "double"
+					},
+					"steelingBst": {
+						"type": "number",
+						"format": "double"
+					},
+					"woodingBst": {
+						"type": "number",
+						"format": "double"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"power_points": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"id",
+					"heroId",
+					"attack",
+					"defense",
+					"hp",
+					"sp_attack",
+					"sp_defense",
+					"speed",
+					"farming",
+					"steeling",
+					"wooding",
+					"attackBst",
+					"defenseBst",
+					"hpBst",
+					"sp_attackBst",
+					"sp_defenseBst",
+					"speedBst",
+					"farmingBst",
+					"steelingBst",
+					"woodingBst",
+					"created_at",
+					"power_points"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Type": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"description"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"Player": {
 				"properties": {
 					"id": {
@@ -152,6 +628,558 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
+		"/availableHeroes/findById": {
+			"post": {
+				"operationId": "PlayerFindById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/AvailableHeroes"
+									},
+									"type": "array",
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"id": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/nature/add": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Nature"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"created_at": {
+										"type": "string",
+										"format": "date-time"
+									},
+									"boost_wooding": {
+										"type": "number",
+										"format": "double"
+									},
+									"boost_steeling": {
+										"type": "number",
+										"format": "double"
+									},
+									"boost_farming": {
+										"type": "number",
+										"format": "double"
+									},
+									"boost_speed": {
+										"type": "number",
+										"format": "double"
+									},
+									"boost_sp_defense": {
+										"type": "number",
+										"format": "double"
+									},
+									"boost_sp_attack": {
+										"type": "number",
+										"format": "double"
+									},
+									"boost_hp": {
+										"type": "number",
+										"format": "double"
+									},
+									"boost_defense": {
+										"type": "number",
+										"format": "double"
+									},
+									"boost_attack": {
+										"type": "number",
+										"format": "double"
+									},
+									"description": {
+										"type": "string"
+									},
+									"name": {
+										"type": "string"
+									},
+									"id": {
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"created_at",
+									"boost_wooding",
+									"boost_steeling",
+									"boost_farming",
+									"boost_speed",
+									"boost_sp_defense",
+									"boost_sp_attack",
+									"boost_hp",
+									"boost_defense",
+									"boost_attack",
+									"description",
+									"name",
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/nature/findById": {
+			"post": {
+				"operationId": "FindById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Nature"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"id": {
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/rarity/add": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Rarity"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"created_at": {
+										"type": "string",
+										"format": "date-time"
+									},
+									"avatar": {
+										"type": "string"
+									},
+									"description": {
+										"type": "string"
+									},
+									"name": {
+										"type": "string"
+									},
+									"id": {
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"created_at",
+									"avatar",
+									"description",
+									"name",
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/rarity/findById": {
+			"post": {
+				"operationId": "FindById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Rarity"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"id": {
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/stats/add": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Stats"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"power_points": {
+										"type": "number",
+										"format": "double"
+									},
+									"created_at": {
+										"type": "string",
+										"format": "date-time"
+									},
+									"woodingBst": {
+										"type": "number",
+										"format": "double"
+									},
+									"steelingBst": {
+										"type": "number",
+										"format": "double"
+									},
+									"farmingBst": {
+										"type": "number",
+										"format": "double"
+									},
+									"speedBst": {
+										"type": "number",
+										"format": "double"
+									},
+									"sp_defenseBst": {
+										"type": "number",
+										"format": "double"
+									},
+									"sp_attackBst": {
+										"type": "number",
+										"format": "double"
+									},
+									"hpBst": {
+										"type": "number",
+										"format": "double"
+									},
+									"defenseBst": {
+										"type": "number",
+										"format": "double"
+									},
+									"attackBst": {
+										"type": "number",
+										"format": "double"
+									},
+									"wooding": {
+										"type": "number",
+										"format": "double"
+									},
+									"steeling": {
+										"type": "number",
+										"format": "double"
+									},
+									"farming": {
+										"type": "number",
+										"format": "double"
+									},
+									"speed": {
+										"type": "number",
+										"format": "double"
+									},
+									"sp_defense": {
+										"type": "number",
+										"format": "double"
+									},
+									"sp_attack": {
+										"type": "number",
+										"format": "double"
+									},
+									"hp": {
+										"type": "number",
+										"format": "double"
+									},
+									"defense": {
+										"type": "number",
+										"format": "double"
+									},
+									"attack": {
+										"type": "number",
+										"format": "double"
+									},
+									"heroId": {
+										"type": "string"
+									},
+									"_id": {
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"power_points",
+									"created_at",
+									"woodingBst",
+									"steelingBst",
+									"farmingBst",
+									"speedBst",
+									"sp_defenseBst",
+									"sp_attackBst",
+									"hpBst",
+									"defenseBst",
+									"attackBst",
+									"wooding",
+									"steeling",
+									"farming",
+									"speed",
+									"sp_defense",
+									"sp_attack",
+									"hp",
+									"defense",
+									"attack",
+									"heroId",
+									"_id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/stats/findById": {
+			"post": {
+				"operationId": "FindById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Stats"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"id": {
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/type/add": {
+			"post": {
+				"operationId": "CreateType",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Type"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"description": {
+										"type": "string"
+									},
+									"name": {
+										"type": "string"
+									},
+									"id": {
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"description",
+									"name",
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/type/findById": {
+			"post": {
+				"operationId": "FindById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Type"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"id": {
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
 		"/player/add": {
 			"post": {
 				"operationId": "AddPlayer",

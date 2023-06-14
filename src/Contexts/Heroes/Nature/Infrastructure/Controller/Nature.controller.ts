@@ -5,7 +5,7 @@ import { Body, Controller, Post, Route } from "tsoa";
 import { NatureRepositoryPrismaMySQL } from "../NatureRepositoryPrismaMySQL";
 import { Nature } from '../../Domain/Nature';
 
-@Route('type')
+@Route('nature')
 export class NatureController extends Controller {
   private readonly _create: Create;
   private readonly _findById: FindById;
