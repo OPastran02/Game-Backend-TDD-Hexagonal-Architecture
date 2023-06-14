@@ -1,7 +1,7 @@
 import { ITypeRepository } from '../Domain/interfaces/Type.interface';
 import { Type } from '../Domain/Type';
 
-export class createType {
+export class CreateType {
   private typeRepository: ITypeRepository;
 
   constructor(typeRepository: ITypeRepository) {
@@ -18,7 +18,7 @@ export class createType {
             _name,
             _description
           );
-          
+
           return await this.typeRepository.createType(type);
         }
 }

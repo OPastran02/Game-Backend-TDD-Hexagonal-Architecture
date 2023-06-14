@@ -16,7 +16,7 @@ export class TypeRepositoryPrismaMySQL implements ITypeRepository {
   }
 
   public async findById(playerId: number): Promise<Type | null> {
-    return await prisma.heroes_type.findMany({
+    return await prisma.heroes_type.findFirstOrThrow({
         where: {
             id: playerId,
         }
