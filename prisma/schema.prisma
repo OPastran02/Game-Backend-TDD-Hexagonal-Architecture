@@ -152,19 +152,20 @@ model heroes_nature {
   id               Int      @id @default(autoincrement())
   name             String   @unique(map: "Heroes_Nature_name_key")
   description      String   @default("No description")
-  boost_attack     Float    @default(0)
-  boost_defense    Float    @default(0)
-  boost_hp         Float    @default(0)
-  boost_sp_attack  Float    @default(0)
-  boost_sp_defense Float    @default(0)
-  boost_speed      Float    @default(0)
-  boost_farming    Float    @default(0)
-  boost_steeling   Float    @default(0)
-  boost_wooding    Float    @default(0)
+  boost_attack     Int    @default(0)
+  boost_defense    Int    @default(0)
+  boost_hp         Int    @default(0)
+  boost_sp_attack  Int    @default(0)
+  boost_sp_defense Int    @default(0)
+  boost_speed      Int    @default(0)
+  boost_farming    Int    @default(0)
+  boost_steeling   Int    @default(0)
+  boost_wooding    Int    @default(0)
   created_at       DateTime @default(now())
   heroes           heroes[]
 }
 
+// Ya esta hecho
 model heroes_rarity {
   id          Int      @id @default(autoincrement())
   name        String   @unique(map: "Heroes_Rarity_name_key")
