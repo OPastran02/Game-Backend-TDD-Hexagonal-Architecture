@@ -637,11 +637,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "items": {
-                                        "$ref": "#/components/schemas/AvailableHeroes"
-                                    },
-                                    "type": "array",
-                                    "nullable": true
+                                    "$ref": "#/components/schemas/AvailableHeroes"
                                 }
                             }
                         }
@@ -774,12 +770,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "allOf": [
-                                        {
-                                            "$ref": "#/components/schemas/Nature"
-                                        }
-                                    ],
-                                    "nullable": true
+                                    "$ref": "#/components/schemas/Nature"
                                 }
                             }
                         }
@@ -872,12 +863,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "allOf": [
-                                        {
-                                            "$ref": "#/components/schemas/Rarity"
-                                        }
-                                    ],
-                                    "nullable": true
+                                    "$ref": "#/components/schemas/Rarity"
                                 }
                             }
                         }
@@ -1146,12 +1132,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "allOf": [
-                                        {
-                                            "$ref": "#/components/schemas/Type"
-                                        }
-                                    ],
-                                    "nullable": true
+                                    "$ref": "#/components/schemas/Type"
                                 }
                             }
                         }
