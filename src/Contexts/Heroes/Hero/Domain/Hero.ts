@@ -7,7 +7,11 @@ import { Stats } from '../../Stats/Domain/Stats';
 import { Rarity } from '../../Rarity/Domain/Rarity';
 
 export class Hero {
-  id:             string;         
+  id:             string;
+  playerId:       string;
+  level:          number;
+  Experience:     number;
+  id_placement:   number;         
   name:           string;          
   description:    string;
   world:          string;
@@ -19,7 +23,11 @@ export class Hero {
   stats:          Stats;  
 
   constructor(
-    _id:string,         
+    _id:string,   
+    _playerId:string,
+    _level:number,
+    _Experience:number,
+    _id_placement:number,        
     _name:string,          
     _description:string,
     _world:string,
@@ -31,6 +39,10 @@ export class Hero {
     _stats:Stats  
   ) {
     this.id = _id;
+    this.playerId = _playerId;
+    this.level = _level;
+    this.Experience = _Experience;
+    this.id_placement = _id_placement;
     this.name = new Name(_name).getValue();
     this.description = new Description(_description).getValue();
     this.world = new Description(_world).getValue();

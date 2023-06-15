@@ -87,6 +87,10 @@ export class Create {
 
       const hero: Hero = new Hero(
         IdHero,
+        _player.id,
+        1,
+        0,
+        0,
         _availableHeroes.name,
         _availableHeroes.description,
         _availableHeroes.world,
