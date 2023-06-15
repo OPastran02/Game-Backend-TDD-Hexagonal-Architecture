@@ -25,10 +25,6 @@ model accessories {
   power_points     Float          @default(0)
   avatar           String         @default("accesory_null.png")
   created_at       DateTime       @default(now())
-  Player_Hero_Id   Int
-  players_heroes   players_heroes @relation(fields: [Player_Hero_Id], references: [id], map: "Accessories_Player_Hero_Id_fkey")
-
-  @@index([Player_Hero_Id], map: "Accessories_Player_Hero_Id_fkey")
 }
 
 model castles {
@@ -82,25 +78,13 @@ model guilds {
   guildmemberships guildmemberships[]
 }
 
-model players_heroes {
-  id           Int           @id @default(autoincrement())
-  playerId     String
-  heroId       String
-  level        Int           @default(0)
-  experience   Int           @default(0)
-  id_placement Int?
-  power_point  Int           @default(0)
-  created_at   DateTime      @default(now())
-  accessories  accessories[]
-  heroes       heroes        @relation(fields: [heroId], references: [id], map: "Players_Heroes_heroId_fkey")
-  players      players       @relation(fields: [playerId], references: [id], map: "Players_Heroes_playerId_fkey")
-
-  @@index([heroId], map: "Players_Heroes_heroId_fkey")
-  @@index([playerId], map: "Players_Heroes_playerId_fkey")
-}
 
 model heroes {
   id             String           @id @default(uuid())
+  playerId       String
+  level          Int
+  Experience     Int
+  id_placement   Int
   name           String           @unique(map: "Heroes_name_key")
   description    String?
   world          String?
@@ -114,7 +98,7 @@ model heroes {
   heroes_rarity  heroes_rarity    @relation(fields: [rarityId], references: [id], map: "Heroes_rarityId_fkey")
   heroes_type    heroes_type      @relation(fields: [typeId], references: [id], map: "Heroes_typeId_fkey")
   heroes_stats   heroes_stats     @relation(fields: [typeId], references: [id], map: "Heroes_statsId_fkey")
-  players_heroes players_heroes[]
+  players        players          @relation(fields: [playerId], references: [id], map: "Players_HeroesId_fkey")
 
   @@index([natureId], map: "Heroes_natureId_fkey")
   @@index([rarityId], map: "Heroes_rarityId_fkey")
@@ -230,7 +214,7 @@ model players {
   isActive         Boolean            @default(true)
   createdAt        DateTime           @default(now())
   guildmemberships guildmemberships[]
-  players_heroes   players_heroes[]
+  heroes           heroes[]
   players_wallet   players_wallet[]
 }
 

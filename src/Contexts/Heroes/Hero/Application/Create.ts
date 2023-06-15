@@ -48,12 +48,12 @@ export class Create {
       _player:Player,
     ): Promise<Hero> {
 
-      const IdHero = uuidv4(); // Generar un UUID si no se proporciona un ID
+      const IdHero = uuidv4();
       
       const arrProbabilities = this.lootBoxGenerator.calculateTierProbabilitiesForLevel(_player.level);
 
       console.log(arrProbabilities);
-      
+
       const _availableHeroes: AvailableHeroes = await this.heroesAvailablesRepository.availableHeroFindById("hola");
        
       const stats : Stats = new Stats(
