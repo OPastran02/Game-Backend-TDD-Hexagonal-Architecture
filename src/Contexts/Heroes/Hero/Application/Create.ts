@@ -12,6 +12,8 @@ import { ITypeRepository } from '../../Type/Domain/interfaces/Type.interface';
 import { IRarityRepository } from '../../Rarity/Domain/interfaces/Rarity.interface';
 import { INatureRepository } from '../../Nature/Domain/interfaces/Nature.interface';
 
+import { LootboxGenerator } from './LootBoxGenerator';
+
 import { v4 as uuidv4 } from 'uuid';
 
 export class Create {
@@ -20,17 +22,20 @@ export class Create {
   private typeRepository: ITypeRepository;
   private rarityRepository: IRarityRepository;
   private natureRepository: INatureRepository;
+  private lootBoxGenerator: LootboxGenerator;
 
   constructor(repository: IHeroRepository, 
     heroesAvailablesRepository: IAvailableHeroesRepository,
     typeRepository: ITypeRepository,
     rarityRepository: IRarityRepository,
-    natureRepository: INatureRepository) {
+    natureRepository: INatureRepository,
+    lootBoxGenerator: LootboxGenerator) {
     this.repository = repository;
     this.heroesAvailablesRepository = heroesAvailablesRepository;
     this.typeRepository = typeRepository;
     this.rarityRepository = rarityRepository;
     this.natureRepository = natureRepository;
+    this.lootBoxGenerator = lootBoxGenerator;
   }
 
   public async create(    
@@ -44,6 +49,10 @@ export class Create {
     ): Promise<Hero> {
 
       const IdHero = uuidv4(); // Generar un UUID si no se proporciona un ID
+      
+      const arrProbabilities = this.lootBoxGenerator.calculateTierProbabilitiesForLevel(_player.level);
+
+      console.log(arrProbabilities);
       
       const _availableHeroes: AvailableHeroes = await this.heroesAvailablesRepository.availableHeroFindById("hola");
        
