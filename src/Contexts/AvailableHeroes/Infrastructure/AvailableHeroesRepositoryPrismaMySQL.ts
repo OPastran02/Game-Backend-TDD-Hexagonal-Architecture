@@ -5,8 +5,8 @@ import prisma from '../../../../prisma/index';
 
 export class AvailableHeroesRepositoryPrismaMySQL implements IAvailableHeroesRepository {
 
-  public async availableHeroFindById(playerId: string): Promise<AvailableHeroes[] | null> {
-    return await prisma.availableHeroes.findMany({
+  public async availableHeroFindById(playerId: string): Promise<AvailableHeroes> {
+    return await prisma.availableHeroes.findUnique({
       where: {
         id : playerId,
       }

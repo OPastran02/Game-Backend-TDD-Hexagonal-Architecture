@@ -4,6 +4,6 @@ export interface INatureRepository {
 
     create(type: Nature): Promise<Nature>;
 
-    findById(gameId: number): Promise<Nature | null>;
+    findById(gameId: number): Promise<Nature>;
 
 }

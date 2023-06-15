@@ -71,7 +71,7 @@ export class NatureController extends Controller {
   }
 
   @Post('/findById')
-  public async findById(@Body() requestBody:{id:number}): Promise<Nature | null> {
+  public async findById(@Body() requestBody:{id:number}): Promise<Nature> {
       const {id} = requestBody;
       return await this._findById.findById(id);
   }

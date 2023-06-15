@@ -8,7 +8,7 @@ export class FindById {
     this.typeRepository = typeRepository;
   }
 
-  public async findById(id: number): Promise<Type | null> {
+  public async findById(id: number): Promise<Type> {
     return await this.typeRepository.findById(id);
   }
 }

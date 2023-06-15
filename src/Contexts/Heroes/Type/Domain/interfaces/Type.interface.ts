@@ -4,6 +4,6 @@ export interface ITypeRepository {
 
     createType(type: Type): Promise<Type>;
 
-    findById(gameId: number): Promise<Type | null>;
+    findById(gameId: number): Promise<Type>;
 
 }

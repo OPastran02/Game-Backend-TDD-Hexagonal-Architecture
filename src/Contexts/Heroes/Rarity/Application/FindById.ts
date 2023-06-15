@@ -8,7 +8,7 @@ export class FindById {
     this.rarityRepository = rarityRepository;
   }
 
-  public async findById(id: number): Promise<Rarity | null> {
+  public async findById(id: number): Promise<Rarity> {
     return await this.rarityRepository.findById(id);
   }
 }

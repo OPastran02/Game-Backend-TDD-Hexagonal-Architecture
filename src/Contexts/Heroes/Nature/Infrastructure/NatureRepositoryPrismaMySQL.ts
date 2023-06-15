@@ -25,7 +25,7 @@ export class NatureRepositoryPrismaMySQL implements INatureRepository {
     });
   }
 
-  public async findById(_id: number): Promise<Nature | null> {
+  public async findById(_id: number): Promise<Nature> {
     return await prisma.heroes_nature.findFirstOrThrow({
         where: {
             id: _id,

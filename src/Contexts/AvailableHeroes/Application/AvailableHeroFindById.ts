@@ -8,7 +8,7 @@ export class AvailableHeroFindById {
     this.availableHeroesRepository = availableHeroesRepository;
   }
 
-  public async availableHeroFindById(id: string): Promise<AvailableHeroes[] | null> {
+  public async availableHeroFindById(id: string): Promise<AvailableHeroes> {
     return await this.availableHeroesRepository.availableHeroFindById(id);
   }
 }

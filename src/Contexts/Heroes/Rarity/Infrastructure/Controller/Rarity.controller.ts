@@ -34,7 +34,7 @@ export class RarityController extends Controller {
   }
 
   @Post('/findById')
-  public async findById(@Body() requestBody:{id:number}): Promise<Rarity | null> {
+  public async findById(@Body() requestBody:{id:number}): Promise<Rarity> {
       const {id} = requestBody;
       return await this._findById.findById(id);
   }

@@ -4,6 +4,6 @@ export interface IRarityRepository {
 
     create(type: Rarity): Promise<Rarity>;
 
-    findById(gameId: number): Promise<Rarity | null>;
+    findById(gameId: number): Promise<Rarity>;
 
 }

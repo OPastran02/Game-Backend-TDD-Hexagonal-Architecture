@@ -31,7 +31,7 @@ export class TypeController extends Controller {
   }
 
   @Post('/findById')
-  public async findById(@Body() requestBody:{id:number}): Promise<Type | null> {
+  public async findById(@Body() requestBody:{id:number}): Promise<Type> {
       const {id} = requestBody;
       return await this._findById.findById(id);
   }

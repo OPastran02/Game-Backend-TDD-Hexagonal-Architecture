@@ -17,7 +17,7 @@ export class AvailableHeroesController extends Controller {
 
 
   @Post('/findById')
-  public async playerFindById(@Body() requestBody:{id:string}): Promise<AvailableHeroes[] | null> {
+  public async playerFindById(@Body() requestBody:{id:string}): Promise<AvailableHeroes> {
       const {id} = requestBody;
       return await this._availableHeroFindById.availableHeroFindById(id);
   }

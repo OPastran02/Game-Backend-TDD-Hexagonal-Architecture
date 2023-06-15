@@ -17,7 +17,7 @@ export class RarityRepositoryPrismaMySQL implements IRarityRepository {
     });
   }
 
-  public async findById(_id: number): Promise<Rarity | null> {
+  public async findById(_id: number): Promise<Rarity> {
     return await prisma.heroes_rarity.findFirstOrThrow({
         where: {
             id: _id,
