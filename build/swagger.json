@@ -344,6 +344,27 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"Type": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"description"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"Stats": {
 				"properties": {
 					"id": {
@@ -461,9 +482,23 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Type": {
+			"Hero": {
 				"properties": {
 					"id": {
+						"type": "string"
+					},
+					"playerId": {
+						"type": "string"
+					},
+					"level": {
+						"type": "number",
+						"format": "double"
+					},
+					"Experience": {
+						"type": "number",
+						"format": "double"
+					},
+					"id_placement": {
 						"type": "number",
 						"format": "double"
 					},
@@ -472,12 +507,45 @@
 					},
 					"description": {
 						"type": "string"
+					},
+					"world": {
+						"type": "string"
+					},
+					"avatar": {
+						"type": "string"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"nature": {
+						"$ref": "#/components/schemas/Nature"
+					},
+					"rarity": {
+						"$ref": "#/components/schemas/Rarity"
+					},
+					"type": {
+						"$ref": "#/components/schemas/Type"
+					},
+					"stats": {
+						"$ref": "#/components/schemas/Stats"
 					}
 				},
 				"required": [
 					"id",
+					"playerId",
+					"level",
+					"Experience",
+					"id_placement",
 					"name",
-					"description"
+					"description",
+					"world",
+					"avatar",
+					"created_at",
+					"nature",
+					"rarity",
+					"type",
+					"stats"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -653,6 +721,115 @@
 								"properties": {
 									"id": {
 										"type": "string"
+									}
+								},
+								"required": [
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/hero/add": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Hero"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/hero/findById": {
+			"post": {
+				"operationId": "FindById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Hero"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"id": {
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/hero/numbers": {
+			"post": {
+				"operationId": "Probabilities",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"type": "number",
+										"format": "double"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"id": {
+										"type": "number",
+										"format": "double"
 									}
 								},
 								"required": [

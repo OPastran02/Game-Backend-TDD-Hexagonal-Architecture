@@ -13,7 +13,7 @@ import { Body, Controller, Post, Route } from "tsoa";
 import { Hero } from "../../Domain/Hero";
 
 
-@Route('stats')
+@Route('hero')
 export class HeroController extends Controller {
   //private readonly _create: Create;
   private readonly _findById: FindById;
