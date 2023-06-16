@@ -38,7 +38,7 @@ export class Create {
     this.lootBoxGenerator = lootBoxGenerator;
   }
 
-  public async create(
+  public async Create(
       _player:Player,
     ): Promise<Hero> {
 

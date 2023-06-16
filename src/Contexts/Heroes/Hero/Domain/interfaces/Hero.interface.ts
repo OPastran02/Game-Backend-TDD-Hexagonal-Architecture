@@ -6,4 +6,5 @@ export interface IHeroRepository {
 
     findById(gameId: number): Promise<Hero | null>;
 
+    probabilities(num: number): Promise<number[]>;
 }
