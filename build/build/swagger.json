@@ -356,6 +356,9 @@
                     "horoscope": {
                         "type": "string"
                     },
+                    "avatar": {
+                        "type": "string"
+                    },
                     "description": {
                         "type": "string"
                     }
@@ -364,6 +367,7 @@
                     "id",
                     "name",
                     "horoscope",
+                    "avatar",
                     "description"
                 ],
                 "type": "object",
@@ -1284,6 +1288,9 @@
                                     "description": {
                                         "type": "string"
                                     },
+                                    "avatar": {
+                                        "type": "string"
+                                    },
                                     "horoscope": {
                                         "type": "string"
                                     },
@@ -1297,6 +1304,7 @@
                                 },
                                 "required": [
                                     "description",
+                                    "avatar",
                                     "horoscope",
                                     "name",
                                     "id"

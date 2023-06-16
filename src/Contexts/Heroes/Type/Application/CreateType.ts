@@ -12,12 +12,14 @@ export class CreateType {
     _id:number,
     _name: string,
     _horoscope: string,
+    _avatar: string, 
     _description: string
     ): Promise<Type> {
         const type: Type = new Type(
             _id,
             _name,
             _horoscope,
+            _avatar,
             _description
           );
 

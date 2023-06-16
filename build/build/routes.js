@@ -115,6 +115,7 @@ const models = {
             "id": { "dataType": "double", "required": true },
             "name": { "dataType": "string", "required": true },
             "horoscope": { "dataType": "string", "required": true },
+            "avatar": { "dataType": "string", "required": true },
             "description": { "dataType": "string", "required": true },
         },
         "additionalProperties": false,
@@ -387,7 +388,7 @@ function RegisterRoutes(app) {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     app.post('/type/add', ...((0, runtime_1.fetchMiddlewares)(Type_controller_1.TypeController)), ...((0, runtime_1.fetchMiddlewares)(Type_controller_1.TypeController.prototype.createType)), function TypeController_createType(request, response, next) {
         const args = {
-            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "description": { "dataType": "string", "required": true }, "horoscope": { "dataType": "string", "required": true }, "name": { "dataType": "string", "required": true }, "id": { "dataType": "double", "required": true } } },
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "description": { "dataType": "string", "required": true }, "avatar": { "dataType": "string", "required": true }, "horoscope": { "dataType": "string", "required": true }, "name": { "dataType": "string", "required": true }, "id": { "dataType": "double", "required": true } } },
         };
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         let validatedArgs = [];

@@ -11,6 +11,7 @@ export class TypeRepositoryPrismaMySQL implements ITypeRepository {
           id: type.id,
           name: type.name,
           horoscope: type.horoscope,
+          avatar: type.avatar,
           description: type.description,
         }
     });

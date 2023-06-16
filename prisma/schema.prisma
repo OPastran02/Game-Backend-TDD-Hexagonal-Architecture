@@ -164,8 +164,9 @@ model heroes_rarity {
 // Ya esta hecho
 model heroes_type {
   id          Int      @id @default(autoincrement())
-  name        String   @unique(map: "Heroes_Type_name_key")
+  name        String   
   horoscope   String
+  avatar      String
   description String   @default("No description")
   heroes      heroes[]
 }
