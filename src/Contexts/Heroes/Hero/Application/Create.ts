@@ -38,13 +38,7 @@ export class Create {
     this.lootBoxGenerator = lootBoxGenerator;
   }
 
-  public async create(    
-      _id:string,         
-      _name:string,          
-      _description:string,
-      _world:string,
-      _avatar:string,
-      _created_at:Date,
+  public async create(
       _player:Player,
     ): Promise<Hero> {
 
@@ -81,7 +75,7 @@ export class Create {
         getRandom(_availableHeroes.hpMin,_availableHeroes.hpMax),
       );
 
-      const type : Type = await this.typeRepository.findById(_availableHeroes.typeId);
+      const type   : Type   = await this.typeRepository.findById(_availableHeroes.typeId);
       const rarity : Rarity = await this.rarityRepository.findById(_availableHeroes.rarityId);
       const nature : Nature = await this.natureRepository.findById(_availableHeroes.natureId);
 
@@ -101,7 +95,6 @@ export class Create {
         type,
         stats
       );  
-
 
     return await this.repository.create(hero);
   }
