@@ -22,12 +22,13 @@ export class TypeController extends Controller {
     @Body() requestBody: 
         { id: number;
           name: string;
+          horoscope: string;
           description: string;} 
       ): Promise<Type> {
       
-        const {id, name, description} = requestBody;
+        const {id, name, horoscope,description} = requestBody;
 
-      return await this._createType.createType(id,name,description);
+      return await this._createType.createType(id, name, horoscope, description);
   }
 
   @Post('/findById')

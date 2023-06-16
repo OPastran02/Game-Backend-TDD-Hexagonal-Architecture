@@ -165,29 +165,9 @@ model heroes_rarity {
 model heroes_type {
   id          Int      @id @default(autoincrement())
   name        String   @unique(map: "Heroes_Type_name_key")
+  horoscope   String
   description String   @default("No description")
   heroes      heroes[]
-}
-
-//Por ahora no
-model Terrain {
-  id       Int      @id @default(autoincrement())
-  playerId Int      @unique(map: "Player_TerrainId_fkey")
-  houses   Houses[]
-}
-
-//Por ahora no
-
-model Houses {
-  id        Int     @id @default(autoincrement())
-  TerrainId Int
-  name      String
-  positionX Int
-  positionY Int
-  Avatar    String
-  terrain   Terrain @relation(fields: [TerrainId], references: [id], map: "Houses_TerrainId_fkey")
-
-  @@index([TerrainId], map: "Houses_TerrainId_fkey")
 }
 
 // Ya esta hecho
@@ -279,4 +259,25 @@ model AvailableHeroes {
   woodingBstMax    Int      @default(0)
   catchRate        Int      @default(0)
   created_at       DateTime
+}
+
+//Por ahora no
+model Terrain {
+  id       Int      @id @default(autoincrement())
+  playerId Int      @unique(map: "Player_TerrainId_fkey")
+  houses   Houses[]
+}
+
+//Por ahora no
+
+model Houses {
+  id        Int     @id @default(autoincrement())
+  TerrainId Int
+  name      String
+  positionX Int
+  positionY Int
+  Avatar    String
+  terrain   Terrain @relation(fields: [TerrainId], references: [id], map: "Houses_TerrainId_fkey")
+
+  @@index([TerrainId], map: "Houses_TerrainId_fkey")
 }

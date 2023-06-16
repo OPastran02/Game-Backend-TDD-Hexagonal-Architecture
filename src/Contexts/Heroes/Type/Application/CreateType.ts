@@ -11,11 +11,13 @@ export class CreateType {
   public async createType(    
     _id:number,
     _name: string,
+    _horoscope: string,
     _description: string
     ): Promise<Type> {
         const type: Type = new Type(
             _id,
             _name,
+            _horoscope,
             _description
           );
 
