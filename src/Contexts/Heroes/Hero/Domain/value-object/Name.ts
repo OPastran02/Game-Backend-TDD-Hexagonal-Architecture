@@ -1,7 +1,7 @@
 import { InvalidArgumentError } from '../../../../Shared/Domain/value-object/InvalidArgumentError';
 
 export class Name {
-  MAX_LENGTH = 15
+  MAX_LENGTH = 40
   FIELD_NAME = "Stats Name"
   value: string;
 

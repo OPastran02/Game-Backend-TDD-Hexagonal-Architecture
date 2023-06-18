@@ -28,15 +28,19 @@ export class LootboxGenerator {
       return tierProbabilities;
     }
 
-    getRandomPosition(tierProbabilities : number[]): number {
+    
+    getRandomPosition(tierProbabilities: number[]): number {
       const totalPositiveProbability = tierProbabilities.reduce((a, b) => a + b, 0);
       const random = this.rng() * totalPositiveProbability;
+      console.log(totalPositiveProbability)
+      console.log(random)
       let cumulativeProbability = 0;
-  
-      for (let i = 0; i < tierProbabilities.length; i++) {
+
+      for (let i = tierProbabilities.length-1; i > 0; i--) {
         cumulativeProbability += tierProbabilities[i];
-  
-        if (random <= cumulativeProbability) {
+        console.log(cumulativeProbability);
+        if (random < cumulativeProbability) {
+          console.log("llegue a %d", i);
           return i;
         }
       }

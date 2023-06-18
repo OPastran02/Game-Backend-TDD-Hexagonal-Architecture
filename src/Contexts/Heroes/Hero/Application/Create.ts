@@ -47,7 +47,9 @@ export class Create {
 
       const lootboxGenerator = new LootboxGenerator(Date.now().toString());
       const arrProbabilities : number[] = lootboxGenerator.calculateTierProbabilitiesForLevel(player.level);
+      console.log(arrProbabilities);
       const selectedRarity : number = lootboxGenerator.getRandomPosition(arrProbabilities);
+      console.log("ya estoy aca, soy %d",selectedRarity);
       const allAvailableHeroes: AvailableHeroes[] = await this.heroesAvailablesRepository.availableHeroFindByRarity(selectedRarity);
       const randomIndex = Math.floor(Math.random() * allAvailableHeroes.length);
       const _availableHeroes: AvailableHeroes = allAvailableHeroes[randomIndex];

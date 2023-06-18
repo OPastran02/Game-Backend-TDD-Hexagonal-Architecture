@@ -1,7 +1,7 @@
 import { InvalidArgumentError } from '../../../../Shared/Domain/value-object/InvalidArgumentError';
 
 export class Stat {
-  LIMIT = 90000
+  LIMIT = 9999999
   FIELD_NAME = "Stats Stat"
   value: number;
 
