@@ -213,7 +213,7 @@ model players_wallet {
 
 //Ya esta hecho
 model AvailableHeroes {
-  id               String   @id @default(uuid())
+  id               Int      @id @default(autoincrement())
   name             String
   description      String
   world            String
