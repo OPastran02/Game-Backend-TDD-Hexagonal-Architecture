@@ -12,4 +12,12 @@ export class AvailableHeroesRepositoryPrismaMySQL implements IAvailableHeroesRep
       }
     })
   }
+
+  public async availableHeroFindByRarity(id: number): Promise<AvailableHeroes[]> {
+    return await prisma.availableHeroes.findMany({
+      where: {
+        id : id,
+      }
+    })
+  }
 }
