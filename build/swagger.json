@@ -9,7 +9,8 @@
 			"AvailableHeroes": {
 				"properties": {
 					"id": {
-						"type": "string"
+						"type": "number",
+						"format": "double"
 					},
 					"name": {
 						"type": "string"
@@ -728,7 +729,49 @@
 							"schema": {
 								"properties": {
 									"id": {
-										"type": "string"
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/availableHeroes/findByRarity": {
+			"post": {
+				"operationId": "AvailableHeroFindByRarity",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/AvailableHeroes"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"id": {
+										"type": "number",
+										"format": "double"
 									}
 								},
 								"required": [

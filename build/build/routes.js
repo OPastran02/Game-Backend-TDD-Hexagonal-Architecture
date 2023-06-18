@@ -26,7 +26,7 @@ const models = {
     "AvailableHeroes": {
         "dataType": "refObject",
         "properties": {
-            "id": { "dataType": "string", "required": true },
+            "id": { "dataType": "double", "required": true },
             "name": { "dataType": "string", "required": true },
             "description": { "dataType": "string", "required": true },
             "world": { "dataType": "string", "required": true },
@@ -220,7 +220,7 @@ function RegisterRoutes(app) {
     // ###########################################################################################################
     app.post('/availableHeroes/findById', ...((0, runtime_1.fetchMiddlewares)(AvailableHeroes_controller_1.AvailableHeroesController)), ...((0, runtime_1.fetchMiddlewares)(AvailableHeroes_controller_1.AvailableHeroesController.prototype.playerFindById)), function AvailableHeroesController_playerFindById(request, response, next) {
         const args = {
-            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "id": { "dataType": "string", "required": true } } },
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "id": { "dataType": "double", "required": true } } },
         };
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         let validatedArgs = [];
@@ -228,6 +228,23 @@ function RegisterRoutes(app) {
             validatedArgs = getValidatedArgs(args, request, response);
             const controller = new AvailableHeroes_controller_1.AvailableHeroesController();
             const promise = controller.playerFindById.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, undefined, next);
+        }
+        catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.post('/availableHeroes/findByRarity', ...((0, runtime_1.fetchMiddlewares)(AvailableHeroes_controller_1.AvailableHeroesController)), ...((0, runtime_1.fetchMiddlewares)(AvailableHeroes_controller_1.AvailableHeroesController.prototype.availableHeroFindByRarity)), function AvailableHeroesController_availableHeroFindByRarity(request, response, next) {
+        const args = {
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "id": { "dataType": "double", "required": true } } },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+            const controller = new AvailableHeroes_controller_1.AvailableHeroesController();
+            const promise = controller.availableHeroFindByRarity.apply(controller, validatedArgs);
             promiseHandler(controller, promise, response, undefined, next);
         }
         catch (err) {
