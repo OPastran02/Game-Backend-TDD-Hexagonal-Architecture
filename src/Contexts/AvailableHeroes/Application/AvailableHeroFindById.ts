@@ -11,5 +11,9 @@ export class AvailableHeroFindById {
   public async availableHeroFindById(id: number): Promise<AvailableHeroes> {
     return await this.availableHeroesRepository.availableHeroFindById(id);
   }
+
+  public async availableHeroFindByRarity(id: number): Promise<AvailableHeroes[]> {
+    return await this.availableHeroesRepository.availableHeroFindByRarity(id);
+  }
 }
 

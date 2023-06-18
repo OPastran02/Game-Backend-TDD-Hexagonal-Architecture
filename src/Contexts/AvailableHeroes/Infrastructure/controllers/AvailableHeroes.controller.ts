@@ -21,4 +21,10 @@ export class AvailableHeroesController extends Controller {
       const {id} = requestBody;
       return await this._availableHeroFindById.availableHeroFindById(id);
   }
+
+  @Post('/findByRarity')
+  public async availableHeroFindByRarity(@Body() requestBody:{id:number}): Promise<AvailableHeroes[]> {
+      const {id} = requestBody;
+      return await this._availableHeroFindById.availableHeroFindByRarity(id);
+  }
  }
