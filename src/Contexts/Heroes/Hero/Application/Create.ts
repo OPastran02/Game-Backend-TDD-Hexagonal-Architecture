@@ -22,20 +22,18 @@ export class Create {
   private typeRepository: ITypeRepository;
   private rarityRepository: IRarityRepository;
   private natureRepository: INatureRepository;
-  private lootBoxGenerator: LootboxGenerator;
 
   constructor(repository: IHeroRepository, 
     heroesAvailablesRepository: IAvailableHeroesRepository,
     typeRepository: ITypeRepository,
     rarityRepository: IRarityRepository,
     natureRepository: INatureRepository,
-    lootBoxGenerator: LootboxGenerator) {
+    ) {
     this.repository = repository;
     this.heroesAvailablesRepository = heroesAvailablesRepository;
     this.typeRepository = typeRepository;
     this.rarityRepository = rarityRepository;
     this.natureRepository = natureRepository;
-    this.lootBoxGenerator = lootBoxGenerator;
   }
 
   public async Create(
@@ -43,13 +41,13 @@ export class Create {
     ): Promise<Hero> {
 
       const IdHero = uuidv4();
-      
-      const arrProbabilities = this.lootBoxGenerator.calculateTierProbabilitiesForLevel(_player.level);
+      const lootboxGenerator = new LootboxGenerator(Date.now().toString());
+      const arrProbabilities : number[] = lootboxGenerator.calculateTierProbabilitiesForLevel(_player.level);
+      const selectedRarity : number = lootboxGenerator.getRandomPosition(arrProbabilities);
+      const allAvailableHeroes: AvailableHeroes[] = await this.heroesAvailablesRepository.availableHeroFindByRarity(selectedRarity);
+      const randomIndex = Math.floor(Math.random() * allAvailableHeroes.length);
+      const _availableHeroes: AvailableHeroes = allAvailableHeroes[randomIndex];
 
-      console.log(arrProbabilities);
-
-      const _availableHeroes: AvailableHeroes = await this.heroesAvailablesRepository.availableHeroFindById(1);
-       
       const stats : Stats = new Stats(
         0,
         IdHero,
