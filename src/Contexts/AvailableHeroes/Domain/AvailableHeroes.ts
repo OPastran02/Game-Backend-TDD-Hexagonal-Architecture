@@ -1,8 +1,5 @@
-
-import { v4 as uuidv4 } from 'uuid';
-
 export class AvailableHeroes {
-  id               : string;
+  id               : number;
   name             : string;
   description      : string;
   world            : string;
@@ -50,7 +47,7 @@ export class AvailableHeroes {
   catchRate        : number;
   created_at       : Date;
   constructor(
-    _id               : string,
+    _id               : number,
     _name             : string,
     _description      : string,
     _world            : string,
@@ -98,11 +95,7 @@ export class AvailableHeroes {
     _catchRate        : number,
     _created_at       : Date,
   ) {
-    if (!_id || _id=="0") {
-      this.id = uuidv4(); // Generar un UUID si no se proporciona un ID
-    } else {
-      this.id = _id; // Usar el ID especificado si se proporciona
-    }
+    this.id               = _id              ;
     this.name             = _name            ;
     this.description      = _description     ;
     this.world            = _world           ;

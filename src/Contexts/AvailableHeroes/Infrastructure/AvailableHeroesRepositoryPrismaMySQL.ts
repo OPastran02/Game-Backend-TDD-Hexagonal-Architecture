@@ -5,10 +5,10 @@ import prisma from '../../../../prisma/index';
 
 export class AvailableHeroesRepositoryPrismaMySQL implements IAvailableHeroesRepository {
 
-  public async availableHeroFindById(playerId: string): Promise<AvailableHeroes> {
+  public async availableHeroFindById(id: number): Promise<AvailableHeroes> {
     return await prisma.availableHeroes.findFirstOrThrow({
       where: {
-        id : playerId,
+        id : id,
       }
     })
   }

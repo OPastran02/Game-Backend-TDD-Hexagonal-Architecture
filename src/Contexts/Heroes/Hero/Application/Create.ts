@@ -48,7 +48,7 @@ export class Create {
 
       console.log(arrProbabilities);
 
-      const _availableHeroes: AvailableHeroes = await this.heroesAvailablesRepository.availableHeroFindById("hola");
+      const _availableHeroes: AvailableHeroes = await this.heroesAvailablesRepository.availableHeroFindById(1);
        
       const stats : Stats = new Stats(
         0,
