@@ -3,6 +3,7 @@ import { Player } from '../Domain/Player';
 export declare class PlayerRepositoryPrismaMySQL implements IPlayerRepository {
     addPlayer(player: Player): Promise<Player>;
     playerFindById(playerId: string): Promise<Player>;
+    playerAlwaysFindById(playerId: string): Promise<Player>;
     playerDeactivate(playerId: string): Promise<void>;
     playerUpdateLastLogin(playerId: string, _loginDays: number): Promise<void>;
     playerUpdateAvatar(playerId: string, _avatar: string): Promise<void>;

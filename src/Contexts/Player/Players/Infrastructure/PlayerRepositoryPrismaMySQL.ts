@@ -41,6 +41,14 @@ export class PlayerRepositoryPrismaMySQL implements IPlayerRepository {
     })
   }
 
+  public async playerAlwaysFindById(playerId: string): Promise<Player> {
+    return await prisma.players.findUniqueOrThrow({
+      where: {
+        id : playerId,
+      }
+    })
+  }
+
   public async playerDeactivate(playerId: string): Promise<void> {
     await prisma.players.update({
       where: {

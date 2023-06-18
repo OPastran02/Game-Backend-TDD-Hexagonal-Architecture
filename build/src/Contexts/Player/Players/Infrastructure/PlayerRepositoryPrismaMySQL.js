@@ -40,6 +40,13 @@ class PlayerRepositoryPrismaMySQL {
             }
         });
     }
+    async playerAlwaysFindById(playerId) {
+        return await index_1.default.players.findUniqueOrThrow({
+            where: {
+                id: playerId,
+            }
+        });
+    }
     async playerDeactivate(playerId) {
         await index_1.default.players.update({
             where: {

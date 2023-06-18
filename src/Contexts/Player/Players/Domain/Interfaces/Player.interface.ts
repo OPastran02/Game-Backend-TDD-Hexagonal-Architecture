@@ -7,6 +7,8 @@ export interface IPlayerRepository {
 
     playerFindById(playerId: string): Promise<Player | null>; 
 
+    playerAlwaysFindById(playerId: string): Promise<Player>; 
+
     playerDeactivate(playerId: string): Promise<void>;
 
     playerUpdateLastLogin(playerId: string, loginDays: number): Promise<void>; 

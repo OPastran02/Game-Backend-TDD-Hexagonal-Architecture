@@ -16,6 +16,7 @@ export declare class PlayerController extends Controller {
     private readonly _playerAddPhraseUseCase;
     private readonly _playerAddBattlePassUseCase;
     private readonly _playerAddYearPassUseCase;
+    private readonly _playerAlwaysFindByIdUseCase;
     constructor();
     addPlayer(requestBody: {
         id: string;
@@ -43,6 +44,9 @@ export declare class PlayerController extends Controller {
     playerFindById(requestBody: {
         id: string;
     }): Promise<Player | null>;
+    playerAlwaysFindById(requestBody: {
+        id: string;
+    }): Promise<Player>;
     playerDeactivate(requestBody: {
         id: string;
     }): Promise<void>;

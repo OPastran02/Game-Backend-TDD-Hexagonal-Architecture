@@ -11,6 +11,7 @@ import { IAvailableHeroesRepository } from '../../../AvailableHeroes/Domain/inte
 import { ITypeRepository } from '../../Type/Domain/interfaces/Type.interface';
 import { IRarityRepository } from '../../Rarity/Domain/interfaces/Rarity.interface';
 import { INatureRepository } from '../../Nature/Domain/interfaces/Nature.interface';
+import { IPlayerRepository } from '../../../Player/Players/Domain/Interfaces/Player.interface';
 
 import { LootboxGenerator } from './LootBoxGenerator';
 
@@ -22,27 +23,30 @@ export class Create {
   private typeRepository: ITypeRepository;
   private rarityRepository: IRarityRepository;
   private natureRepository: INatureRepository;
+  private playerRepository: IPlayerRepository;
 
   constructor(repository: IHeroRepository, 
     heroesAvailablesRepository: IAvailableHeroesRepository,
     typeRepository: ITypeRepository,
     rarityRepository: IRarityRepository,
     natureRepository: INatureRepository,
+    playerRepository: IPlayerRepository
     ) {
     this.repository = repository;
     this.heroesAvailablesRepository = heroesAvailablesRepository;
     this.typeRepository = typeRepository;
     this.rarityRepository = rarityRepository;
     this.natureRepository = natureRepository;
+    this.playerRepository = playerRepository;
   }
 
-  public async Create(
-      _player:Player,
-    ): Promise<Hero> {
-
+  public async Create(id: string ): Promise<Hero> {
       const IdHero = uuidv4();
+      
+      const player: Player = await this.playerRepository.playerAlwaysFindById(id);
+
       const lootboxGenerator = new LootboxGenerator(Date.now().toString());
-      const arrProbabilities : number[] = lootboxGenerator.calculateTierProbabilitiesForLevel(_player.level);
+      const arrProbabilities : number[] = lootboxGenerator.calculateTierProbabilitiesForLevel(player.level);
       const selectedRarity : number = lootboxGenerator.getRandomPosition(arrProbabilities);
       const allAvailableHeroes: AvailableHeroes[] = await this.heroesAvailablesRepository.availableHeroFindByRarity(selectedRarity);
       const randomIndex = Math.floor(Math.random() * allAvailableHeroes.length);
@@ -53,7 +57,7 @@ export class Create {
         IdHero,
         getRandom(_availableHeroes.attackMin,_availableHeroes.attackMax),
         getRandom(_availableHeroes.defenseMin,_availableHeroes.defenseMax),
-        getRandom(_availableHeroes.hpMin,_availableHeroes.hpMax),
+        getRandom(_availableHeroes.hpMin,_availableHeroes.hpMax), 
         getRandom(_availableHeroes.sp_attackMin,_availableHeroes.sp_attackMax),
         getRandom(_availableHeroes.sp_defenseMin,_availableHeroes.sp_defenseMax),
         getRandom(_availableHeroes.speedMin,_availableHeroes.speedMax),
@@ -79,7 +83,7 @@ export class Create {
 
       const hero: Hero = new Hero(
         IdHero,
-        _player.id,
+        player.id,
         1,
         0,
         0,

@@ -2,6 +2,7 @@ import { Player } from '../Player';
 export interface IPlayerRepository {
     addPlayer(player: Player): Promise<Player>;
     playerFindById(playerId: string): Promise<Player | null>;
+    playerAlwaysFindById(playerId: string): Promise<Player>;
     playerDeactivate(playerId: string): Promise<void>;
     playerUpdateLastLogin(playerId: string, loginDays: number): Promise<void>;
     playerUpdateAvatar(playerId: string, playerAvatar: string): Promise<void>;

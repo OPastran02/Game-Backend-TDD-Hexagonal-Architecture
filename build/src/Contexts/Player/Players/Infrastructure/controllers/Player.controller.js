@@ -28,6 +28,7 @@ const playerAddExperienceUseCase_1 = require("../../Application/playerAddExperie
 const playerAddPhraseUseCase_1 = require("../../Application/playerAddPhraseUseCase");
 const playerAddBattlePassUseCase_1 = require("../../Application/playerAddBattlePassUseCase");
 const playerAddYearPassUseCase_1 = require("../../Application/playerAddYearPassUseCase");
+const PlayerAlwaysFindByIdUseCase_1 = require("../../Application/PlayerAlwaysFindByIdUseCase");
 const tsoa_1 = require("tsoa");
 const PlayerRepositoryPrismaMySQL_1 = require("../PlayerRepositoryPrismaMySQL");
 let PlayerController = class PlayerController extends tsoa_1.Controller {
@@ -49,6 +50,7 @@ let PlayerController = class PlayerController extends tsoa_1.Controller {
         this._playerAddPhraseUseCase = new playerAddPhraseUseCase_1.playerAddPhraseUseCase(playerRepository);
         this._playerAddBattlePassUseCase = new playerAddBattlePassUseCase_1.playerAddBattlePassUseCase(playerRepository);
         this._playerAddYearPassUseCase = new playerAddYearPassUseCase_1.playerAddYearPassUseCase(playerRepository);
+        this._playerAlwaysFindByIdUseCase = new PlayerAlwaysFindByIdUseCase_1.PlayerAlwaysFindByIdUseCase(playerRepository);
     }
     async addPlayer(requestBody) {
         const { id, googleId, facebookId, appleId, mail, nickname, firstname, lastname, phrase, coins, diamonds, experience, level, avatar, avatarBlock, hasBattlePass, hasYearPass, loginDays, lastLogin, isActive, createdAt } = requestBody;
@@ -57,6 +59,10 @@ let PlayerController = class PlayerController extends tsoa_1.Controller {
     async playerFindById(requestBody) {
         const { id } = requestBody;
         return await this._playerFindById.playerFindById(id);
+    }
+    async playerAlwaysFindById(requestBody) {
+        const { id } = requestBody;
+        return await this._playerAlwaysFindByIdUseCase.playerAlwaysFindById(id);
     }
     async playerDeactivate(requestBody) {
         const { id } = requestBody;
@@ -125,6 +131,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], PlayerController.prototype, "playerFindById", null);
+__decorate([
+    (0, tsoa_1.Post)('/findAlwaysById'),
+    __param(0, (0, tsoa_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PlayerController.prototype, "playerAlwaysFindById", null);
 __decorate([
     (0, tsoa_1.Post)('/deactivate'),
     __param(0, (0, tsoa_1.Body)()),

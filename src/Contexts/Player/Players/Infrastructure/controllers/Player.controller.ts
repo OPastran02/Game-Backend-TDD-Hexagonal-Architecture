@@ -13,6 +13,7 @@ import { playerAddExperienceUseCase } from "../../Application/playerAddExperienc
 import { playerAddPhraseUseCase } from "../../Application/playerAddPhraseUseCase";
 import { playerAddBattlePassUseCase } from "../../Application/playerAddBattlePassUseCase";
 import { playerAddYearPassUseCase } from "../../Application/playerAddYearPassUseCase";
+import { PlayerAlwaysFindByIdUseCase } from "../../Application/PlayerAlwaysFindByIdUseCase";
 
 
 
@@ -37,6 +38,7 @@ export class PlayerController extends Controller {
   private readonly _playerAddPhraseUseCase: playerAddPhraseUseCase;
   private readonly _playerAddBattlePassUseCase: playerAddBattlePassUseCase;
   private readonly _playerAddYearPassUseCase: playerAddYearPassUseCase;
+  private readonly _playerAlwaysFindByIdUseCase: PlayerAlwaysFindByIdUseCase;
 
   constructor() {
     super();
@@ -56,6 +58,7 @@ export class PlayerController extends Controller {
     this._playerAddPhraseUseCase = new playerAddPhraseUseCase(playerRepository)
     this._playerAddBattlePassUseCase = new playerAddBattlePassUseCase(playerRepository)
     this._playerAddYearPassUseCase = new playerAddYearPassUseCase(playerRepository)
+    this._playerAlwaysFindByIdUseCase = new PlayerAlwaysFindByIdUseCase(playerRepository)
 
   }
 
@@ -82,6 +85,13 @@ export class PlayerController extends Controller {
       const {id} = requestBody;
       return await this._playerFindById.playerFindById(id);
   }
+  
+  @Post('/findAlwaysById')
+  public async playerAlwaysFindById(@Body() requestBody:{id:string}): Promise<Player> {
+      const {id} = requestBody;
+      return await this._playerAlwaysFindByIdUseCase.playerAlwaysFindById(id);
+  }
+  
   
   @Post('/deactivate')
   public async playerDeactivate(@Body() requestBody:{id:string}): Promise<void> {
