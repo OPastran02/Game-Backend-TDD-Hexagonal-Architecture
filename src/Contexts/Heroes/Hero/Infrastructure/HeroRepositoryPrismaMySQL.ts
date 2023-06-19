@@ -1,6 +1,6 @@
 import { IHeroRepository } from '../Domain/interfaces/Hero.interface';
-import { Hero } from '../Domain/Hero'
-//import prisma from '../../../../../prisma/index';
+import { Hero } from '../Domain/Hero';
+import prisma from '../../../../../prisma/index';
 
 
 export class HeroRepositoryPrismaMySQL implements IHeroRepository {
@@ -18,5 +18,14 @@ export class HeroRepositoryPrismaMySQL implements IHeroRepository {
   public async probabilities(_id: number): Promise<number[]> {
     let numeros : number[] = [1,2,3,4];
     return numeros;
+  }
+
+  public async IsThereAnyHeroInQueue(_id: string, _queue: boolean): Promise<number> {
+    return await prisma.heroes.count({
+      where: {
+          id: _id,
+          isInQueue: _queue
+      }
+    });
   }
 }

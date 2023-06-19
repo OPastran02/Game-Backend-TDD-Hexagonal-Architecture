@@ -2,6 +2,8 @@ import { LootboxGenerator } from "../../Application/LootBoxGenerator";
 import { probabilities } from "../../Application/Probabilities";
 import { FindById } from "../../Application/FindById";
 import { Create } from "../../Application/Create";
+import { IsThereAnyHeroInQueue } from "../../Application/IsThereAnyHeroInQueue";
+
 
 import { HeroRepositoryPrismaMySQL } from '../HeroRepositoryPrismaMySQL';
 import { TypeRepositoryPrismaMySQL } from '../../../Type/Infrastructure/TypeRepositoryPrismaMySQL'
@@ -21,6 +23,7 @@ export class HeroController extends Controller {
   private readonly _findById: FindById;
   private readonly _probabilities: probabilities;
   private readonly _lootboxGenerator: LootboxGenerator;
+  private readonly _isThereAnyHeroInQueue: IsThereAnyHeroInQueue;
 
   constructor() {
     super();
@@ -36,7 +39,7 @@ export class HeroController extends Controller {
     this._create = new Create(_heroRepository,_availableHeroes,_typeRepository,_rarityRepository,_natureRepository,_playerRepository,_raceRepository);
     this._findById = new FindById(_heroRepository);
     this._probabilities = new probabilities(this._lootboxGenerator);
-
+    this._isThereAnyHeroInQueue = new IsThereAnyHeroInQueue(_heroRepository);
   }
 
   @Post('/add')
@@ -55,6 +58,12 @@ export class HeroController extends Controller {
   public async probabilities(@Body() requestBody:{id:number}): Promise<number[]> {
       const {id} = requestBody;
       return await this._probabilities.probabilities(id);
+  }
+
+  @Post('/isHeroInQueue')
+  public async IsThereAnyHeroInQueue(@Body() requestBody:{id:string, queue: boolean}): Promise<number> {
+      const {id,queue} = requestBody;
+      return await this._isThereAnyHeroInQueue.IsThereAnyHeroInQueue(id,queue);
   }
   
  }

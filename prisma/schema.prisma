@@ -95,6 +95,9 @@ model heroes {
   typeId         Int
   statsId        Int
   raceId         Int
+  orderInGeneralTeam Int
+  orderInRaceTeam Int
+  isInQueue Boolean
   heroes_nature  heroes_nature    @relation(fields: [natureId], references: [id], map: "Heroes_natureId_fkey")
   heroes_rarity  heroes_rarity    @relation(fields: [rarityId], references: [id], map: "Heroes_rarityId_fkey")
   heroes_type    heroes_type      @relation(fields: [typeId], references: [id], map: "Heroes_typeId_fkey")

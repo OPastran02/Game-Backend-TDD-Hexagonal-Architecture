@@ -6,5 +6,7 @@ export interface IHeroRepository {
 
     findById(gameId: number): Promise<Hero | null>;
 
+    IsThereAnyHeroInQueue(id: string, inQueue: boolean): Promise<number>;
+
     probabilities(num: number): Promise<number[]>;
 }
