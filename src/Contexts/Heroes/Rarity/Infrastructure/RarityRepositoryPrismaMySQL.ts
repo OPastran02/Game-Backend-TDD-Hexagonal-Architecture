@@ -6,7 +6,7 @@ import prisma from '../../../../../prisma/index';
 export class RarityRepositoryPrismaMySQL implements IRarityRepository {
   
   public async create(rarity: Rarity): Promise<Rarity> {
-    return await prisma.heroes_rarity.create({
+    return await prisma.rarity.create({
         data: {
           id: rarity.id,
           name: rarity.name,
@@ -18,7 +18,7 @@ export class RarityRepositoryPrismaMySQL implements IRarityRepository {
   }
 
   public async findById(_id: number): Promise<Rarity> {
-    return await prisma.heroes_rarity.findFirstOrThrow({
+    return await prisma.rarity.findFirstOrThrow({
         where: {
             id: _id,
         }

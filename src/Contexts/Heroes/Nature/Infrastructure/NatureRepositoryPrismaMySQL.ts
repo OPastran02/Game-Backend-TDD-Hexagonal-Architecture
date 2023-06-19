@@ -6,7 +6,7 @@ import prisma from '../../../../../prisma/index';
 export class NatureRepositoryPrismaMySQL implements INatureRepository {
   
   public async create(obj: Nature): Promise<Nature> {
-    return await prisma.heroes_nature.create({
+    return await prisma.nature.create({
         data: {
           id:                 obj.id,
           name:               obj.name,
@@ -26,7 +26,7 @@ export class NatureRepositoryPrismaMySQL implements INatureRepository {
   }
 
   public async findById(_id: number): Promise<Nature> {
-    return await prisma.heroes_nature.findFirstOrThrow({
+    return await prisma.nature.findFirstOrThrow({
         where: {
             id: _id,
         }

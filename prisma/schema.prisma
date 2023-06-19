@@ -87,9 +87,8 @@ model heroes {
   id_placement   Int
   name           String           @unique(map: "Heroes_name_key")
   description    String?
-  world          String?
   avatar         String?
-  created_at     DateTime?
+  created_at     DateTime
   rarityId       Int
   natureId       Int
   typeId         Int
@@ -98,11 +97,11 @@ model heroes {
   orderInGeneralTeam Int
   orderInRaceTeam Int
   isInQueue Boolean
-  heroes_nature  heroes_nature    @relation(fields: [natureId], references: [id], map: "Heroes_natureId_fkey")
-  heroes_rarity  heroes_rarity    @relation(fields: [rarityId], references: [id], map: "Heroes_rarityId_fkey")
-  heroes_type    heroes_type      @relation(fields: [typeId], references: [id], map: "Heroes_typeId_fkey")
-  heroes_stats   heroes_stats     @relation(fields: [typeId], references: [id], map: "Heroes_statsId_fkey")
-  heroes_race    heroes_race       @relation(fields: [typeId], references: [id], map: "Heroes_raceId_fkey")
+  nature         Nature    @relation(fields: [natureId], references: [id], map: "Heroes_natureId_fkey")
+  rarity         Rarity    @relation(fields: [rarityId], references: [id], map: "Heroes_rarityId_fkey")
+  type           Type      @relation(fields: [typeId], references: [id], map: "Heroes_typeId_fkey")
+  stats          Stats     @relation(fields: [typeId], references: [id], map: "Heroes_statsId_fkey")
+  race           Race       @relation(fields: [typeId], references: [id], map: "Heroes_raceId_fkey")
   players        players          @relation(fields: [playerId], references: [id], map: "Players_HeroesId_fkey")
 
   @@index([natureId], map: "Heroes_natureId_fkey")
@@ -113,7 +112,7 @@ model heroes {
 }
 
 // Ya esta hecho
-model heroes_stats {
+model Stats {
   id            Int      @id @default(autoincrement())
   heroId        String
   attack        Int    @default(0)
@@ -140,7 +139,7 @@ model heroes_stats {
 }
 
 // Ya esta hecho
-model heroes_nature {
+model Nature {
   id               Int      @id @default(autoincrement())
   name             String   @unique(map: "Heroes_Nature_name_key")
   description      String   @default("No description")
@@ -158,7 +157,7 @@ model heroes_nature {
 }
 
 // Ya esta hecho
-model heroes_rarity {
+model Rarity {
   id          Int      @id @default(autoincrement())
   name        String   @unique(map: "Heroes_Rarity_name_key")
   description String
@@ -168,7 +167,7 @@ model heroes_rarity {
 }
 
 // Ya esta hecho
-model heroes_race {
+model Race {
   id          Int      @id @default(autoincrement())
   name        String   
   description String
@@ -176,7 +175,7 @@ model heroes_race {
 }
 
 // Ya esta hecho
-model heroes_type {
+model Type {
   id          Int      @id @default(autoincrement())
   name        String   
   horoscope   String

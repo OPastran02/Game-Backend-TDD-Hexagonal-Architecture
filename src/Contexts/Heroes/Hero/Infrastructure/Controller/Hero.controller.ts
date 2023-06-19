@@ -3,6 +3,7 @@ import { probabilities } from "../../Application/Probabilities";
 import { FindById } from "../../Application/FindById";
 import { Create } from "../../Application/Create";
 import { IsThereAnyHeroInQueue } from "../../Application/IsThereAnyHeroInQueue";
+import { FindByRace } from "../../Application/FindByRace";
 
 
 import { HeroRepositoryPrismaMySQL } from '../HeroRepositoryPrismaMySQL';
@@ -24,6 +25,7 @@ export class HeroController extends Controller {
   private readonly _probabilities: probabilities;
   private readonly _lootboxGenerator: LootboxGenerator;
   private readonly _isThereAnyHeroInQueue: IsThereAnyHeroInQueue;
+  private readonly _findByRace: FindByRace;
 
   constructor() {
     super();
@@ -40,6 +42,7 @@ export class HeroController extends Controller {
     this._findById = new FindById(_heroRepository);
     this._probabilities = new probabilities(this._lootboxGenerator);
     this._isThereAnyHeroInQueue = new IsThereAnyHeroInQueue(_heroRepository);
+    this._findByRace = new FindByRace(_heroRepository)
   }
 
   @Post('/add')
@@ -64,6 +67,12 @@ export class HeroController extends Controller {
   public async IsThereAnyHeroInQueue(@Body() requestBody:{id:string, queue: boolean}): Promise<number> {
       const {id,queue} = requestBody;
       return await this._isThereAnyHeroInQueue.IsThereAnyHeroInQueue(id,queue);
+  }
+
+  @Post('/findByRace')
+  public async findByRace(@Body() requestBody:{race:number, id:string}): Promise<Hero[] | null> {
+      const {race, id} = requestBody;
+      return await this._findByRace.findByRace(race, id);
   }
   
  }

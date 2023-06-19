@@ -14,9 +14,8 @@ export class Hero {
   Experience:         number;
   id_placement:       number;         
   name:               string;          
-  description:        string;
-  world:              string;
-  avatar:             string;
+  description:        string | null ;
+  avatar:             string | null ;
   created_at:         Date;
   nature:             Nature;  
   rarity:             Rarity;  
@@ -34,9 +33,8 @@ export class Hero {
     _Experience:number,
     _id_placement:number,        
     _name:string,          
-    _description:string,
-    _world:string,
-    _avatar:string,
+    _description:string | null,
+    _avatar:string | null,
     _created_at:Date,
     _nature:Nature,  
     _rarity:Rarity,  
@@ -54,7 +52,6 @@ export class Hero {
     this.id_placement = _id_placement;
     this.name = new Name(_name).getValue();
     this.description = new Description(_description).getValue();
-    this.world = new Description(_world).getValue();
     this.avatar = new Avatar(_avatar).getValue();
     this.nature = _nature;
     this.rarity = _rarity;

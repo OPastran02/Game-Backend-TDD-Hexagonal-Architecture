@@ -173,15 +173,17 @@ const models: TsoaRoute.Models = {
             "Experience": {"dataType":"double","required":true},
             "id_placement": {"dataType":"double","required":true},
             "name": {"dataType":"string","required":true},
-            "description": {"dataType":"string","required":true},
-            "world": {"dataType":"string","required":true},
-            "avatar": {"dataType":"string","required":true},
+            "description": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}],"required":true},
+            "avatar": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}],"required":true},
             "created_at": {"dataType":"datetime","required":true},
             "nature": {"ref":"Nature","required":true},
             "rarity": {"ref":"Rarity","required":true},
             "type": {"ref":"Type","required":true},
             "stats": {"ref":"Stats","required":true},
             "race": {"ref":"Race","required":true},
+            "orderInGeneralTeam": {"dataType":"double","required":true},
+            "orderInRaceTeam": {"dataType":"double","required":true},
+            "isInQueue": {"dataType":"boolean","required":true},
         },
         "additionalProperties": false,
     },
@@ -354,6 +356,56 @@ export function RegisterRoutes(app: Router) {
 
 
               const promise = controller.probabilities.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.post('/hero/isHeroInQueue',
+            ...(fetchMiddlewares<RequestHandler>(HeroController)),
+            ...(fetchMiddlewares<RequestHandler>(HeroController.prototype.IsThereAnyHeroInQueue)),
+
+            function HeroController_IsThereAnyHeroInQueue(request: any, response: any, next: any) {
+            const args = {
+                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"queue":{"dataType":"boolean","required":true},"id":{"dataType":"string","required":true}}},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new HeroController();
+
+
+              const promise = controller.IsThereAnyHeroInQueue.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.post('/hero/findByRace',
+            ...(fetchMiddlewares<RequestHandler>(HeroController)),
+            ...(fetchMiddlewares<RequestHandler>(HeroController.prototype.findByRace)),
+
+            function HeroController_findByRace(request: any, response: any, next: any) {
+            const args = {
+                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"string","required":true},"race":{"dataType":"double","required":true}}},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new HeroController();
+
+
+              const promise = controller.findByRace.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);

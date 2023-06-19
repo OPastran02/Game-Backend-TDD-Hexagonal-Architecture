@@ -545,13 +545,12 @@
                         "type": "string"
                     },
                     "description": {
-                        "type": "string"
-                    },
-                    "world": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "avatar": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "created_at": {
                         "type": "string",
@@ -571,6 +570,17 @@
                     },
                     "race": {
                         "$ref": "#/components/schemas/Race"
+                    },
+                    "orderInGeneralTeam": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "orderInRaceTeam": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "isInQueue": {
+                        "type": "boolean"
                     }
                 },
                 "required": [
@@ -581,14 +591,16 @@
                     "id_placement",
                     "name",
                     "description",
-                    "world",
                     "avatar",
                     "created_at",
                     "nature",
                     "rarity",
                     "type",
                     "stats",
-                    "race"
+                    "race",
+                    "orderInGeneralTeam",
+                    "orderInRaceTeam",
+                    "isInQueue"
                 ],
                 "type": "object",
                 "additionalProperties": false
@@ -932,6 +944,94 @@
                                 },
                                 "required": [
                                     "id"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/hero/isHeroInQueue": {
+            "post": {
+                "operationId": "IsThereAnyHeroInQueue",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "number",
+                                    "format": "double"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "queue": {
+                                        "type": "boolean"
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "queue",
+                                    "id"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/hero/findByRace": {
+            "post": {
+                "operationId": "FindByRace",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Hero"
+                                    },
+                                    "type": "array",
+                                    "nullable": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "race": {
+                                        "type": "number",
+                                        "format": "double"
+                                    }
+                                },
+                                "required": [
+                                    "id",
+                                    "race"
                                 ],
                                 "type": "object"
                             }

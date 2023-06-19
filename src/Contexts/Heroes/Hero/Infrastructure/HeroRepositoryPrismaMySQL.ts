@@ -28,4 +28,23 @@ export class HeroRepositoryPrismaMySQL implements IHeroRepository {
       }
     });
   }
+
+  public async findByRace(race: number, _id: string): Promise<Hero[] | null> {
+    const heroes = await prisma.heroes.findMany({
+      where: {
+        raceId: race,
+        id: _id
+      },
+      include: {
+        nature: true,
+        rarity: true,
+        type: true,
+        stats: true,
+        race: true,
+      },
+    });
+  
+    return heroes;
+  }
+
 }

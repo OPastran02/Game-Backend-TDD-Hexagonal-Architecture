@@ -6,7 +6,7 @@ import prisma from '../../../../../prisma/index';
 export class TypeRepositoryPrismaMySQL implements ITypeRepository {
   
   public async createType(type: Type): Promise<Type> {
-    return await prisma.heroes_type.create({
+    return await prisma.type.create({
         data: {
           id: type.id,
           name: type.name,
@@ -18,7 +18,7 @@ export class TypeRepositoryPrismaMySQL implements ITypeRepository {
   }
 
   public async findById(playerId: number): Promise<Type> {
-    return await prisma.heroes_type.findFirstOrThrow({
+    return await prisma.type.findFirstOrThrow({
         where: {
             id: playerId,
         }

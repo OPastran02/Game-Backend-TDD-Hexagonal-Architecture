@@ -6,7 +6,7 @@ import prisma from '../../../../../prisma/index';
 export class StatsRepositoryPrismaMySQL implements IStatsRepository {
   
   public async create(obj: Stats): Promise<Stats> {
-    return await prisma.heroes_stats.create({
+    return await prisma.stats.create({
         data: {
           id:            obj.id,      
           heroId:        obj.heroId,
@@ -35,7 +35,7 @@ export class StatsRepositoryPrismaMySQL implements IStatsRepository {
   }
 
   public async findById(_id: number): Promise<Stats | null> {
-    return await prisma.heroes_stats.findFirstOrThrow({
+    return await prisma.stats.findFirstOrThrow({
         where: {
             id: _id,
         }

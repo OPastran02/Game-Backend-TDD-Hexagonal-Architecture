@@ -16,6 +16,7 @@ import { INatureRepository } from '../../Nature/Domain/interfaces/Nature.interfa
 import { IPlayerRepository } from '../../../Player/Players/Domain/Interfaces/Player.interface';
 import { IRaceRepository } from '../../Race/Domain/interfaces/Race.interface';
 
+
 import { LootboxGenerator } from './LootBoxGenerator';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -29,14 +30,13 @@ export class Create {
   private playerRepository: IPlayerRepository;
   private raceRepository: IRaceRepository;
 
-
   constructor(repository: IHeroRepository, 
     heroesAvailablesRepository: IAvailableHeroesRepository,
     typeRepository: ITypeRepository,
     rarityRepository: IRarityRepository,
     natureRepository: INatureRepository,
     playerRepository: IPlayerRepository,
-    raceRepository: IRaceRepository
+    raceRepository: IRaceRepository,
     ) {
     this.repository = repository;
     this.heroesAvailablesRepository = heroesAvailablesRepository;
@@ -50,8 +50,16 @@ export class Create {
   public async Create(id: string ): Promise<Hero> {
       const IdHero = uuidv4();
       
+      //Si ya hay un heroe en cola, escapar de la funcion
+      const quant_hero: number = await this.repository.IsThereAnyHeroInQueue(id,true);
+      if (quant_hero === 1) {
+        throw new Error('Ya existe un héroe en la cola');
+      }
+
+      //traer too el player
       const player: Player = await this.playerRepository.playerAlwaysFindById(id);
 
+      //obtener un random de available_Heroes
       const lootboxGenerator = new LootboxGenerator(Date.now().toString());
       const arrProbabilities : number[] = lootboxGenerator.calculateTierProbabilitiesForLevel(player.level);
       const selectedRarity : number = lootboxGenerator.getRandomPosition(arrProbabilities);
@@ -59,6 +67,7 @@ export class Create {
       const randomIndex = Math.floor(Math.random() * allAvailableHeroes.length);
       const _availableHeroes: AvailableHeroes = allAvailableHeroes[randomIndex];
 
+      //Lo guardo
       const stats : Stats = new Stats(
         0,
         IdHero,
@@ -83,11 +92,13 @@ export class Create {
         new Date(Date.now()),
         getRandom(_availableHeroes.hpMin,_availableHeroes.hpMax),
       );
-
       const type   : Type   = await this.typeRepository.findById(_availableHeroes.typeId);
       const rarity : Rarity = await this.rarityRepository.findById(_availableHeroes.rarityId);
       const nature : Nature = await this.natureRepository.findById(_availableHeroes.natureId);
       const race   : Race = await this.raceRepository.findById(_availableHeroes.raceId);
+
+      //ahora veo donde lo guardo
+        
 
       const hero: Hero = new Hero(
         IdHero,
@@ -97,7 +108,6 @@ export class Create {
         0,
         _availableHeroes.name,
         _availableHeroes.description,
-        _availableHeroes.world,
         _availableHeroes.avatar,
         _availableHeroes.created_at,
         nature,

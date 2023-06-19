@@ -7,7 +7,7 @@ export class RaceRepositoryPrismaMySQL implements IRaceRepository {
   
 
   public async findById(id: number): Promise<Race> {
-    return await prisma.heroes_race.findFirstOrThrow({
+    return await prisma.race.findFirstOrThrow({
         where: {
             id: id,
         }

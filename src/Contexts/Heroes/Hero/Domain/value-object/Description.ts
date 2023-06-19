@@ -3,9 +3,9 @@ import { InvalidArgumentError } from '../../../../Shared/Domain/value-object/Inv
 export class Description {
   MAX_LENGTH = 200
   FIELD_NAME = "Stats Description"
-  value: string;
+  value: string | null;
 
-  constructor(value: string) {
+  constructor(value: string | null) {
     if (value !== null) {
       this.ensureLengthIsLessThanAvailableCharacters(value);
     }
@@ -18,7 +18,7 @@ export class Description {
     }
   }
 
-  getValue(): string {
+  getValue(): string | null {
     return this.value;
   }
 }
