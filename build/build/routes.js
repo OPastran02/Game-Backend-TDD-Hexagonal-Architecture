@@ -37,6 +37,7 @@ const models = {
             "rarityId": { "dataType": "double", "required": true },
             "natureId": { "dataType": "double", "required": true },
             "typeId": { "dataType": "double", "required": true },
+            "raceId": { "dataType": "double", "required": true },
             "attackMin": { "dataType": "double", "required": true },
             "attackMax": { "dataType": "double", "required": true },
             "attackBstMin": { "dataType": "double", "required": true },
@@ -74,6 +75,7 @@ const models = {
             "woodingBstMin": { "dataType": "double", "required": true },
             "woodingBstMax": { "dataType": "double", "required": true },
             "catchRate": { "dataType": "double", "required": true },
+            "available": { "dataType": "boolean", "required": true },
             "created_at": { "dataType": "datetime", "required": true },
         },
         "additionalProperties": false,
@@ -152,6 +154,16 @@ const models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Race": {
+        "dataType": "refObject",
+        "properties": {
+            "id": { "dataType": "double", "required": true },
+            "name": { "dataType": "string", "required": true },
+            "description": { "dataType": "string", "required": true },
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Hero": {
         "dataType": "refObject",
         "properties": {
@@ -169,16 +181,7 @@ const models = {
             "rarity": { "ref": "Rarity", "required": true },
             "type": { "ref": "Type", "required": true },
             "stats": { "ref": "Stats", "required": true },
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Race": {
-        "dataType": "refObject",
-        "properties": {
-            "id": { "dataType": "double", "required": true },
-            "name": { "dataType": "string", "required": true },
-            "description": { "dataType": "string", "required": true },
+            "race": { "ref": "Race", "required": true },
         },
         "additionalProperties": false,
     },

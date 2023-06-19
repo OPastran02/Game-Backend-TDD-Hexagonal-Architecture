@@ -233,6 +233,7 @@ model AvailableHeroes {
   rarityId         Int
   natureId         Int
   typeId           Int
+  raceId           Int
   attackMin        Int      @default(0)
   attackMax        Int      @default(0)
   attackBstMin     Int      @default(0)
@@ -270,6 +271,7 @@ model AvailableHeroes {
   woodingBstMin    Int      @default(0)
   woodingBstMax    Int      @default(0)
   catchRate        Int      @default(0)
+  available        Boolean
   created_at       DateTime
 }
 

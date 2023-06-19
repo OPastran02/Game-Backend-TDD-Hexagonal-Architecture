@@ -5,6 +5,8 @@ import { Rarity } from '../../Rarity/Domain/Rarity';
 import { Nature } from '../../Nature/Domain/Nature';
 import { Type } from '../../Type/Domain/Type';
 import { Stats } from '../../Stats/Domain/Stats';
+import { Race } from '../../Race/Domain/Race';
+
 
 import { AvailableHeroes } from 'src/Contexts/AvailableHeroes/Domain/AvailableHeroes';
 import { IAvailableHeroesRepository } from '../../../AvailableHeroes/Domain/interfaces/AvailableHeroes.inteface';
@@ -12,6 +14,7 @@ import { ITypeRepository } from '../../Type/Domain/interfaces/Type.interface';
 import { IRarityRepository } from '../../Rarity/Domain/interfaces/Rarity.interface';
 import { INatureRepository } from '../../Nature/Domain/interfaces/Nature.interface';
 import { IPlayerRepository } from '../../../Player/Players/Domain/Interfaces/Player.interface';
+import { IRaceRepository } from '../../Race/Domain/interfaces/Race.interface';
 
 import { LootboxGenerator } from './LootBoxGenerator';
 
@@ -24,13 +27,16 @@ export class Create {
   private rarityRepository: IRarityRepository;
   private natureRepository: INatureRepository;
   private playerRepository: IPlayerRepository;
+  private raceRepository: IRaceRepository;
+
 
   constructor(repository: IHeroRepository, 
     heroesAvailablesRepository: IAvailableHeroesRepository,
     typeRepository: ITypeRepository,
     rarityRepository: IRarityRepository,
     natureRepository: INatureRepository,
-    playerRepository: IPlayerRepository
+    playerRepository: IPlayerRepository,
+    raceRepository: IRaceRepository
     ) {
     this.repository = repository;
     this.heroesAvailablesRepository = heroesAvailablesRepository;
@@ -38,6 +44,7 @@ export class Create {
     this.rarityRepository = rarityRepository;
     this.natureRepository = natureRepository;
     this.playerRepository = playerRepository;
+    this.raceRepository = raceRepository;
   }
 
   public async Create(id: string ): Promise<Hero> {
@@ -47,9 +54,7 @@ export class Create {
 
       const lootboxGenerator = new LootboxGenerator(Date.now().toString());
       const arrProbabilities : number[] = lootboxGenerator.calculateTierProbabilitiesForLevel(player.level);
-      console.log(arrProbabilities);
       const selectedRarity : number = lootboxGenerator.getRandomPosition(arrProbabilities);
-      console.log("ya estoy aca, soy %d",selectedRarity);
       const allAvailableHeroes: AvailableHeroes[] = await this.heroesAvailablesRepository.availableHeroFindByRarity(selectedRarity);
       const randomIndex = Math.floor(Math.random() * allAvailableHeroes.length);
       const _availableHeroes: AvailableHeroes = allAvailableHeroes[randomIndex];
@@ -82,6 +87,7 @@ export class Create {
       const type   : Type   = await this.typeRepository.findById(_availableHeroes.typeId);
       const rarity : Rarity = await this.rarityRepository.findById(_availableHeroes.rarityId);
       const nature : Nature = await this.natureRepository.findById(_availableHeroes.natureId);
+      const race   : Race = await this.raceRepository.findById(_availableHeroes.raceId);
 
       const hero: Hero = new Hero(
         IdHero,
@@ -97,7 +103,8 @@ export class Create {
         nature,
         rarity,
         type,
-        stats
+        stats,
+        race
       );  
 
     return await this.repository.create(hero);

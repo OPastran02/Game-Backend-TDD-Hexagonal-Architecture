@@ -5,6 +5,7 @@ import { Nature } from '../../Nature/Domain/Nature';
 import { Type } from '../../Type/Domain/Type';
 import { Stats } from '../../Stats/Domain/Stats';
 import { Rarity } from '../../Rarity/Domain/Rarity';
+import { Race } from '../../Race/Domain/Race';
 
 export class Hero {
   id:             string;
@@ -20,7 +21,8 @@ export class Hero {
   nature:         Nature;  
   rarity:         Rarity;  
   type:           Type;  
-  stats:          Stats;  
+  stats:          Stats; 
+  race:           Race;  
 
   constructor(
     _id:string,   
@@ -36,7 +38,8 @@ export class Hero {
     _nature:Nature,  
     _rarity:Rarity,  
     _type:Type,  
-    _stats:Stats  
+    _stats:Stats,
+    _race:Race  
   ) {
     this.id = _id;
     this.playerId = _playerId;
@@ -51,6 +54,7 @@ export class Hero {
     this.rarity = _rarity;
     this.type = _type;
     this.stats = _stats;
+    this.race = _race;
     this.created_at = _created_at;
   }
 }

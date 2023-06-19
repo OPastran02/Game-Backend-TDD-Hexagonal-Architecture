@@ -39,6 +39,10 @@
                         "type": "number",
                         "format": "double"
                     },
+                    "raceId": {
+                        "type": "number",
+                        "format": "double"
+                    },
                     "attackMin": {
                         "type": "number",
                         "format": "double"
@@ -187,6 +191,9 @@
                         "type": "number",
                         "format": "double"
                     },
+                    "available": {
+                        "type": "boolean"
+                    },
                     "created_at": {
                         "type": "string",
                         "format": "date-time"
@@ -202,6 +209,7 @@
                     "rarityId",
                     "natureId",
                     "typeId",
+                    "raceId",
                     "attackMin",
                     "attackMax",
                     "attackBstMin",
@@ -239,6 +247,7 @@
                     "woodingBstMin",
                     "woodingBstMax",
                     "catchRate",
+                    "available",
                     "created_at"
                 ],
                 "type": "object",
@@ -491,6 +500,27 @@
                 "type": "object",
                 "additionalProperties": false
             },
+            "Race": {
+                "properties": {
+                    "id": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "description"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
             "Hero": {
                 "properties": {
                     "id": {
@@ -538,6 +568,9 @@
                     },
                     "stats": {
                         "$ref": "#/components/schemas/Stats"
+                    },
+                    "race": {
+                        "$ref": "#/components/schemas/Race"
                     }
                 },
                 "required": [
@@ -554,28 +587,8 @@
                     "nature",
                     "rarity",
                     "type",
-                    "stats"
-                ],
-                "type": "object",
-                "additionalProperties": false
-            },
-            "Race": {
-                "properties": {
-                    "id": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "id",
-                    "name",
-                    "description"
+                    "stats",
+                    "race"
                 ],
                 "type": "object",
                 "additionalProperties": false

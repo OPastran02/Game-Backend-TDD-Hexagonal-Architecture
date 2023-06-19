@@ -8,6 +8,7 @@ export class AvailableHeroes {
   rarityId         : number;
   natureId         : number;
   typeId           : number;
+  raceId           : number;
   attackMin        : number;
   attackMax        : number;
   attackBstMin     : number;
@@ -45,6 +46,7 @@ export class AvailableHeroes {
   woodingBstMin    : number;
   woodingBstMax    : number;
   catchRate        : number;
+  available        : boolean;
   created_at       : Date;
   constructor(
     _id               : number,
@@ -56,6 +58,7 @@ export class AvailableHeroes {
     _rarityId         : number,
     _natureId         : number,
     _typeId           : number,
+    _raceId           : number,
     _attackMin        : number,
     _attackMax        : number,
     _attackBstMin     : number,
@@ -93,6 +96,7 @@ export class AvailableHeroes {
     _woodingBstMin    : number,
     _woodingBstMax    : number,
     _catchRate        : number,
+    _available        : boolean,
     _created_at       : Date,
   ) {
     this.id               = _id              ;
@@ -104,6 +108,7 @@ export class AvailableHeroes {
     this.rarityId         = _rarityId        ;
     this.natureId         = _natureId        ;
     this.typeId           = _typeId          ;
+    this.raceId           = _raceId          ;
     this.attackMin        = _attackMin       ;
     this.attackMax        = _attackMax       ;
     this.attackBstMin     = _attackBstMin    ;
@@ -141,6 +146,7 @@ export class AvailableHeroes {
     this.woodingBstMin    = _woodingBstMin   ;
     this.woodingBstMax    = _woodingBstMax   ;
     this.catchRate        = _catchRate       ;
+    this.available        = _available       ;
     this.created_at       = _created_at      ;
   }
 }

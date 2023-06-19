@@ -9,6 +9,7 @@ import { AvailableHeroesRepositoryPrismaMySQL } from '../../../../AvailableHeroe
 import { RarityRepositoryPrismaMySQL } from '../../../Rarity/Infrastructure/RarityRepositoryPrismaMySQL';
 import { NatureRepositoryPrismaMySQL } from '../../../Nature/Infrastructure/NatureRepositoryPrismaMySQL';
 import { PlayerRepositoryPrismaMySQL } from '../../../../Player/Players/Infrastructure/PlayerRepositoryPrismaMySQL';
+import { RaceRepositoryPrismaMySQL } from '../../../Race/Infrastructure/RaceRepositoryPrismaMySQL';
 
 import { Body, Controller, Post, Route } from "tsoa";
 import { Hero } from "../../Domain/Hero";
@@ -28,10 +29,11 @@ export class HeroController extends Controller {
     var _typeRepository = new TypeRepositoryPrismaMySQL;
     var _rarityRepository = new RarityRepositoryPrismaMySQL;
     var _natureRepository = new NatureRepositoryPrismaMySQL;
-    var _playerRepositoryPrismaMySQL = new PlayerRepositoryPrismaMySQL;
+    var _playerRepository = new PlayerRepositoryPrismaMySQL;
+    var _raceRepository = new RaceRepositoryPrismaMySQL;
     this._lootboxGenerator = new LootboxGenerator(Date.now().toString());
 
-    this._create = new Create(_heroRepository,_availableHeroes,_typeRepository,_rarityRepository,_natureRepository,_playerRepositoryPrismaMySQL);
+    this._create = new Create(_heroRepository,_availableHeroes,_typeRepository,_rarityRepository,_natureRepository,_playerRepository,_raceRepository);
     this._findById = new FindById(_heroRepository);
     this._probabilities = new probabilities(this._lootboxGenerator);
 
