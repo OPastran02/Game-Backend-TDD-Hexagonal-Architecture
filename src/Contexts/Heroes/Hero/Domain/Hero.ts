@@ -8,21 +8,24 @@ import { Rarity } from '../../Rarity/Domain/Rarity';
 import { Race } from '../../Race/Domain/Race';
 
 export class Hero {
-  id:             string;
-  playerId:       string;
-  level:          number;
-  Experience:     number;
-  id_placement:   number;         
-  name:           string;          
-  description:    string;
-  world:          string;
-  avatar:         string;
-  created_at:     Date;
-  nature:         Nature;  
-  rarity:         Rarity;  
-  type:           Type;  
-  stats:          Stats; 
-  race:           Race;  
+  id:                 string;
+  playerId:           string;
+  level:              number;
+  Experience:         number;
+  id_placement:       number;         
+  name:               string;          
+  description:        string;
+  world:              string;
+  avatar:             string;
+  created_at:         Date;
+  nature:             Nature;  
+  rarity:             Rarity;  
+  type:               Type;  
+  stats:              Stats; 
+  race:               Race;  
+  orderInGeneralTeam: number;
+  orderInRaceTeam:    number;
+  isInQueue:          boolean;
 
   constructor(
     _id:string,   
@@ -39,7 +42,10 @@ export class Hero {
     _rarity:Rarity,  
     _type:Type,  
     _stats:Stats,
-    _race:Race  
+    _race:Race,
+    _orderInGeneralTeam: number,
+    _orderInRaceTeam: number,
+    _isInQueue:boolean
   ) {
     this.id = _id;
     this.playerId = _playerId;
@@ -55,6 +61,9 @@ export class Hero {
     this.type = _type;
     this.stats = _stats;
     this.race = _race;
+    this.orderInGeneralTeam = _orderInGeneralTeam;
+    this.orderInRaceTeam = _orderInRaceTeam;
+    this.isInQueue = _isInQueue;
     this.created_at = _created_at;
   }
 }

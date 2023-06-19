@@ -104,7 +104,10 @@ export class Create {
         rarity,
         type,
         stats,
-        race
+        race,
+        1,
+        1,
+        true
       );  
 
     return await this.repository.create(hero);
