@@ -12,6 +12,8 @@ const Hero_controller_1 = require("./../src/Contexts/Heroes/Hero/Infrastructure/
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 const Nature_controller_1 = require("./../src/Contexts/Heroes/Nature/Infrastructure/Controller/Nature.controller");
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+const Race_controller_1 = require("./../src/Contexts/Heroes/Race/Infrastructure/Controller/Race.controller");
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 const Rarity_controller_1 = require("./../src/Contexts/Heroes/Rarity/Infrastructure/Controller/Rarity.controller");
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 const Stats_controller_1 = require("./../src/Contexts/Heroes/Stats/Infrastructure/Controller/Stats.controller");
@@ -167,6 +169,16 @@ const models = {
             "rarity": { "ref": "Rarity", "required": true },
             "type": { "ref": "Type", "required": true },
             "stats": { "ref": "Stats", "required": true },
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Race": {
+        "dataType": "refObject",
+        "properties": {
+            "id": { "dataType": "double", "required": true },
+            "name": { "dataType": "string", "required": true },
+            "description": { "dataType": "string", "required": true },
         },
         "additionalProperties": false,
     },
@@ -329,6 +341,23 @@ function RegisterRoutes(app) {
         try {
             validatedArgs = getValidatedArgs(args, request, response);
             const controller = new Nature_controller_1.NatureController();
+            const promise = controller.findById.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, undefined, next);
+        }
+        catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.post('/race/findById', ...((0, runtime_1.fetchMiddlewares)(Race_controller_1.RaceController)), ...((0, runtime_1.fetchMiddlewares)(Race_controller_1.RaceController.prototype.findById)), function RaceController_findById(request, response, next) {
+        const args = {
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "id": { "dataType": "double", "required": true } } },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+            const controller = new Race_controller_1.RaceController();
             const promise = controller.findById.apply(controller, validatedArgs);
             promiseHandler(controller, promise, response, undefined, next);
         }

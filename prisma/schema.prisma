@@ -94,16 +94,19 @@ model heroes {
   natureId       Int
   typeId         Int
   statsId        Int
+  raceId         Int
   heroes_nature  heroes_nature    @relation(fields: [natureId], references: [id], map: "Heroes_natureId_fkey")
   heroes_rarity  heroes_rarity    @relation(fields: [rarityId], references: [id], map: "Heroes_rarityId_fkey")
   heroes_type    heroes_type      @relation(fields: [typeId], references: [id], map: "Heroes_typeId_fkey")
   heroes_stats   heroes_stats     @relation(fields: [typeId], references: [id], map: "Heroes_statsId_fkey")
+  heroes_race    heroes_race       @relation(fields: [typeId], references: [id], map: "Heroes_raceId_fkey")
   players        players          @relation(fields: [playerId], references: [id], map: "Players_HeroesId_fkey")
 
   @@index([natureId], map: "Heroes_natureId_fkey")
   @@index([rarityId], map: "Heroes_rarityId_fkey")
   @@index([typeId], map: "Heroes_typeId_fkey")
-  @@index([typeId], map: "Heroes_statsId_fkey")
+  @@index([statsId], map: "Heroes_statsId_fkey")
+  @@index([raceId], map: "Heroes_raceId_fkey")
 }
 
 // Ya esta hecho
@@ -158,6 +161,14 @@ model heroes_rarity {
   description String
   avatar      String   @default("rarity_Null.png")
   created_at  DateTime @default(now())
+  heroes      heroes[]
+}
+
+// Ya esta hecho
+model heroes_race {
+  id          Int      @id @default(autoincrement())
+  name        String   
+  description String
   heroes      heroes[]
 }
 

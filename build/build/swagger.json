@@ -559,6 +559,27 @@
                 "type": "object",
                 "additionalProperties": false
             },
+            "Race": {
+                "properties": {
+                    "id": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "description"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
             "Player": {
                 "properties": {
                     "id": {
@@ -1012,6 +1033,44 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Nature"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "type": "number",
+                                        "format": "double"
+                                    }
+                                },
+                                "required": [
+                                    "id"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/race/findById": {
+            "post": {
+                "operationId": "FindById",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Race"
                                 }
                             }
                         }
