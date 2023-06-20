@@ -9,7 +9,6 @@ export class StatsRepositoryPrismaMySQL implements IStatsRepository {
     return await prisma.stats.create({
         data: {
           id:            obj.id,      
-          heroId:        obj.heroId,
           attack:        obj.attack,
           defense:       obj.defense,
           hp:            obj.hp,
@@ -34,7 +33,7 @@ export class StatsRepositoryPrismaMySQL implements IStatsRepository {
     });
   }
 
-  public async findById(_id: number): Promise<Stats | null> {
+  public async findById(_id: string): Promise<Stats | null> {
     return await prisma.stats.findFirstOrThrow({
         where: {
             id: _id,

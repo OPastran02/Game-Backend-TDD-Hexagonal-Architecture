@@ -386,10 +386,6 @@
             "Stats": {
                 "properties": {
                     "id": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "heroId": {
                         "type": "string"
                     },
                     "attack": {
@@ -475,7 +471,6 @@
                 },
                 "required": [
                     "id",
-                    "heroId",
                     "attack",
                     "defense",
                     "hp",
@@ -1408,12 +1403,8 @@
                                         "type": "number",
                                         "format": "double"
                                     },
-                                    "heroId": {
+                                    "id": {
                                         "type": "string"
-                                    },
-                                    "_id": {
-                                        "type": "number",
-                                        "format": "double"
                                     }
                                 },
                                 "required": [
@@ -1437,8 +1428,7 @@
                                     "hp",
                                     "defense",
                                     "attack",
-                                    "heroId",
-                                    "_id"
+                                    "id"
                                 ],
                                 "type": "object"
                             }
@@ -1476,8 +1466,7 @@
                             "schema": {
                                 "properties": {
                                     "id": {
-                                        "type": "number",
-                                        "format": "double"
+                                        "type": "string"
                                     }
                                 },
                                 "required": [

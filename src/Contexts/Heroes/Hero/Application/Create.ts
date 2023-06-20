@@ -47,17 +47,17 @@ export class Create {
     this.raceRepository = raceRepository;
   }
 
-  public async Create(id: string ): Promise<Hero> {
+  public async Create(id: string): Promise<Hero> {
       const IdHero = uuidv4();
-      
-      //Si ya hay un heroe en cola, escapar de la funcion
-      const quant_hero: number = await this.repository.IsThereAnyHeroInQueue(id,true);
-      if (quant_hero === 1) {
-        throw new Error('Ya existe un héroe en la cola');
-      }
-
       //traer too el player
       const player: Player = await this.playerRepository.playerAlwaysFindById(id);
+
+      const quant_hero: number = await this.repository.IsThereAnyHeroInQueue(player.id,true);
+      console.log(quant_hero)
+      if (quant_hero >= 1) {
+        console.log('Ya existe un héroe en la cola');
+        throw new Error('Ya existe un héroe en la cola');
+      }
 
       //obtener un random de available_Heroes
       const lootboxGenerator = new LootboxGenerator(Date.now().toString());
@@ -69,7 +69,6 @@ export class Create {
 
       //Lo guardo
       const stats : Stats = new Stats(
-        0,
         IdHero,
         getRandom(_availableHeroes.attackMin,_availableHeroes.attackMax),
         getRandom(_availableHeroes.defenseMin,_availableHeroes.defenseMax),
@@ -98,7 +97,22 @@ export class Create {
       const race   : Race = await this.raceRepository.findById(_availableHeroes.raceId);
 
       //ahora veo donde lo guardo
-        
+      const heroesExisting : Hero[] | null = await this.repository.findByRace(race.id, player.id)    
+      const count = heroesExisting?.length ?? 0;
+      console.log(count)
+      let orderInGeneralTeam: number;
+      let orderInRaceTeam: number;
+      let isInQueue: boolean;
+
+      if(count >= 10){
+        orderInGeneralTeam = 0;
+        orderInRaceTeam = 0;
+        isInQueue =true;
+      }else{
+        orderInGeneralTeam = 0;
+        orderInRaceTeam = (count + 1);
+        isInQueue = false;
+      }
 
       const hero: Hero = new Hero(
         IdHero,
@@ -115,11 +129,11 @@ export class Create {
         type,
         stats,
         race,
-        1,
-        1,
-        true
+        orderInGeneralTeam,
+        orderInRaceTeam,
+        isInQueue
       );  
-
+    console.log(hero);
     return await this.repository.create(hero);
   }
   

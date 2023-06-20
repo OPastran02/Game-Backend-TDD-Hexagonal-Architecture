@@ -5,8 +5,43 @@ import prisma from '../../../../../prisma/index';
 
 export class HeroRepositoryPrismaMySQL implements IHeroRepository {
   
-  public async create(obj: Hero): Promise<Hero> {
-    return obj;
+  public async create(obj: Hero): Promise<Hero> { 
+
+    const createdHero = await prisma.heroes.create({
+      data: {
+        id: obj.id,
+        level: obj.level,
+        Experience: obj.Experience,
+        id_placement: obj.id_placement,
+        name: obj.name,
+        description: obj.description,  
+        avatar: obj.avatar,  
+        created_at: obj.created_at,  
+        rarity: { connect: { id: obj.rarity.id }},
+        nature: { connect: { id: obj.nature.id } },
+        type: { connect: { id: obj.type.id } },
+        stats: {
+          connectOrCreate: {
+            where: { id: obj.stats.id },
+            create: {...obj.stats }
+          }
+        },
+        race: { connect: { id: obj.race.id } },
+        players: { connect: { id: obj.playerId } },
+        orderInGeneralTeam: obj.orderInGeneralTeam,   
+        orderInRaceTeam: obj.orderInRaceTeam,
+        isInQueue: obj.isInQueue,
+      },
+      include: {
+        rarity: true,
+        nature: true,
+        type: true,
+        stats: true,
+        race: true,
+      }
+    });
+  
+    return createdHero;
   }
 
   public async findById(_id: number): Promise<Hero | null> {
@@ -23,7 +58,7 @@ export class HeroRepositoryPrismaMySQL implements IHeroRepository {
   public async IsThereAnyHeroInQueue(_id: string, _queue: boolean): Promise<number> {
     return await prisma.heroes.count({
       where: {
-          id: _id,
+          playerId: _id,
           isInQueue: _queue
       }
     });
@@ -33,7 +68,7 @@ export class HeroRepositoryPrismaMySQL implements IHeroRepository {
     const heroes = await prisma.heroes.findMany({
       where: {
         raceId: race,
-        id: _id
+        playerId: _id
       },
       include: {
         nature: true,

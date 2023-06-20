@@ -9,8 +9,7 @@ export class Create {
   }
 
   public async create(    
-      _id:            number,    
-      _heroId:        string,
+      _id:            string,
       _attack:        number,    
       _defense:       number,    
       _hp:            number,    
@@ -34,7 +33,6 @@ export class Create {
     ): Promise<Stats> {
         const stats: Stats = new Stats(
           _id,
-          _heroId,
           _attack,
           _defense,
           _hp,

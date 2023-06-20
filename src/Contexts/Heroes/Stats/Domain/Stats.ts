@@ -1,8 +1,7 @@
 import { Stat } from './value-object/Stat';
 
 export class Stats {
-    id:            number;      
-    heroId:        string;
+    id:            string;      
     attack:        number;  
     defense:       number;  
     hp:            number;  
@@ -24,8 +23,7 @@ export class Stats {
     created_at:    Date; 
     power_points:  number;     
   constructor(
-    _id:            number,      
-    _heroId:        string,
+    _id:            string,      
     _attack:        number,  
     _defense:       number,  
     _hp:            number,  
@@ -48,7 +46,6 @@ export class Stats {
     _power_points:  number,    
   ) {
     this.id = _id;
-    this.heroId = _heroId;
     this.attack        = new Stat(_attack).getValue();  
     this.defense       = new Stat(_defense).getValue();  
     this.hp            = new Stat(_hp).getValue();  

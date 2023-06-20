@@ -85,14 +85,14 @@ model heroes {
   level          Int
   Experience     Int
   id_placement   Int
-  name           String           @unique(map: "Heroes_name_key")
+  name           String           
   description    String?
   avatar         String?
   created_at     DateTime
   rarityId       Int
   natureId       Int
   typeId         Int
-  statsId        Int
+  statsId        String
   raceId         Int
   orderInGeneralTeam Int
   orderInRaceTeam Int
@@ -100,8 +100,8 @@ model heroes {
   nature         Nature    @relation(fields: [natureId], references: [id], map: "Heroes_natureId_fkey")
   rarity         Rarity    @relation(fields: [rarityId], references: [id], map: "Heroes_rarityId_fkey")
   type           Type      @relation(fields: [typeId], references: [id], map: "Heroes_typeId_fkey")
-  stats          Stats     @relation(fields: [typeId], references: [id], map: "Heroes_statsId_fkey")
-  race           Race       @relation(fields: [typeId], references: [id], map: "Heroes_raceId_fkey")
+  stats          Stats     @relation(fields: [statsId], references: [id], map: "Heroes_statsId_fkey")
+  race           Race       @relation(fields: [raceId], references: [id], map: "Heroes_raceId_fkey")
   players        players          @relation(fields: [playerId], references: [id], map: "Players_HeroesId_fkey")
 
   @@index([natureId], map: "Heroes_natureId_fkey")
@@ -113,8 +113,7 @@ model heroes {
 
 // Ya esta hecho
 model Stats {
-  id            Int      @id @default(autoincrement())
-  heroId        String
+  id            String @id @default(uuid())
   attack        Int    @default(0)
   defense       Int    @default(0)
   hp            Int    @default(0)

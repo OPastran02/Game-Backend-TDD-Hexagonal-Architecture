@@ -21,8 +21,7 @@ export class StatsController extends Controller {
   public async create(
     @Body() requestBody: 
         { 
-          _id:           number,      
-          heroId:        string,
+          id:            string,      
           attack:        number,  
           defense:       number,  
           hp:            number,  
@@ -47,8 +46,7 @@ export class StatsController extends Controller {
       ): Promise<Stats> {
       
         const {          
-          _id,     
-          heroId,
+          id,     
           attack, 
           defense, 
           hp, 
@@ -72,8 +70,7 @@ export class StatsController extends Controller {
         } = requestBody;
 
       return await this._create.create(
-        _id,     
-        heroId,
+        id,     
         attack, 
         defense, 
         hp, 
@@ -98,7 +95,7 @@ export class StatsController extends Controller {
   }
 
   @Post('/findById')
-  public async findById(@Body() requestBody:{id:number}): Promise<Stats | null> {
+  public async findById(@Body() requestBody:{id:string}): Promise<Stats | null> {
       const {id} = requestBody;
       return await this._findById.findById(id);
   }

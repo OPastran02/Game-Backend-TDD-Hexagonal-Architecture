@@ -128,8 +128,7 @@ const models = {
     "Stats": {
         "dataType": "refObject",
         "properties": {
-            "id": { "dataType": "double", "required": true },
-            "heroId": { "dataType": "string", "required": true },
+            "id": { "dataType": "string", "required": true },
             "attack": { "dataType": "double", "required": true },
             "defense": { "dataType": "double", "required": true },
             "hp": { "dataType": "double", "required": true },
@@ -441,7 +440,7 @@ function RegisterRoutes(app) {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     app.post('/stats/add', ...((0, runtime_1.fetchMiddlewares)(Stats_controller_1.StatsController)), ...((0, runtime_1.fetchMiddlewares)(Stats_controller_1.StatsController.prototype.create)), function StatsController_create(request, response, next) {
         const args = {
-            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "power_points": { "dataType": "double", "required": true }, "created_at": { "dataType": "datetime", "required": true }, "woodingBst": { "dataType": "double", "required": true }, "steelingBst": { "dataType": "double", "required": true }, "farmingBst": { "dataType": "double", "required": true }, "speedBst": { "dataType": "double", "required": true }, "sp_defenseBst": { "dataType": "double", "required": true }, "sp_attackBst": { "dataType": "double", "required": true }, "hpBst": { "dataType": "double", "required": true }, "defenseBst": { "dataType": "double", "required": true }, "attackBst": { "dataType": "double", "required": true }, "wooding": { "dataType": "double", "required": true }, "steeling": { "dataType": "double", "required": true }, "farming": { "dataType": "double", "required": true }, "speed": { "dataType": "double", "required": true }, "sp_defense": { "dataType": "double", "required": true }, "sp_attack": { "dataType": "double", "required": true }, "hp": { "dataType": "double", "required": true }, "defense": { "dataType": "double", "required": true }, "attack": { "dataType": "double", "required": true }, "heroId": { "dataType": "string", "required": true }, "_id": { "dataType": "double", "required": true } } },
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "power_points": { "dataType": "double", "required": true }, "created_at": { "dataType": "datetime", "required": true }, "woodingBst": { "dataType": "double", "required": true }, "steelingBst": { "dataType": "double", "required": true }, "farmingBst": { "dataType": "double", "required": true }, "speedBst": { "dataType": "double", "required": true }, "sp_defenseBst": { "dataType": "double", "required": true }, "sp_attackBst": { "dataType": "double", "required": true }, "hpBst": { "dataType": "double", "required": true }, "defenseBst": { "dataType": "double", "required": true }, "attackBst": { "dataType": "double", "required": true }, "wooding": { "dataType": "double", "required": true }, "steeling": { "dataType": "double", "required": true }, "farming": { "dataType": "double", "required": true }, "speed": { "dataType": "double", "required": true }, "sp_defense": { "dataType": "double", "required": true }, "sp_attack": { "dataType": "double", "required": true }, "hp": { "dataType": "double", "required": true }, "defense": { "dataType": "double", "required": true }, "attack": { "dataType": "double", "required": true }, "id": { "dataType": "string", "required": true } } },
         };
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         let validatedArgs = [];
@@ -458,7 +457,7 @@ function RegisterRoutes(app) {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     app.post('/stats/findById', ...((0, runtime_1.fetchMiddlewares)(Stats_controller_1.StatsController)), ...((0, runtime_1.fetchMiddlewares)(Stats_controller_1.StatsController.prototype.findById)), function StatsController_findById(request, response, next) {
         const args = {
-            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "id": { "dataType": "double", "required": true } } },
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "id": { "dataType": "string", "required": true } } },
         };
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         let validatedArgs = [];

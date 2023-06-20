@@ -4,6 +4,6 @@ export interface IStatsRepository {
 
     create(type: Stats): Promise<Stats>;
 
-    findById(Id: number): Promise<Stats | null>;
+    findById(Id: string): Promise<Stats | null>;
 
 }

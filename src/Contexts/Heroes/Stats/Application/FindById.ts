@@ -8,7 +8,7 @@ export class FindById {
     this.repository = repository;
   }
 
-  public async findById(id: number): Promise<Stats | null> {
+  public async findById(id: string): Promise<Stats | null> {
     return await this.repository.findById(id);
   }
 }
