@@ -11,4 +11,6 @@ export interface IHeroRepository {
     IsThereAnyHeroInQueue(id: string, inQueue: boolean): Promise<number>;
 
     probabilities(num: number): Promise<number[]>;
+
+    deleteHeroInQueue(id: string): Promise<void>;
 }

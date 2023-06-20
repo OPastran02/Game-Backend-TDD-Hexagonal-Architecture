@@ -1035,6 +1035,36 @@
                 }
             }
         },
+        "/hero/deleteHeroInQueue": {
+            "post": {
+                "operationId": "DeleteHeroInQueue",
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                },
+                "security": [],
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "id"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/nature/add": {
             "post": {
                 "operationId": "Create",

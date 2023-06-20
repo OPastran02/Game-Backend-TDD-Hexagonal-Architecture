@@ -4,6 +4,7 @@ import { FindById } from "../../Application/FindById";
 import { Create } from "../../Application/Create";
 import { IsThereAnyHeroInQueue } from "../../Application/IsThereAnyHeroInQueue";
 import { FindByRace } from "../../Application/FindByRace";
+import { DeleteHeroInQueue } from "../../Application/DeleteHeroInQueue";
 
 
 import { HeroRepositoryPrismaMySQL } from '../HeroRepositoryPrismaMySQL';
@@ -26,6 +27,7 @@ export class HeroController extends Controller {
   private readonly _lootboxGenerator: LootboxGenerator;
   private readonly _isThereAnyHeroInQueue: IsThereAnyHeroInQueue;
   private readonly _findByRace: FindByRace;
+  private readonly _deleteHeroInQueue: DeleteHeroInQueue;
 
   constructor() {
     super();
@@ -43,6 +45,7 @@ export class HeroController extends Controller {
     this._probabilities = new probabilities(this._lootboxGenerator);
     this._isThereAnyHeroInQueue = new IsThereAnyHeroInQueue(_heroRepository);
     this._findByRace = new FindByRace(_heroRepository)
+    this._deleteHeroInQueue = new DeleteHeroInQueue(_heroRepository)
   }
 
   @Post('/add')
@@ -73,6 +76,12 @@ export class HeroController extends Controller {
   public async findByRace(@Body() requestBody:{race:number, id:string}): Promise<Hero[] | null> {
       const {race, id} = requestBody;
       return await this._findByRace.findByRace(race, id);
+  }
+
+  @Post('/deleteHeroInQueue')
+  public async deleteHeroInQueue(@Body() requestBody:{id:string}): Promise<void> {
+      const {id} = requestBody;
+      return await this._deleteHeroInQueue.deleteHeroInQueue(id);
   }
   
  }

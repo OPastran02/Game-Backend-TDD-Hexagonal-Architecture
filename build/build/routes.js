@@ -353,6 +353,23 @@ function RegisterRoutes(app) {
         }
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.post('/hero/deleteHeroInQueue', ...((0, runtime_1.fetchMiddlewares)(Hero_controller_1.HeroController)), ...((0, runtime_1.fetchMiddlewares)(Hero_controller_1.HeroController.prototype.deleteHeroInQueue)), function HeroController_deleteHeroInQueue(request, response, next) {
+        const args = {
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "id": { "dataType": "string", "required": true } } },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+            const controller = new Hero_controller_1.HeroController();
+            const promise = controller.deleteHeroInQueue.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, undefined, next);
+        }
+        catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     app.post('/nature/add', ...((0, runtime_1.fetchMiddlewares)(Nature_controller_1.NatureController)), ...((0, runtime_1.fetchMiddlewares)(Nature_controller_1.NatureController.prototype.create)), function NatureController_create(request, response, next) {
         const args = {
             requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "created_at": { "dataType": "datetime", "required": true }, "boost_wooding": { "dataType": "double", "required": true }, "boost_steeling": { "dataType": "double", "required": true }, "boost_farming": { "dataType": "double", "required": true }, "boost_speed": { "dataType": "double", "required": true }, "boost_sp_defense": { "dataType": "double", "required": true }, "boost_sp_attack": { "dataType": "double", "required": true }, "boost_hp": { "dataType": "double", "required": true }, "boost_defense": { "dataType": "double", "required": true }, "boost_attack": { "dataType": "double", "required": true }, "description": { "dataType": "string", "required": true }, "name": { "dataType": "string", "required": true }, "id": { "dataType": "double", "required": true } } },

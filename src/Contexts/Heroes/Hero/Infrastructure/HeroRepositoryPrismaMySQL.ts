@@ -82,4 +82,13 @@ export class HeroRepositoryPrismaMySQL implements IHeroRepository {
     return heroes;
   }
 
+  public async deleteHeroInQueue(_id: string): Promise<void> {
+    await prisma.heroes.deleteMany({
+      where: {
+        playerId: _id,
+        isInQueue: true
+      }
+    });
+  }
+
 }
