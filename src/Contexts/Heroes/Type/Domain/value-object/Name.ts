@@ -18,7 +18,4 @@ export class Name {
     }
   }
 
-  getValue(): string {
-    return this.value;
-  }
 }
