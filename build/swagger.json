@@ -524,6 +524,10 @@
 					"playerId": {
 						"type": "string"
 					},
+					"idAvailableHero": {
+						"type": "number",
+						"format": "double"
+					},
 					"level": {
 						"type": "number",
 						"format": "double"
@@ -581,6 +585,7 @@
 				"required": [
 					"id",
 					"playerId",
+					"idAvailableHero",
 					"level",
 					"Experience",
 					"id_placement",

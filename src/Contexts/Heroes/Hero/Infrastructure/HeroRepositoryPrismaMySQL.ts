@@ -11,6 +11,7 @@ export class HeroRepositoryPrismaMySQL implements IHeroRepository {
       data: {
         id: obj.id,
         level: obj.level,
+        idAvailableHero: obj.idAvailableHero,
         Experience: obj.Experience,
         id_placement: obj.id_placement,
         name: obj.name,

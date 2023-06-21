@@ -55,7 +55,6 @@ export class Create {
       const quant_hero: number = await this.repository.IsThereAnyHeroInQueue(player.id,true);
       console.log(quant_hero)
       if (quant_hero >= 1) {
-        console.log('Ya existe un héroe en la cola');
         throw new Error('Ya existe un héroe en la cola');
       }
 
@@ -96,6 +95,8 @@ export class Create {
       const nature : Nature = await this.natureRepository.findById(_availableHeroes.natureId);
       const race   : Race = await this.raceRepository.findById(_availableHeroes.raceId);
 
+      
+
       //ahora veo donde lo guardo
       const heroesExisting : Hero[] | null = await this.repository.findByRace(race.id, player.id)    
       const count = heroesExisting?.length ?? 0;
@@ -117,6 +118,7 @@ export class Create {
       const hero: Hero = new Hero(
         IdHero,
         player.id,
+        _availableHeroes.id,
         1,
         0,
         0,

@@ -10,6 +10,7 @@ import { Race } from '../../Race/Domain/Race';
 export class Hero {
   id:                 string;
   playerId:           string;
+  idAvailableHero:    number;
   level:              number;
   Experience:         number;
   id_placement:       number;         
@@ -29,6 +30,7 @@ export class Hero {
   constructor(
     _id:string,   
     _playerId:string,
+    _idAvailableHero:number,
     _level:number,
     _Experience:number,
     _id_placement:number,        
@@ -47,6 +49,7 @@ export class Hero {
   ) {
     this.id = _id;
     this.playerId = _playerId;
+    this.idAvailableHero = _idAvailableHero;
     this.level = _level;
     this.Experience = _Experience;
     this.id_placement = _id_placement;

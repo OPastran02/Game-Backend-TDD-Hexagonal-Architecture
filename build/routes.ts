@@ -168,6 +168,7 @@ const models: TsoaRoute.Models = {
         "properties": {
             "id": {"dataType":"string","required":true},
             "playerId": {"dataType":"string","required":true},
+            "idAvailableHero": {"dataType":"double","required":true},
             "level": {"dataType":"double","required":true},
             "Experience": {"dataType":"double","required":true},
             "id_placement": {"dataType":"double","required":true},

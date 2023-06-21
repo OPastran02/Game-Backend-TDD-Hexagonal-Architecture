@@ -80,29 +80,30 @@ model guilds {
 
 
 model heroes {
-  id             String           @id @default(uuid())
-  playerId       String
-  level          Int
-  Experience     Int
-  id_placement   Int
-  name           String           
-  description    String?
-  avatar         String?
-  created_at     DateTime
-  rarityId       Int
-  natureId       Int
-  typeId         Int
-  statsId        String
-  raceId         Int
-  orderInGeneralTeam Int
-  orderInRaceTeam Int
-  isInQueue Boolean
-  nature         Nature    @relation(fields: [natureId], references: [id], map: "Heroes_natureId_fkey")
-  rarity         Rarity    @relation(fields: [rarityId], references: [id], map: "Heroes_rarityId_fkey")
-  type           Type      @relation(fields: [typeId], references: [id], map: "Heroes_typeId_fkey")
-  stats          Stats     @relation(fields: [statsId], references: [id], map: "Heroes_statsId_fkey")
-  race           Race       @relation(fields: [raceId], references: [id], map: "Heroes_raceId_fkey")
-  players        players          @relation(fields: [playerId], references: [id], map: "Players_HeroesId_fkey")
+  id                      String       @id @default(uuid())
+  playerId                String
+  idAvailableHero         Int
+  level                   Int
+  Experience              Int
+  id_placement            Int
+  name                    String           
+  description             String?
+  avatar                  String?
+  created_at              DateTime
+  rarityId                Int
+  natureId                Int
+  typeId                  Int
+  statsId                 String
+  raceId                  Int
+  orderInGeneralTeam      Int
+  orderInRaceTeam         Int
+  isInQueue               Boolean
+  nature                  Nature        @relation(fields: [natureId], references: [id], map: "Heroes_natureId_fkey")
+  rarity                  Rarity        @relation(fields: [rarityId], references: [id], map: "Heroes_rarityId_fkey")
+  type                    Type          @relation(fields: [typeId], references: [id], map: "Heroes_typeId_fkey")
+  stats                   Stats         @relation(fields: [statsId], references: [id], map: "Heroes_statsId_fkey")
+  race                    Race          @relation(fields: [raceId], references: [id], map: "Heroes_raceId_fkey")
+  players                 players       @relation(fields: [playerId], references: [id], map: "Players_HeroesId_fkey")
 
   @@index([natureId], map: "Heroes_natureId_fkey")
   @@index([rarityId], map: "Heroes_rarityId_fkey")
