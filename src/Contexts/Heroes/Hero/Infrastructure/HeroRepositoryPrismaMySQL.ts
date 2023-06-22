@@ -50,6 +50,24 @@ export class HeroRepositoryPrismaMySQL implements IHeroRepository {
 
     return heroe;
   }
+
+  public async findByPlayerTopFive(_id: string): Promise<Hero[] | null> {
+    const heroes = await prisma.heroes.findMany({
+      where: {
+        playerId: _id,
+        orderInGeneralTeam: 1 || 2 || 3 || 4 || 5
+      },
+      include: {
+        nature: true,
+        rarity: true,
+        type: true,
+        stats: true,
+        race: true,
+      },
+    });
+  
+    return heroes;
+  }
   
   public async probabilities(_id: number): Promise<number[]> {
     let numeros : number[] = [1,2,3,4];
@@ -70,6 +88,24 @@ export class HeroRepositoryPrismaMySQL implements IHeroRepository {
       where: {
         raceId: race,
         playerId: _id
+      },
+      include: {
+        nature: true,
+        rarity: true,
+        type: true,
+        stats: true,
+        race: true,
+      },
+    });
+  
+    return heroes;
+  }
+
+  public async findByPlayerWorld(_id: string, _world: number): Promise<Hero[] | null> {
+    const heroes = await prisma.heroes.findMany({
+      where: {
+        playerId: _id,
+        raceId: _world
       },
       include: {
         nature: true,

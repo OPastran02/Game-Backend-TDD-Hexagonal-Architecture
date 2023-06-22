@@ -56,8 +56,7 @@ export class Create {
       }
 
       const IdHero = uuidv4();
-      let orderInRaceTeam: number;
-      let isInQueue: boolean;
+
       //obtener un random de available_Heroes
       const lootboxGenerator = new LootboxGenerator(Date.now().toString());
       const arrProbabilities : number[] = lootboxGenerator.calculateTierProbabilitiesForLevel(player.level);
@@ -98,7 +97,7 @@ export class Create {
       //ahora veo donde lo guardo
       const heroesExisting : Hero[] | null = await this.repository.findByRace(race.id, player.id)    
       const count = heroesExisting?.length ?? 0;
-
+      
       const hero: Hero = new Hero(
         IdHero,
         player.id,
@@ -116,8 +115,8 @@ export class Create {
         stats,
         race,
         0,
-        orderInRaceTeam = count > 10 ? 0 : count + 1,
-        isInQueue = count > 10 ? true : false
+        count > 10 ? 0 : count + 1,
+        count > 10 ? true : false
       ); 
        
     return await this.repository.create(hero);

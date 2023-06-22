@@ -5,6 +5,8 @@ import { Create } from "../../Application/Create";
 import { IsThereAnyHeroInQueue } from "../../Application/IsThereAnyHeroInQueue";
 import { FindByRace } from "../../Application/FindByRace";
 import { DeleteHeroInQueue } from "../../Application/DeleteHeroInQueue";
+import { FindByPlayerWorld } from "../../Application/FindByPlayerWorld";
+import { FindByPlayerTopFive } from "../../Application/FindByPlayerTopFive";
 
 
 import { HeroRepositoryPrismaMySQL } from '../HeroRepositoryPrismaMySQL';
@@ -28,6 +30,8 @@ export class HeroController extends Controller {
   private readonly _isThereAnyHeroInQueue: IsThereAnyHeroInQueue;
   private readonly _findByRace: FindByRace;
   private readonly _deleteHeroInQueue: DeleteHeroInQueue;
+  private readonly _findByPlayerWorld: FindByPlayerWorld;
+  private readonly _findByPlayerTopFive: FindByPlayerTopFive;
 
   constructor() {
     super();
@@ -44,8 +48,10 @@ export class HeroController extends Controller {
     this._findById = new FindById(_heroRepository);
     this._probabilities = new probabilities(this._lootboxGenerator);
     this._isThereAnyHeroInQueue = new IsThereAnyHeroInQueue(_heroRepository);
-    this._findByRace = new FindByRace(_heroRepository)
-    this._deleteHeroInQueue = new DeleteHeroInQueue(_heroRepository)
+    this._findByRace = new FindByRace(_heroRepository);
+    this._deleteHeroInQueue = new DeleteHeroInQueue(_heroRepository);
+    this._findByPlayerWorld = new FindByPlayerWorld(_heroRepository);
+    this._findByPlayerTopFive = new FindByPlayerTopFive(_heroRepository);
   }
 
   @Post('/add')
@@ -58,6 +64,18 @@ export class HeroController extends Controller {
   public async findById(@Body() requestBody:{id:number}): Promise<Hero | null> {
       const {id} = requestBody;
       return await this._findById.findById(id);
+  }
+
+  @Post('/findByPlayerWorld')
+  public async findByPlayerWorld(@Body() requestBody:{id:string, world: number}): Promise<Hero[] | null> {
+      const {id, world} = requestBody;
+      return await this._findByPlayerWorld.findByPlayerWorld(id, world);
+  }
+
+  @Post('/findByPlayerTopFive')
+  public async findByPlayerTopFive(@Body() requestBody:{id:string}): Promise<Hero[] | null> {
+      const {id} = requestBody;
+      return await this._findByPlayerTopFive.findByPlayerTopFive(id);
   }
 
   @Post('/numbers')

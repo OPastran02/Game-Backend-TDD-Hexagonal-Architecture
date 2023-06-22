@@ -910,6 +910,52 @@
                 }
             }
         },
+        "/hero/findByPlayerWorld": {
+            "post": {
+                "operationId": "FindByPlayerWorld",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Hero"
+                                    },
+                                    "type": "array",
+                                    "nullable": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "world": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "world",
+                                    "id"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/hero/numbers": {
             "post": {
                 "operationId": "Probabilities",

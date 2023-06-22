@@ -303,6 +303,23 @@ function RegisterRoutes(app) {
         }
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.post('/hero/findByPlayerWorld', ...((0, runtime_1.fetchMiddlewares)(Hero_controller_1.HeroController)), ...((0, runtime_1.fetchMiddlewares)(Hero_controller_1.HeroController.prototype.findByPlayerWorld)), function HeroController_findByPlayerWorld(request, response, next) {
+        const args = {
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "world": { "dataType": "double", "required": true }, "id": { "dataType": "string", "required": true } } },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+            const controller = new Hero_controller_1.HeroController();
+            const promise = controller.findByPlayerWorld.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, undefined, next);
+        }
+        catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     app.post('/hero/numbers', ...((0, runtime_1.fetchMiddlewares)(Hero_controller_1.HeroController)), ...((0, runtime_1.fetchMiddlewares)(Hero_controller_1.HeroController.prototype.probabilities)), function HeroController_probabilities(request, response, next) {
         const args = {
             requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "id": { "dataType": "double", "required": true } } },
