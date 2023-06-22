@@ -55,7 +55,9 @@ export class HeroRepositoryPrismaMySQL implements IHeroRepository {
     const heroes = await prisma.heroes.findMany({
       where: {
         playerId: _id,
-        orderInGeneralTeam: 1 || 2 || 3 || 4 || 5
+        orderInGeneralTeam: {
+          in: [1, 2, 3, 4, 5]
+        }
       },
       include: {
         nature: true,
