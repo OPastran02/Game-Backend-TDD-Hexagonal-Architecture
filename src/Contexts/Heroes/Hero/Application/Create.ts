@@ -48,16 +48,16 @@ export class Create {
   }
 
   public async Create(id: string): Promise<Hero> {
-      const IdHero = uuidv4();
-      //traer too el player
       const player: Player = await this.playerRepository.playerAlwaysFindById(id);
-
       const quant_hero: number = await this.repository.IsThereAnyHeroInQueue(player.id,true);
       console.log(quant_hero)
       if (quant_hero >= 1) {
         throw new Error('Ya existe un héroe en la cola');
       }
 
+      const IdHero = uuidv4();
+      let orderInRaceTeam: number;
+      let isInQueue: boolean;
       //obtener un random de available_Heroes
       const lootboxGenerator = new LootboxGenerator(Date.now().toString());
       const arrProbabilities : number[] = lootboxGenerator.calculateTierProbabilitiesForLevel(player.level);
@@ -95,25 +95,9 @@ export class Create {
       const nature : Nature = await this.natureRepository.findById(_availableHeroes.natureId);
       const race   : Race = await this.raceRepository.findById(_availableHeroes.raceId);
 
-      
-
       //ahora veo donde lo guardo
       const heroesExisting : Hero[] | null = await this.repository.findByRace(race.id, player.id)    
       const count = heroesExisting?.length ?? 0;
-      console.log(count)
-      let orderInGeneralTeam: number;
-      let orderInRaceTeam: number;
-      let isInQueue: boolean;
-
-      if(count >= 10){
-        orderInGeneralTeam = 0;
-        orderInRaceTeam = 0;
-        isInQueue =true;
-      }else{
-        orderInGeneralTeam = 0;
-        orderInRaceTeam = (count + 1);
-        isInQueue = false;
-      }
 
       const hero: Hero = new Hero(
         IdHero,
@@ -131,11 +115,11 @@ export class Create {
         type,
         stats,
         race,
-        orderInGeneralTeam,
-        orderInRaceTeam,
-        isInQueue
-      );  
-    console.log(hero);
+        0,
+        orderInRaceTeam = count > 10 ? 0 : count + 1,
+        isInQueue = count > 10 ? true : false
+      ); 
+       
     return await this.repository.create(hero);
   }
   
