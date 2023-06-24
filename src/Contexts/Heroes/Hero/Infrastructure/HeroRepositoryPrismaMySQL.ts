@@ -71,6 +71,22 @@ export class HeroRepositoryPrismaMySQL implements IHeroRepository {
     return heroes;
   }
   
+  public async findbyPlayer(_id: string): Promise<Hero[] | null> {
+    const heroes = await prisma.heroes.findMany({
+      where: {
+        playerId: _id,
+      },
+      include: {
+        nature: true,
+        rarity: true,
+        type: true,
+        stats: true,
+        race: true,
+      },
+    }); 
+    return heroes;
+  }
+
   public async probabilities(_id: number): Promise<number[]> {
     let numeros : number[] = [1,2,3,4];
     return numeros;

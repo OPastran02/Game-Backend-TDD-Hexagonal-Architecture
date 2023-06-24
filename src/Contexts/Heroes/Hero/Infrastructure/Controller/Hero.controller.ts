@@ -7,6 +7,7 @@ import { FindByRace } from "../../Application/FindByRace";
 import { DeleteHeroInQueue } from "../../Application/DeleteHeroInQueue";
 import { FindByPlayerWorld } from "../../Application/FindByPlayerWorld";
 import { FindByPlayerTopFive } from "../../Application/FindByPlayerTopFive";
+import { FindbyPlayer } from "../../Application/FindByPlayer";
 
 
 import { HeroRepositoryPrismaMySQL } from '../HeroRepositoryPrismaMySQL';
@@ -32,6 +33,7 @@ export class HeroController extends Controller {
   private readonly _deleteHeroInQueue: DeleteHeroInQueue;
   private readonly _findByPlayerWorld: FindByPlayerWorld;
   private readonly _findByPlayerTopFive: FindByPlayerTopFive;
+  private readonly _findbyPlayer: FindbyPlayer;
 
   constructor() {
     super();
@@ -52,6 +54,7 @@ export class HeroController extends Controller {
     this._deleteHeroInQueue = new DeleteHeroInQueue(_heroRepository);
     this._findByPlayerWorld = new FindByPlayerWorld(_heroRepository);
     this._findByPlayerTopFive = new FindByPlayerTopFive(_heroRepository);
+    this._findbyPlayer = new FindbyPlayer(_heroRepository);
   }
 
   @Post('/add')
@@ -70,6 +73,12 @@ export class HeroController extends Controller {
   public async findByPlayerWorld(@Body() requestBody:{id:string, world: number}): Promise<Hero[] | null> {
       const {id, world} = requestBody;
       return await this._findByPlayerWorld.findByPlayerWorld(id, world);
+  }
+
+  @Post('/findByPlayer')
+  public async findbyPlayer(@Body() requestBody:{id:string}): Promise<Hero[] | null> {
+      const {id} = requestBody;
+      return await this._findbyPlayer.findbyPlayer(id);
   }
 
   @Post('/findByPlayerTopFive')
