@@ -737,6 +737,172 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"Mobs": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"waveId": {
+						"type": "number",
+						"format": "double"
+					},
+					"order": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"attack": {
+						"type": "number",
+						"format": "double"
+					},
+					"defense": {
+						"type": "number",
+						"format": "double"
+					},
+					"hp": {
+						"type": "number",
+						"format": "double"
+					},
+					"sp_attack": {
+						"type": "number",
+						"format": "double"
+					},
+					"sp_defense": {
+						"type": "number",
+						"format": "double"
+					},
+					"speed": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"id",
+					"waveId",
+					"order",
+					"name",
+					"attack",
+					"defense",
+					"hp",
+					"sp_attack",
+					"sp_defense",
+					"speed"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"PlayerWorld": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"player": {
+						"$ref": "#/components/schemas/Player"
+					},
+					"idWorld": {
+						"type": "number",
+						"format": "double"
+					},
+					"stars": {
+						"type": "number",
+						"format": "double"
+					},
+					"MundoAvatar": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"player",
+					"idWorld",
+					"stars",
+					"MundoAvatar"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Reward": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"mundoId": {
+						"type": "number",
+						"format": "double"
+					},
+					"item": {
+						"type": "number",
+						"format": "double"
+					},
+					"quantity": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"id",
+					"mundoId",
+					"item",
+					"quantity"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Waves": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"mundoId": {
+						"type": "number",
+						"format": "double"
+					},
+					"wave": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"id",
+					"mundoId",
+					"wave"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"World": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"race": {
+						"type": "number",
+						"format": "double"
+					},
+					"chapter": {
+						"type": "number",
+						"format": "double"
+					},
+					"MundoAvatar": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"race",
+					"chapter",
+					"MundoAvatar"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -947,6 +1113,47 @@
 								},
 								"required": [
 									"world",
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/hero/findByPlayer": {
+			"post": {
+				"operationId": "FindbyPlayer",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Hero"
+									},
+									"type": "array",
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"id": {
+										"type": "string"
+									}
+								},
+								"required": [
 									"id"
 								],
 								"type": "object"
@@ -2533,6 +2740,241 @@
 									"exp_rarity",
 									"playerId",
 									"gameId"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/mobs/findByWave": {
+			"post": {
+				"operationId": "FindByWave",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Mobs"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"id": {
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/playerWorld/findByPlayerWorld": {
+			"post": {
+				"operationId": "FindByPlayerWorld",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PlayerWorld"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"idn": {
+										"type": "number",
+										"format": "double"
+									},
+									"id": {
+										"$ref": "#/components/schemas/Player"
+									}
+								},
+								"required": [
+									"idn",
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/reward/findByMundo": {
+			"post": {
+				"operationId": "FindByMundo",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Reward"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"id": {
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/waves/findByMundo": {
+			"post": {
+				"operationId": "FindByMundo",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Waves"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"id": {
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/world/findById": {
+			"post": {
+				"operationId": "FindById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/World"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"id": {
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"id"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/world/findByRace": {
+			"post": {
+				"operationId": "FindByRace",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/World"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"id": {
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"id"
 								],
 								"type": "object"
 							}

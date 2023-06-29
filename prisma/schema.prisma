@@ -184,33 +184,6 @@ model Type {
   heroes      heroes[]
 }
 
-// Ya esta hecho
-model players {
-  id               String             @id @default(uuid())
-  googleId         String?
-  facebookId       String?
-  appleId          String?
-  mail             String
-  nickname         String?
-  firstname        String?
-  lastname         String?
-  phrase           String?
-  coins            Int                @default(100)
-  diamonds         Int                @default(100)
-  experience       Int                @default(0)
-  level            Int                @default(1)
-  avatar           String             @default("avatar.jpg")
-  avatarBlock      String             @default("m_avatar.jpg")
-  hasBattlePass    Boolean            @default(false)
-  hasYearPass      Boolean            @default(false)
-  loginDays        Int                @default(0)
-  lastLogin        DateTime           @default(now())
-  isActive         Boolean            @default(true)
-  createdAt        DateTime           @default(now())
-  guildmemberships guildmemberships[]
-  heroes           heroes[]
-  players_wallet   players_wallet[]
-}
 
 // Ya esta hecho
 model players_wallet {
@@ -297,3 +270,77 @@ model Houses {
 
   @@index([TerrainId], map: "Houses_TerrainId_fkey")
 }
+
+// Ya esta hecho
+model players {
+  id               String             @id @default(uuid())
+  googleId         String?
+  facebookId       String?
+  appleId          String?
+  mail             String
+  nickname         String?
+  firstname        String?
+  lastname         String?
+  phrase           String?
+  coins            Int                @default(100)
+  diamonds         Int                @default(100)
+  experience       Int                @default(0)
+  level            Int                @default(1)
+  avatar           String             @default("avatar.jpg")
+  avatarBlock      String             @default("m_avatar.jpg")
+  hasBattlePass    Boolean            @default(false)
+  hasYearPass      Boolean            @default(false)
+  loginDays        Int                @default(0)
+  lastLogin        DateTime           @default(now())
+  isActive         Boolean            @default(true)
+  createdAt        DateTime           @default(now())
+  guildmemberships guildmemberships[]
+  heroes           heroes[]
+  players_wallet   players_wallet[]
+  playerWorlds     PlayerWorld[]
+}
+
+model PlayerWorld {
+  id               Int                @id @default(autoincrement())
+  player           players            @relation(fields: [idPlayer], references: [id])
+  idPlayer         String
+  idWorld          Int
+  stars            Int
+  MundoAvatar      String
+}
+
+
+model World {
+  id                Int      @id @default(autoincrement())   
+  race              Int         
+  chapter           Int
+  MundoAvatar       String
+}
+
+model Reward {
+  id            Int      @id @default(autoincrement())   
+  mundoId       Int         
+  item          Int
+  quantity      Int
+}
+
+model Waves {
+  id            Int      @id @default(autoincrement())   
+  mundoId       Int         
+  wave          Int
+}
+
+model Mobs {
+  id            Int       @id @default(autoincrement())   
+  waveId        Int         
+  order         Int
+  name          String
+  attack        Int       @default(0)
+  defense       Int       @default(0)
+  hp            Int       @default(0)
+  sp_attack     Int       @default(0)
+  sp_defense    Int       @default(0)
+  speed         Int       @default(0)
+}   
+
+
