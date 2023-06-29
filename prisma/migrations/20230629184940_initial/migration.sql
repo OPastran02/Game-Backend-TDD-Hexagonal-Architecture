@@ -1,0 +1,8 @@
+-- AddForeignKey
+ALTER TABLE `Reward` ADD CONSTRAINT `Reward_mundoId_fkey` FOREIGN KEY (`mundoId`) REFERENCES `World`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Waves` ADD CONSTRAINT `Waves_mundoId_fkey` FOREIGN KEY (`mundoId`) REFERENCES `World`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Mobs` ADD CONSTRAINT `Mobs_waveId_fkey` FOREIGN KEY (`waveId`) REFERENCES `Waves`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

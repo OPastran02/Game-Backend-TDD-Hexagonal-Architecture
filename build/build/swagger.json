@@ -867,12 +867,19 @@
                     "wave": {
                         "type": "number",
                         "format": "double"
+                    },
+                    "mobs": {
+                        "items": {
+                            "$ref": "#/components/schemas/Mobs"
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
                     "id",
                     "mundoId",
-                    "wave"
+                    "wave",
+                    "mobs"
                 ],
                 "type": "object",
                 "additionalProperties": false
@@ -893,13 +900,27 @@
                     },
                     "MundoAvatar": {
                         "type": "string"
+                    },
+                    "rewards": {
+                        "items": {
+                            "$ref": "#/components/schemas/Reward"
+                        },
+                        "type": "array"
+                    },
+                    "waves": {
+                        "items": {
+                            "$ref": "#/components/schemas/Waves"
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
                     "id",
                     "race",
                     "chapter",
-                    "MundoAvatar"
+                    "MundoAvatar",
+                    "rewards",
+                    "waves"
                 ],
                 "type": "object",
                 "additionalProperties": false

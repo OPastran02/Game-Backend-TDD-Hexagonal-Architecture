@@ -10,7 +10,10 @@ export class WavesRepositoryPrismaMySQL implements IWavesRepository {
     return await prisma.waves.findFirstOrThrow({
         where: {
           mundoId: _mundoId,
-        }
+        },
+        include: {
+          mobs: true,
+        },
       });
   }
 

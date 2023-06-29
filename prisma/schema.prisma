@@ -309,25 +309,30 @@ model PlayerWorld {
   MundoAvatar      String
 }
 
-
 model World {
-  id                Int      @id @default(autoincrement())   
-  race              Int         
-  chapter           Int
-  MundoAvatar       String
+  id            Int      @id @default(autoincrement())
+  race          Int
+  chapter       Int
+  MundoAvatar   String
+  rewards       Reward[]
+  waves         Waves[]
 }
 
 model Reward {
-  id            Int      @id @default(autoincrement())   
-  mundoId       Int         
+  id            Int      @id @default(autoincrement())
+  mundoId       Int
   item          Int
   quantity      Int
+  world         World    @relation(fields: [mundoId], references: [id])
 }
+
 
 model Waves {
   id            Int      @id @default(autoincrement())   
   mundoId       Int         
   wave          Int
+  world         World    @relation(fields: [mundoId], references: [id])
+  mobs          Mobs[]
 }
 
 model Mobs {
@@ -341,6 +346,8 @@ model Mobs {
   sp_attack     Int       @default(0)
   sp_defense    Int       @default(0)
   speed         Int       @default(0)
+  wave          Waves    @relation(fields: [waveId], references: [id])
+
 }   
 
 
