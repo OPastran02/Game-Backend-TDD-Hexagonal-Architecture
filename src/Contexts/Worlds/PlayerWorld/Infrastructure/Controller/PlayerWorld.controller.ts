@@ -3,7 +3,7 @@ import { FindByPlayerWorld } from "../../Application/FindByPlayerWorld";
 import { Body, Controller, Post, Route } from "tsoa";
 import { PlayerWorldRepositoryPrismaMySQL } from "../PlayerWorldRepositoryPrismaMySQL";
 import { PlayerWorld } from '../../Domain/PlayerWorld';
-import { Player } from "../../../../Player/Players/Domain/Player";
+
 
 @Route('playerWorld')
 export class PlayerWorldController extends Controller {
@@ -16,7 +16,7 @@ export class PlayerWorldController extends Controller {
   }
 
   @Post('/findByPlayerWorld')
-  public async findByPlayerWorld(@Body() requestBody:{id:Player, idn: number}): Promise<PlayerWorld> {
+  public async findByPlayerWorld(@Body() requestBody:{id:string, idn: number}): Promise<PlayerWorld> {
       const {id, idn} = requestBody;
       return await this._playerWorld.findByPlayerWorld(id, idn);
   }

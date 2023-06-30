@@ -258,7 +258,7 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "id": {"dataType":"double","required":true},
-            "player": {"ref":"Player","required":true},
+            "idPlayer": {"dataType":"string","required":true},
             "idWorld": {"dataType":"double","required":true},
             "stars": {"dataType":"double","required":true},
             "MundoAvatar": {"dataType":"string","required":true},
@@ -1342,7 +1342,7 @@ export function RegisterRoutes(app: Router) {
 
             function PlayerWorldController_findByPlayerWorld(request: any, response: any, next: any) {
             const args = {
-                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"idn":{"dataType":"double","required":true},"id":{"ref":"Player","required":true}}},
+                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"idn":{"dataType":"double","required":true},"id":{"dataType":"string","required":true}}},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -1455,6 +1455,30 @@ export function RegisterRoutes(app: Router) {
 
 
               const promise = controller.findByRace.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.post('/world/findAllWorlds',
+            ...(fetchMiddlewares<RequestHandler>(WorldController)),
+            ...(fetchMiddlewares<RequestHandler>(WorldController.prototype.findAllWorlds)),
+
+            function WorldController_findAllWorlds(request: any, response: any, next: any) {
+            const args = {
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new WorldController();
+
+
+              const promise = controller.findAllWorlds.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);

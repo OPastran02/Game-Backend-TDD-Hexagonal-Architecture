@@ -801,8 +801,8 @@
 						"type": "number",
 						"format": "double"
 					},
-					"player": {
-						"$ref": "#/components/schemas/Player"
+					"idPlayer": {
+						"type": "string"
 					},
 					"idWorld": {
 						"type": "number",
@@ -818,7 +818,7 @@
 				},
 				"required": [
 					"id",
-					"player",
+					"idPlayer",
 					"idWorld",
 					"stars",
 					"MundoAvatar"
@@ -2835,7 +2835,7 @@
 										"format": "double"
 									},
 									"id": {
-										"$ref": "#/components/schemas/Player"
+										"type": "string"
 									}
 								},
 								"required": [
@@ -3002,6 +3002,28 @@
 						}
 					}
 				}
+			}
+		},
+		"/world/findAllWorlds": {
+			"post": {
+				"operationId": "FindAllWorlds",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/World"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
 			}
 		}
 	},

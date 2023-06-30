@@ -18,7 +18,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class Player {
   id: string;
   googleId: string | null;
-  facebookId: string| null;
+  facebookId: string| null
   appleId: string| null;
   mail: string;
   nickname: string| null;
@@ -37,6 +37,7 @@ export class Player {
   lastLogin: Date;
   isActive: boolean;
   createdAt: Date;
+
 
   constructor(
     __id: string | undefined,
@@ -59,7 +60,8 @@ export class Player {
     _loginDays: number,
     _lastLogin: Date,
     _isActive: boolean,
-    _createdAt: Date
+    _createdAt: Date,
+
   ) {
     if (!__id || __id=="0") {
       this.id = uuidv4(); // Generar un UUID si no se proporciona un ID

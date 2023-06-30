@@ -297,12 +297,11 @@ model players {
   guildmemberships guildmemberships[]
   heroes           heroes[]
   players_wallet   players_wallet[]
-  playerWorlds     PlayerWorld[]
+
 }
 
 model PlayerWorld {
   id               Int                @id @default(autoincrement())
-  player           players            @relation(fields: [idPlayer], references: [id])
   idPlayer         String
   idWorld          Int
   stars            Int

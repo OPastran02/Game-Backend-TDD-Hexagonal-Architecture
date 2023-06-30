@@ -1,6 +1,5 @@
 import { IPlayerRepository } from '../Domain/Interfaces/Player.interface';
 import { Player } from '../Domain/Player';
-
 export class PlayerCreateUseCase {
   private playerRepository: IPlayerRepository;
 

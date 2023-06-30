@@ -1,8 +1,7 @@
-import { Player } from "../../../Player/Players/Domain/Player";
 
 export class PlayerWorld {
   id               : number;                
-  player           : Player;           
+  idPlayer         : string;           
   idWorld          : number;
   stars            : number;    
   MundoAvatar      : string;
@@ -10,13 +9,13 @@ export class PlayerWorld {
 
   constructor(
     _id               : number,                
-    _player           : Player,           
+    _idplayer         : string,           
     _idworld          : number, 
     _stars            : number,             
     _MundoAvatar      : string
   ) {
     this.id          =   _id         ;
-    this.player      =   _player     ;           
+    this.idPlayer    =   _idplayer   ;           
     this.idWorld     =   _idworld    ;   
     this.stars       =   _stars      ;            
     this.MundoAvatar =   _MundoAvatar;

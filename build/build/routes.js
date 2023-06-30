@@ -258,7 +258,7 @@ const models = {
         "dataType": "refObject",
         "properties": {
             "id": { "dataType": "double", "required": true },
-            "player": { "ref": "Player", "required": true },
+            "idPlayer": { "dataType": "string", "required": true },
             "idWorld": { "dataType": "double", "required": true },
             "stars": { "dataType": "double", "required": true },
             "MundoAvatar": { "dataType": "string", "required": true },
@@ -1008,7 +1008,7 @@ function RegisterRoutes(app) {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     app.post('/playerWorld/findByPlayerWorld', ...((0, runtime_1.fetchMiddlewares)(PlayerWorld_controller_1.PlayerWorldController)), ...((0, runtime_1.fetchMiddlewares)(PlayerWorld_controller_1.PlayerWorldController.prototype.findByPlayerWorld)), function PlayerWorldController_findByPlayerWorld(request, response, next) {
         const args = {
-            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "idn": { "dataType": "double", "required": true }, "id": { "ref": "Player", "required": true } } },
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "idn": { "dataType": "double", "required": true }, "id": { "dataType": "string", "required": true } } },
         };
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         let validatedArgs = [];
@@ -1084,6 +1084,21 @@ function RegisterRoutes(app) {
             validatedArgs = getValidatedArgs(args, request, response);
             const controller = new World_controller_1.WorldController();
             const promise = controller.findByRace.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, undefined, next);
+        }
+        catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.post('/world/findAllWorlds', ...((0, runtime_1.fetchMiddlewares)(World_controller_1.WorldController)), ...((0, runtime_1.fetchMiddlewares)(World_controller_1.WorldController.prototype.findAllWorlds)), function WorldController_findAllWorlds(request, response, next) {
+        const args = {};
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+            const controller = new World_controller_1.WorldController();
+            const promise = controller.findAllWorlds.apply(controller, validatedArgs);
             promiseHandler(controller, promise, response, undefined, next);
         }
         catch (err) {
