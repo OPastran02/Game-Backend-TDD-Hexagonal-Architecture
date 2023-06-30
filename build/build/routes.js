@@ -1023,6 +1023,23 @@ function RegisterRoutes(app) {
         }
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.post('/playerWorld/findByPlayer', ...((0, runtime_1.fetchMiddlewares)(PlayerWorld_controller_1.PlayerWorldController)), ...((0, runtime_1.fetchMiddlewares)(PlayerWorld_controller_1.PlayerWorldController.prototype.findByPlayer)), function PlayerWorldController_findByPlayer(request, response, next) {
+        const args = {
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "id": { "dataType": "string", "required": true } } },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+            const controller = new PlayerWorld_controller_1.PlayerWorldController();
+            const promise = controller.findByPlayer.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, undefined, next);
+        }
+        catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     app.post('/reward/findByMundo', ...((0, runtime_1.fetchMiddlewares)(Reward_controller_1.RewardController)), ...((0, runtime_1.fetchMiddlewares)(Reward_controller_1.RewardController.prototype.findByMundo)), function RewardController_findByMundo(request, response, next) {
         const args = {
             requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "nestedObjectLiteral", "nestedProperties": { "id": { "dataType": "double", "required": true } } },

@@ -14,4 +14,12 @@ export class PlayerWorldRepositoryPrismaMySQL implements IPlayerWorldRepository 
       });
   }
 
+  public async findByPlayer(_idPlayer: string): Promise<PlayerWorld[]> {
+    return await prisma.playerWorld.findMany({
+        where: {
+          idPlayer: _idPlayer
+        }
+      });
+  }
+
 }
