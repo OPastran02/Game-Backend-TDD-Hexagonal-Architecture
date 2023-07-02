@@ -212,6 +212,7 @@ const models: TsoaRoute.Models = {
             "phrase": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}],"required":true},
             "coins": {"dataType":"double","required":true},
             "diamonds": {"dataType":"double","required":true},
+            "crystals": {"dataType":"double","required":true},
             "experience": {"dataType":"double","required":true},
             "level": {"dataType":"double","required":true},
             "avatar": {"dataType":"string","required":true},
@@ -367,7 +368,7 @@ export function RegisterRoutes(app: Router) {
 
             function HeroController_create(request: any, response: any, next: any) {
             const args = {
-                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"string","required":true}}},
+                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"booster":{"dataType":"double","required":true},"typePrice":{"dataType":"double","required":true},"price":{"dataType":"double","required":true},"id":{"dataType":"string","required":true}}},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -817,7 +818,7 @@ export function RegisterRoutes(app: Router) {
 
             function PlayerController_addPlayer(request: any, response: any, next: any) {
             const args = {
-                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"hasYearPass":{"dataType":"boolean","required":true},"hasBattlePass":{"dataType":"boolean","required":true},"createdAt":{"dataType":"datetime","required":true},"isActive":{"dataType":"boolean","required":true},"lastLogin":{"dataType":"datetime","required":true},"loginDays":{"dataType":"double","required":true},"avatarBlock":{"dataType":"string","required":true},"avatar":{"dataType":"string","required":true},"level":{"dataType":"double","required":true},"experience":{"dataType":"double","required":true},"diamonds":{"dataType":"double","required":true},"coins":{"dataType":"double","required":true},"phrase":{"dataType":"string","required":true},"lastname":{"dataType":"string","required":true},"firstname":{"dataType":"string","required":true},"nickname":{"dataType":"string","required":true},"mail":{"dataType":"string","required":true},"appleId":{"dataType":"string","required":true},"facebookId":{"dataType":"string","required":true},"googleId":{"dataType":"string","required":true},"id":{"dataType":"string","required":true}}},
+                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"hasYearPass":{"dataType":"boolean","required":true},"hasBattlePass":{"dataType":"boolean","required":true},"createdAt":{"dataType":"datetime","required":true},"isActive":{"dataType":"boolean","required":true},"lastLogin":{"dataType":"datetime","required":true},"loginDays":{"dataType":"double","required":true},"avatarBlock":{"dataType":"string","required":true},"avatar":{"dataType":"string","required":true},"level":{"dataType":"double","required":true},"experience":{"dataType":"double","required":true},"crystals":{"dataType":"double","required":true},"diamonds":{"dataType":"double","required":true},"coins":{"dataType":"double","required":true},"phrase":{"dataType":"string","required":true},"lastname":{"dataType":"string","required":true},"firstname":{"dataType":"string","required":true},"nickname":{"dataType":"string","required":true},"mail":{"dataType":"string","required":true},"appleId":{"dataType":"string","required":true},"facebookId":{"dataType":"string","required":true},"googleId":{"dataType":"string","required":true},"id":{"dataType":"string","required":true}}},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -1105,6 +1106,56 @@ export function RegisterRoutes(app: Router) {
 
 
               const promise = controller.playerAddDiamons.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.post('/player/addCrystals',
+            ...(fetchMiddlewares<RequestHandler>(PlayerController)),
+            ...(fetchMiddlewares<RequestHandler>(PlayerController.prototype.playerAddCrystals)),
+
+            function PlayerController_playerAddCrystals(request: any, response: any, next: any) {
+            const args = {
+                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"crystals":{"dataType":"double","required":true},"id":{"dataType":"string","required":true}}},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new PlayerController();
+
+
+              const promise = controller.playerAddCrystals.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.post('/player/playerMinusMoney',
+            ...(fetchMiddlewares<RequestHandler>(PlayerController)),
+            ...(fetchMiddlewares<RequestHandler>(PlayerController.prototype.playerMinusMoney)),
+
+            function PlayerController_playerMinusMoney(request: any, response: any, next: any) {
+            const args = {
+                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"crystals":{"dataType":"double","required":true},"diamond":{"dataType":"double","required":true},"coins":{"dataType":"double","required":true},"id":{"dataType":"string","required":true}}},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new PlayerController();
+
+
+              const promise = controller.playerMinusMoney.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);

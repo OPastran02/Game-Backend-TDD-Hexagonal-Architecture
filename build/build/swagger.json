@@ -649,6 +649,10 @@
                         "type": "number",
                         "format": "double"
                     },
+                    "crystals": {
+                        "type": "number",
+                        "format": "double"
+                    },
                     "experience": {
                         "type": "number",
                         "format": "double"
@@ -697,6 +701,7 @@
                     "phrase",
                     "coins",
                     "diamonds",
+                    "crystals",
                     "experience",
                     "level",
                     "avatar",
@@ -1040,11 +1045,26 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
+                                    "booster": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
+                                    "typePrice": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
                                     "id": {
                                         "type": "string"
                                     }
                                 },
                                 "required": [
+                                    "booster",
+                                    "typePrice",
+                                    "price",
                                     "id"
                                 ],
                                 "type": "object"
@@ -1979,6 +1999,10 @@
                                         "type": "number",
                                         "format": "double"
                                     },
+                                    "crystals": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
                                     "diamonds": {
                                         "type": "number",
                                         "format": "double"
@@ -2026,6 +2050,7 @@
                                     "avatar",
                                     "level",
                                     "experience",
+                                    "crystals",
                                     "diamonds",
                                     "coins",
                                     "phrase",
@@ -2431,6 +2456,86 @@
                                 },
                                 "required": [
                                     "diamonds",
+                                    "id"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/player/addCrystals": {
+            "post": {
+                "operationId": "PlayerAddCrystals",
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                },
+                "security": [],
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "crystals": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "crystals",
+                                    "id"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/player/playerMinusMoney": {
+            "post": {
+                "operationId": "PlayerMinusMoney",
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                },
+                "security": [],
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "crystals": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
+                                    "diamond": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
+                                    "coins": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "crystals",
+                                    "diamond",
+                                    "coins",
                                     "id"
                                 ],
                                 "type": "object"

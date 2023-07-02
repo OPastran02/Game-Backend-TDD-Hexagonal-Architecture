@@ -27,6 +27,7 @@ export class Player {
   phrase: string| null;
   coins: number;
   diamonds: number;
+  crystals: number;
   experience: number;
   level: number;
   avatar: string;
@@ -51,6 +52,7 @@ export class Player {
     _phrase: string | null,
     _coins: number,
     _diamonds: number,
+    _crystals: number,
     _experience: number,
     _level: number,
     _avatar: string,
@@ -78,6 +80,7 @@ export class Player {
     this.phrase = new PlayerPhrase(_phrase).getValue();
     this.coins = new PlayerCoins(_coins).getValue();
     this.diamonds = new PlayerDiamonds(_diamonds).getValue();
+    this.crystals = new PlayerDiamonds(_crystals).getValue();
     this.experience = new PlayerExperience(_experience).getValue();
     this.level = new PlayerLevel(_level).getValue();
     this.avatar = new PlayerAvatar(_avatar).getValue();

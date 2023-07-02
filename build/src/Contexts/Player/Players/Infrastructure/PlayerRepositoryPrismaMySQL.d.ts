@@ -13,6 +13,8 @@ export declare class PlayerRepositoryPrismaMySQL implements IPlayerRepository {
     playerUpdateMail(playerId: string, _mail: string): Promise<void>;
     playerAddCoins(playerId: string, _coins: number): Promise<void>;
     playerAddDiamons(playerId: string, _diamonds: number): Promise<void>;
+    playerAddCrystals(playerId: string, _crystals: number): Promise<void>;
+    playerMinusMoney(playerId: string, _coins: number, _diamonds: number, _crystals: number): Promise<void>;
     playerAddExperience(playerId: string, _experience: number): Promise<void>;
     playerAddPhrase(playerId: string, _phrase: string): Promise<void>;
     playerAddBattlePass(playerId: string): Promise<void>;

@@ -47,14 +47,21 @@ export class Create {
     this.raceRepository = raceRepository;
   }
 
-  public async Create(id: string): Promise<Hero> {
+  public async Create(id: string, price: number, typePrice:number, booster:number): Promise<Hero> {
+      booster=0;
       const player: Player = await this.playerRepository.playerAlwaysFindById(id);
+      if(typePrice==1){
+        await this.playerRepository.playerMinusMoney(id,price,booster,booster); 
+      }else if(typePrice==2){
+        await this.playerRepository.playerMinusMoney(id,0,price,0); 
+      }else if(typePrice==3){
+        await this.playerRepository.playerMinusMoney(id,0,0,price); 
+      }  
       const quant_hero: number = await this.repository.IsThereAnyHeroInQueue(player.id,true);
       console.log(quant_hero)
       if (quant_hero >= 1) {
         throw new Error('Ya existe un héroe en la cola');
       }
-
       const IdHero = uuidv4();
 
       //obtener un random de available_Heroes

@@ -24,6 +24,8 @@ const PlayerUpdateNamesUseCase_1 = require("../../Application/PlayerUpdateNamesU
 const PlayerUpdateMail_1 = require("../../Application/PlayerUpdateMail");
 const PlayerAddCoinsUseCase_1 = require("../../Application/PlayerAddCoinsUseCase");
 const playerAddDiamonsUseCase_1 = require("../../Application/playerAddDiamonsUseCase");
+const playerAddCrystalsUseCase_1 = require("../../Application/playerAddCrystalsUseCase");
+const PlayerMinusMoneyUseCase_1 = require("../../Application/PlayerMinusMoneyUseCase");
 const playerAddExperienceUseCase_1 = require("../../Application/playerAddExperienceUseCase");
 const playerAddPhraseUseCase_1 = require("../../Application/playerAddPhraseUseCase");
 const playerAddBattlePassUseCase_1 = require("../../Application/playerAddBattlePassUseCase");
@@ -46,15 +48,17 @@ let PlayerController = class PlayerController extends tsoa_1.Controller {
         this._playerUpdateMail = new PlayerUpdateMail_1.PlayerUpdateMail(playerRepository);
         this._playerAddCoinsUseCase = new PlayerAddCoinsUseCase_1.PlayerAddCoinsUseCase(playerRepository);
         this._playerAddDiamonsUseCase = new playerAddDiamonsUseCase_1.playerAddDiamonsUseCase(playerRepository);
+        this._playerAddCrystalsUseCase = new playerAddCrystalsUseCase_1.PlayerAddCrystalsUseCase(playerRepository);
         this._playerAddExperienceUseCase = new playerAddExperienceUseCase_1.playerAddExperienceUseCase(playerRepository);
         this._playerAddPhraseUseCase = new playerAddPhraseUseCase_1.playerAddPhraseUseCase(playerRepository);
         this._playerAddBattlePassUseCase = new playerAddBattlePassUseCase_1.playerAddBattlePassUseCase(playerRepository);
         this._playerAddYearPassUseCase = new playerAddYearPassUseCase_1.playerAddYearPassUseCase(playerRepository);
         this._playerAlwaysFindByIdUseCase = new PlayerAlwaysFindByIdUseCase_1.PlayerAlwaysFindByIdUseCase(playerRepository);
+        this._playerMinusMoneyUseCase = new PlayerMinusMoneyUseCase_1.PlayerMinusMoneyUseCase(playerRepository);
     }
     async addPlayer(requestBody) {
-        const { id, googleId, facebookId, appleId, mail, nickname, firstname, lastname, phrase, coins, diamonds, experience, level, avatar, avatarBlock, hasBattlePass, hasYearPass, loginDays, lastLogin, isActive, createdAt } = requestBody;
-        return await this._playerService.addPlayer(id, googleId, facebookId, appleId, mail, nickname, firstname, lastname, phrase, coins, diamonds, experience, level, avatar, avatarBlock, hasBattlePass, hasYearPass, loginDays, lastLogin, isActive, createdAt);
+        const { id, googleId, facebookId, appleId, mail, nickname, firstname, lastname, phrase, coins, diamonds, crystals, experience, level, avatar, avatarBlock, hasBattlePass, hasYearPass, loginDays, lastLogin, isActive, createdAt } = requestBody;
+        return await this._playerService.addPlayer(id, googleId, facebookId, appleId, mail, nickname, firstname, lastname, phrase, coins, diamonds, crystals, experience, level, avatar, avatarBlock, hasBattlePass, hasYearPass, loginDays, lastLogin, isActive, createdAt);
     }
     async playerFindById(requestBody) {
         const { id } = requestBody;
@@ -99,6 +103,14 @@ let PlayerController = class PlayerController extends tsoa_1.Controller {
     async playerAddDiamons(requestBody) {
         const { id, diamonds } = requestBody;
         await this._playerAddDiamonsUseCase.playerAddDiamonds(id, diamonds);
+    }
+    async playerAddCrystals(requestBody) {
+        const { id, crystals } = requestBody;
+        await this._playerAddCrystalsUseCase.playerAddCrystals(id, crystals);
+    }
+    async playerMinusMoney(requestBody) {
+        const { id, coins, diamond, crystals } = requestBody;
+        await this._playerMinusMoneyUseCase.playerMinusMoney(id, coins, diamond, crystals);
     }
     async playerAddExperience(requestBody) {
         const { id, experience } = requestBody;
@@ -201,6 +213,20 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], PlayerController.prototype, "playerAddDiamons", null);
+__decorate([
+    (0, tsoa_1.Post)('/addCrystals'),
+    __param(0, (0, tsoa_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PlayerController.prototype, "playerAddCrystals", null);
+__decorate([
+    (0, tsoa_1.Post)('/playerMinusMoney'),
+    __param(0, (0, tsoa_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PlayerController.prototype, "playerMinusMoney", null);
 __decorate([
     (0, tsoa_1.Post)('/addExperience'),
     __param(0, (0, tsoa_1.Body)()),

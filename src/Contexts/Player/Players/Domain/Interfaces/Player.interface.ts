@@ -27,6 +27,10 @@ export interface IPlayerRepository {
 
     playerAddDiamons(playerId: string, diamonds:number): Promise<void>; 
 
+    playerAddCrystals(playerId: string, crystals:number): Promise<void>; 
+
+    playerMinusMoney(playerId: string, coins:number,diamonds:number,crystals:number): Promise<void>; 
+
     playerAddExperience(playerId: string, experience:number): Promise<void>;
 
     playerAddPhrase(playerId: string, phrase:string): Promise<void>;

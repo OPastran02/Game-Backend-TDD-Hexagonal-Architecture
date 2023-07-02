@@ -12,6 +12,8 @@ export declare class PlayerController extends Controller {
     private readonly _playerUpdateMail;
     private readonly _playerAddCoinsUseCase;
     private readonly _playerAddDiamonsUseCase;
+    private readonly _playerAddCrystalsUseCase;
+    private readonly _playerMinusMoneyUseCase;
     private readonly _playerAddExperienceUseCase;
     private readonly _playerAddPhraseUseCase;
     private readonly _playerAddBattlePassUseCase;
@@ -30,6 +32,7 @@ export declare class PlayerController extends Controller {
         phrase: string;
         coins: number;
         diamonds: number;
+        crystals: number;
         experience: number;
         level: number;
         avatar: string;
@@ -84,6 +87,16 @@ export declare class PlayerController extends Controller {
     playerAddDiamons(requestBody: {
         id: string;
         diamonds: number;
+    }): Promise<void>;
+    playerAddCrystals(requestBody: {
+        id: string;
+        crystals: number;
+    }): Promise<void>;
+    playerMinusMoney(requestBody: {
+        id: string;
+        coins: number;
+        diamond: number;
+        crystals: number;
     }): Promise<void>;
     playerAddExperience(requestBody: {
         id: string;

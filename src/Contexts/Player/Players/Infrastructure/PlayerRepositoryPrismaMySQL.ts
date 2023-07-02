@@ -19,6 +19,7 @@ export class PlayerRepositoryPrismaMySQL implements IPlayerRepository {
           phrase: player.phrase,
           coins: player.coins,
           diamonds: player.diamonds,
+          crystals: player.crystals,
           experience: player.experience,
           level: player.level,
           avatar: player.avatar,
@@ -149,6 +150,30 @@ export class PlayerRepositoryPrismaMySQL implements IPlayerRepository {
       },
       data: {
         diamonds: _diamonds,
+      },
+    });
+  }
+
+  public async playerAddCrystals(playerId: string, _crystals: number): Promise<void> {
+    await prisma.players.update({
+      where: {
+        id: playerId,
+      },
+      data: {
+        crystals: _crystals,
+      },
+    });
+  }
+
+  public async playerMinusMoney(playerId: string, _coins:number, _diamonds:number, _crystals:number): Promise<void> {
+    await prisma.players.update({
+      where: {
+        id: playerId,
+      },
+      data: {
+        coins: _coins,
+        diamonds: _diamonds,
+        crystals: _crystals
       },
     });
   }

@@ -18,7 +18,7 @@ const PlayerAvatarBlock_1 = require("./value-object/PlayerAvatarBlock");
 const PlayerLoginDays_1 = require("./value-object/PlayerLoginDays");
 const uuid_1 = require("uuid");
 class Player {
-    constructor(__id, _googleId, _facebookId, _appleId, _mail, _nickname, _firstname, _lastname, _phrase, _coins, _diamonds, _experience, _level, _avatar, _avatarBlock, _hasBattlePass, _hasYearPass, _loginDays, _lastLogin, _isActive, _createdAt) {
+    constructor(__id, _googleId, _facebookId, _appleId, _mail, _nickname, _firstname, _lastname, _phrase, _coins, _diamonds, _crystals, _experience, _level, _avatar, _avatarBlock, _hasBattlePass, _hasYearPass, _loginDays, _lastLogin, _isActive, _createdAt) {
         if (!__id || __id == "0") {
             this.id = (0, uuid_1.v4)(); // Generar un UUID si no se proporciona un ID
         }
@@ -35,6 +35,7 @@ class Player {
         this.phrase = new PlayerPhrase_1.PlayerPhrase(_phrase).getValue();
         this.coins = new PlayerCoins_1.PlayerCoins(_coins).getValue();
         this.diamonds = new PlayerDiamonds_1.PlayerDiamonds(_diamonds).getValue();
+        this.crystals = new PlayerDiamonds_1.PlayerDiamonds(_crystals).getValue();
         this.experience = new PlayerExperience_1.PlayerExperience(_experience).getValue();
         this.level = new PlayerLevel_1.PlayerLevel(_level).getValue();
         this.avatar = new PlayerAvatar_1.PlayerAvatar(_avatar).getValue();

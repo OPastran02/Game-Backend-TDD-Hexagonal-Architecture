@@ -12,6 +12,8 @@ export interface IPlayerRepository {
     playerUpdateMail(playerId: string, playerMail: string): Promise<void>;
     playerAddCoins(playerId: string, coins: number): Promise<void>;
     playerAddDiamons(playerId: string, diamonds: number): Promise<void>;
+    playerAddCrystals(playerId: string, crystals: number): Promise<void>;
+    playerMinusMoney(playerId: string, coins: number, diamonds: number, crystals: number): Promise<void>;
     playerAddExperience(playerId: string, experience: number): Promise<void>;
     playerAddPhrase(playerId: string, phrase: string): Promise<void>;
     playerAddBattlePass(playerId: string): Promise<void>;

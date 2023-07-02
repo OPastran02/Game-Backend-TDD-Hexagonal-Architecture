@@ -20,6 +20,7 @@ class PlayerRepositoryPrismaMySQL {
                 phrase: player.phrase,
                 coins: player.coins,
                 diamonds: player.diamonds,
+                crystals: player.crystals,
                 experience: player.experience,
                 level: player.level,
                 avatar: player.avatar,
@@ -139,6 +140,28 @@ class PlayerRepositoryPrismaMySQL {
             },
             data: {
                 diamonds: _diamonds,
+            },
+        });
+    }
+    async playerAddCrystals(playerId, _crystals) {
+        await index_1.default.players.update({
+            where: {
+                id: playerId,
+            },
+            data: {
+                crystals: _crystals,
+            },
+        });
+    }
+    async playerMinusMoney(playerId, _coins, _diamonds, _crystals) {
+        await index_1.default.players.update({
+            where: {
+                id: playerId,
+            },
+            data: {
+                coins: _coins,
+                diamonds: _diamonds,
+                crystals: _crystals
             },
         });
     }

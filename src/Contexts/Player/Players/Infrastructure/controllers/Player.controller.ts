@@ -9,6 +9,8 @@ import { PlayerUpdateNamesUseCase } from "../../Application/PlayerUpdateNamesUse
 import { PlayerUpdateMail } from "../../Application/PlayerUpdateMail";
 import { PlayerAddCoinsUseCase } from "../../Application/PlayerAddCoinsUseCase";
 import { playerAddDiamonsUseCase } from "../../Application/playerAddDiamonsUseCase";
+import { PlayerAddCrystalsUseCase } from "../../Application/playerAddCrystalsUseCase";
+import { PlayerMinusMoneyUseCase } from "../../Application/PlayerMinusMoneyUseCase";
 import { playerAddExperienceUseCase } from "../../Application/playerAddExperienceUseCase";
 import { playerAddPhraseUseCase } from "../../Application/playerAddPhraseUseCase";
 import { playerAddBattlePassUseCase } from "../../Application/playerAddBattlePassUseCase";
@@ -34,6 +36,8 @@ export class PlayerController extends Controller {
   private readonly _playerUpdateMail: PlayerUpdateMail;
   private readonly _playerAddCoinsUseCase: PlayerAddCoinsUseCase;
   private readonly _playerAddDiamonsUseCase: playerAddDiamonsUseCase;
+  private readonly _playerAddCrystalsUseCase: PlayerAddCrystalsUseCase;
+  private readonly _playerMinusMoneyUseCase: PlayerMinusMoneyUseCase;
   private readonly _playerAddExperienceUseCase: playerAddExperienceUseCase;
   private readonly _playerAddPhraseUseCase: playerAddPhraseUseCase;
   private readonly _playerAddBattlePassUseCase: playerAddBattlePassUseCase;
@@ -54,28 +58,29 @@ export class PlayerController extends Controller {
     this._playerUpdateMail = new PlayerUpdateMail(playerRepository)
     this._playerAddCoinsUseCase = new PlayerAddCoinsUseCase(playerRepository)
     this._playerAddDiamonsUseCase = new playerAddDiamonsUseCase(playerRepository)
+    this._playerAddCrystalsUseCase = new PlayerAddCrystalsUseCase(playerRepository)
     this._playerAddExperienceUseCase = new playerAddExperienceUseCase(playerRepository)
     this._playerAddPhraseUseCase = new playerAddPhraseUseCase(playerRepository)
     this._playerAddBattlePassUseCase = new playerAddBattlePassUseCase(playerRepository)
     this._playerAddYearPassUseCase = new playerAddYearPassUseCase(playerRepository)
     this._playerAlwaysFindByIdUseCase = new PlayerAlwaysFindByIdUseCase(playerRepository)
-
+    this._playerMinusMoneyUseCase = new PlayerMinusMoneyUseCase(playerRepository)
   }
 
   @Post('/add')
   public async addPlayer(
     @Body() requestBody: 
         {id:string,googleId: string, facebookId: string, appleId: string, mail: string, nickname: string, firstname: string, lastname: string, phrase: string,
-          coins: number, diamonds: number, experience: number, level: number, avatar: string, avatarBlock: string, loginDays: number,lastLogin: Date,
+          coins: number, diamonds: number, crystals:number, experience: number, level: number, avatar: string, avatarBlock: string, loginDays: number,lastLogin: Date,
           isActive: boolean, createdAt: Date, hasBattlePass: boolean, hasYearPass: boolean
         } 
       ): Promise<Player> {
       
-        const {id,googleId,facebookId,appleId,mail,nickname,firstname,lastname,phrase,coins,diamonds,experience,
+        const {id,googleId,facebookId,appleId,mail,nickname,firstname,lastname,phrase,coins,diamonds,crystals,experience,
         level, avatar, avatarBlock,hasBattlePass,hasYearPass, loginDays,lastLogin,isActive,createdAt} = requestBody;
 
       return await this._playerService.addPlayer(id,
-        googleId,facebookId,appleId,mail,nickname,firstname,lastname,phrase,coins,diamonds,experience,
+        googleId,facebookId,appleId,mail,nickname,firstname,lastname,phrase,coins,diamonds,crystals,experience,
         level, avatar, avatarBlock,hasBattlePass,hasYearPass,loginDays,lastLogin,isActive,createdAt
       );
   }
@@ -145,6 +150,18 @@ export class PlayerController extends Controller {
   public async playerAddDiamons(@Body() requestBody:{id:string, diamonds: number}): Promise<void> {
       const {id, diamonds} = requestBody;
       await this._playerAddDiamonsUseCase.playerAddDiamonds(id, diamonds);
+  }
+
+  @Post('/addCrystals')
+  public async playerAddCrystals(@Body() requestBody:{id:string, crystals: number}): Promise<void> {
+      const {id, crystals} = requestBody;
+      await this._playerAddCrystalsUseCase.playerAddCrystals(id, crystals);
+  }
+
+  @Post('/playerMinusMoney')
+  public async playerMinusMoney(@Body() requestBody:{id:string, coins: number, diamond: number, crystals: number}): Promise<void> {
+      const {id,coins,diamond,crystals} = requestBody;
+      await this._playerMinusMoneyUseCase.playerMinusMoney(id,coins,diamond,crystals);
   }
 
   @Post('/addExperience')
