@@ -19,9 +19,9 @@ export class PlayerMinusMoneyUseCase {
       if ((player.diamonds - diamonds.getValue()) < 0) throw new Error('No te alcanza!');
       if ((player.crystals - crystals.getValue()) < 0) throw new Error('No te alcanza!');
 
-      player.coins -= coins.getValue();
-      player.diamonds -= diamonds.getValue();
-      player.crystals -= crystals.getValue();
+      player.coins = player.coins - coins.getValue();
+      player.diamonds = player.diamonds - diamonds.getValue();
+      player.crystals = player.crystals - crystals.getValue();
       await this.playerRepository.playerMinusMoney(playerId, player.coins, player.diamonds, player.crystals);
     }
   }

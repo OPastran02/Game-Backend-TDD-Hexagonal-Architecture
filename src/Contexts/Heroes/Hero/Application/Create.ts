@@ -47,16 +47,9 @@ export class Create {
     this.raceRepository = raceRepository;
   }
 
-  public async Create(id: string, price: number, typePrice:number, booster:number): Promise<Hero> {
-      booster=0;
+  public async Create(id: string, booster:number[], modifier:number, _race:number): Promise<Hero> {
+
       const player: Player = await this.playerRepository.playerAlwaysFindById(id);
-      if(typePrice==1){
-        await this.playerRepository.playerMinusMoney(id,price,booster,booster); 
-      }else if(typePrice==2){
-        await this.playerRepository.playerMinusMoney(id,0,price,0); 
-      }else if(typePrice==3){
-        await this.playerRepository.playerMinusMoney(id,0,0,price); 
-      }  
       const quant_hero: number = await this.repository.IsThereAnyHeroInQueue(player.id,true);
       console.log(quant_hero)
       if (quant_hero >= 1) {
@@ -65,12 +58,26 @@ export class Create {
       const IdHero = uuidv4();
 
       //obtener un random de available_Heroes
-      const lootboxGenerator = new LootboxGenerator(Date.now().toString());
-      const arrProbabilities : number[] = lootboxGenerator.calculateTierProbabilitiesForLevel(player.level);
-      const selectedRarity : number = lootboxGenerator.getRandomPosition(arrProbabilities);
-      const allAvailableHeroes: AvailableHeroes[] = await this.heroesAvailablesRepository.availableHeroFindByRarity(selectedRarity);
-      const randomIndex = Math.floor(Math.random() * allAvailableHeroes.length);
-      const _availableHeroes: AvailableHeroes = allAvailableHeroes[randomIndex];
+      var lootboxGenerator = new LootboxGenerator(Date.now().toString());
+      var arrProbabilities : number[] = lootboxGenerator.calculateTierProbabilitiesForLevel(player.level);
+      console.log(arrProbabilities)
+      if(modifier==1){
+        arrProbabilities=booster;
+        console.log(arrProbabilities)
+      }else{
+        for(var i=0; i<= arrProbabilities.length-1;i++){
+          arrProbabilities[i] += booster[i];
+        }
+        console.log(arrProbabilities)
+      }
+      
+      var selectedRarity : number = lootboxGenerator.getRandomPosition(arrProbabilities);
+      var allAvailableHeroes: AvailableHeroes[] = await this.heroesAvailablesRepository.availableHeroFindByRarity(selectedRarity);
+      if(_race != 0){
+        allAvailableHeroes = allAvailableHeroes.filter(hero => hero.raceId === _race);
+      }
+      var randomIndex = Math.floor(Math.random() * allAvailableHeroes.length);
+      var _availableHeroes: AvailableHeroes = allAvailableHeroes[randomIndex];
 
       //Lo guardo
       const stats : Stats = new Stats(

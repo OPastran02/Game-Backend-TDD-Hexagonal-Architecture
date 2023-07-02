@@ -1045,26 +1045,29 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
+                                    "_race": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
+                                    "modifier": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
                                     "booster": {
-                                        "type": "number",
-                                        "format": "double"
-                                    },
-                                    "typePrice": {
-                                        "type": "number",
-                                        "format": "double"
-                                    },
-                                    "price": {
-                                        "type": "number",
-                                        "format": "double"
+                                        "items": {
+                                            "type": "number",
+                                            "format": "double"
+                                        },
+                                        "type": "array"
                                     },
                                     "id": {
                                         "type": "string"
                                     }
                                 },
                                 "required": [
+                                    "_race",
+                                    "modifier",
                                     "booster",
-                                    "typePrice",
-                                    "price",
                                     "id"
                                 ],
                                 "type": "object"

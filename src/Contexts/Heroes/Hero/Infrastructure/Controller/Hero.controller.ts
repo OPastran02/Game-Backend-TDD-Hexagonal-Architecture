@@ -58,9 +58,9 @@ export class HeroController extends Controller {
   }
 
   @Post('/add')
-  public async create(@Body() requestBody:{id:string, price: number, typePrice:number, booster:number}): Promise<Hero> {   
-    const {id,price,typePrice,booster} = requestBody;  
-    return this._create.Create(id,price,typePrice,booster);
+  public async create(@Body() requestBody:{id:string, booster:number[],modifier:number,_race:number}): Promise<Hero> {   
+    const {id,booster,modifier,_race} = requestBody;  
+    return this._create.Create(id,booster,modifier,_race);
   }
 
   @Post('/findById')

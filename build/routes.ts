@@ -368,7 +368,7 @@ export function RegisterRoutes(app: Router) {
 
             function HeroController_create(request: any, response: any, next: any) {
             const args = {
-                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"booster":{"dataType":"double","required":true},"typePrice":{"dataType":"double","required":true},"price":{"dataType":"double","required":true},"id":{"dataType":"string","required":true}}},
+                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"_race":{"dataType":"double","required":true},"modifier":{"dataType":"double","required":true},"booster":{"dataType":"array","array":{"dataType":"double"},"required":true},"id":{"dataType":"string","required":true}}},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

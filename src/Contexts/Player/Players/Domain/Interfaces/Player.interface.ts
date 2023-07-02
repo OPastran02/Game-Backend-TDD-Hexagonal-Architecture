@@ -29,7 +29,7 @@ export interface IPlayerRepository {
 
     playerAddCrystals(playerId: string, crystals:number): Promise<void>; 
 
-    playerMinusMoney(playerId: string, coins:number,diamonds:number,crystals:number): Promise<void>; 
+    playerMinusMoney(playerId: string, coins: number, diamond: number, crystals: number): Promise<void>; 
 
     playerAddExperience(playerId: string, experience:number): Promise<void>;
 
