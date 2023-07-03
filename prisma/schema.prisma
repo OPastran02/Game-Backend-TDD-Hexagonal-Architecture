@@ -78,6 +78,14 @@ model guilds {
   guildmemberships guildmemberships[]
 }
 
+model boxRatio {
+  id               Int                @id @default(autoincrement())
+  name             String
+  description      String
+  race             Int
+  booster          String
+  modifier         Int
+}
 
 model heroes {
   id                      String       @id @default(uuid())

@@ -253,6 +253,41 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"Box": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"race": {
+						"type": "number",
+						"format": "double"
+					},
+					"booster": {
+						"type": "string"
+					},
+					"modifier": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"description",
+					"race",
+					"booster",
+					"modifier"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"Nature": {
 				"properties": {
 					"id": {
@@ -1020,6 +1055,28 @@
 						}
 					}
 				}
+			}
+		},
+		"/box/findAllBoxes": {
+			"post": {
+				"operationId": "FindAllBoxes",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Box"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
 			}
 		},
 		"/hero/add": {

@@ -3,8 +3,9 @@ import seedrandom from 'seedrandom';
 
 export class LootboxGenerator {
     private ratesByLevel = {
-        1: [0, 0, 1, 3, 5, 7, 15, 15, 15, 15, 24],
-        100: [0.8, 0.8, 8.4, 20, 20, 20, 20, 10, 0, 0, 0]
+        //[GOD,ULTRA,SSS,SS,S,A,B,C,D,E]
+        1: [0, 0, 0.1, 3, 5, 7, 15, 20, 25, 25],
+        100: [0.8, 0.8, 8.4, 20, 20, 20, 20, 10, 0, 0]
       };
 
     private rng: seedrandom.PRNG;

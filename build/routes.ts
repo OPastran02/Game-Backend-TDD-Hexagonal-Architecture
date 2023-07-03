@@ -5,6 +5,8 @@ import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, H
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { AvailableHeroesController } from './../src/Contexts/AvailableHeroes/Infrastructure/controllers/AvailableHeroes.controller';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { BoxController } from './../src/Contexts/Box/Infrastructure/Controller/Box.controller';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { HeroController } from './../src/Contexts/Heroes/Hero/Infrastructure/Controller/Hero.controller';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { NatureController } from './../src/Contexts/Heroes/Nature/Infrastructure/Controller/Nature.controller';
@@ -87,6 +89,19 @@ const models: TsoaRoute.Models = {
             "catchRate": {"dataType":"double","required":true},
             "available": {"dataType":"boolean","required":true},
             "created_at": {"dataType":"datetime","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Box": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"double","required":true},
+            "name": {"dataType":"string","required":true},
+            "description": {"dataType":"string","required":true},
+            "race": {"dataType":"double","required":true},
+            "booster": {"dataType":"string","required":true},
+            "modifier": {"dataType":"double","required":true},
         },
         "additionalProperties": false,
     },
@@ -356,6 +371,30 @@ export function RegisterRoutes(app: Router) {
 
 
               const promise = controller.availableHeroFindByRarity.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.post('/box/findAllBoxes',
+            ...(fetchMiddlewares<RequestHandler>(BoxController)),
+            ...(fetchMiddlewares<RequestHandler>(BoxController.prototype.findAllBoxes)),
+
+            function BoxController_findAllBoxes(request: any, response: any, next: any) {
+            const args = {
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new BoxController();
+
+
+              const promise = controller.findAllBoxes.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);
