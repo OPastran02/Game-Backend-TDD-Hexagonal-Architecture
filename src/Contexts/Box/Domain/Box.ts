@@ -8,6 +8,9 @@ export class Box {
   race:             number;
   booster:          string;
   modifier:         number;
+  coins:            number;
+  Diamonds:         number;
+  Crystal:          number;
 
   constructor(
     _id:               number,
@@ -15,7 +18,10 @@ export class Box {
     _description:      string,
     _race:             number,
     _booster:          string,
-    _modifier:         number
+    _modifier:         number,
+    _coins:            number,
+    _Diamonds:         number,
+    _Crystal:          number
   ) {
     this.id = _id;
     this.name = new Name(_name).getValue();  
@@ -23,5 +29,8 @@ export class Box {
     this.race        =   _race     ;
     this.booster     =   _booster  ;
     this.modifier    =   _modifier ;
+    this.coins       =   _coins    ;
+    this.Diamonds    =   _Diamonds ;
+    this.Crystal     =   _Crystal  ;
   }
 }

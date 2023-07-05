@@ -15,9 +15,9 @@ export class PlayerMinusMoneyUseCase {
     const crystals = new PlayerCoins(_crystals);
     const player: Player | null = await this.playerRepository.playerFindById(playerId);
     if (player) {
-      if ((player.coins - coins.getValue()) < 0) throw new Error('No te alcanza!');
-      if ((player.diamonds - diamonds.getValue()) < 0) throw new Error('No te alcanza!');
-      if ((player.crystals - crystals.getValue()) < 0) throw new Error('No te alcanza!');
+      if ((player.coins - coins.getValue()) < 0) throw new Error('Err.1525999');
+      if ((player.diamonds - diamonds.getValue()) < 0) throw new Error('Err.1525999');
+      if ((player.crystals - crystals.getValue()) < 0) throw new Error('Err.1525999');
 
       player.coins = player.coins - coins.getValue();
       player.diamonds = player.diamonds - diamonds.getValue();

@@ -85,6 +85,9 @@ model boxRatio {
   race             Int
   booster          String
   modifier         Int
+  coins            Int
+  Diamonds         Int
+  Crystal          Int
 }
 
 model heroes {
