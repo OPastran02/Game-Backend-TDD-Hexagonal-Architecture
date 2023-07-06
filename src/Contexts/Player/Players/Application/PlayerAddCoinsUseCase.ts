@@ -9,12 +9,16 @@ export class PlayerAddCoinsUseCase {
     this.playerRepository = playerRepository;
   }
 
-  public async playerAddcoins(playerId: string, _coins: number): Promise<void> {
+  public async playerAddcoins(playerId: string, _coins: number,action: string): Promise<void> {
     const coins = new PlayerCoins(_coins);
     const player: Player | null = await this.playerRepository.playerFindById(playerId);
     if (player) {
-      player.coins += coins.getValue();
-      await this.playerRepository.playerAddCoins(playerId, player.coins);
+      if (action == "sum"){
+        player.coins += coins.getValue();
+      }else{
+        player.coins -= coins.getValue();
+      }
+      await this.playerRepository.playerAddCoins(playerId, player.coins,action);
     }
   }
 }

@@ -141,21 +141,21 @@ export class PlayerController extends Controller {
   }
 
   @Post('/addCoins')
-  public async playerAddCoins(@Body() requestBody:{id:string, coins: number}): Promise<void> {
-      const {id, coins} = requestBody;
-      await this._playerAddCoinsUseCase.playerAddcoins(id, coins);
+  public async playerAddCoins(@Body() requestBody:{id:string, coins: number,action: string}): Promise<void> {
+      const {id, coins,action} = requestBody;
+      await this._playerAddCoinsUseCase.playerAddcoins(id, coins,action);
   }
 
   @Post('/addDiamonds')
-  public async playerAddDiamons(@Body() requestBody:{id:string, diamonds: number}): Promise<void> {
-      const {id, diamonds} = requestBody;
-      await this._playerAddDiamonsUseCase.playerAddDiamonds(id, diamonds);
+  public async playerAddDiamons(@Body() requestBody:{id:string, diamonds: number,action: string}): Promise<void> {
+      const {id, diamonds,action} = requestBody;
+      await this._playerAddDiamonsUseCase.playerAddDiamonds(id, diamonds,action);
   }
 
   @Post('/addCrystals')
-  public async playerAddCrystals(@Body() requestBody:{id:string, crystals: number}): Promise<void> {
-      const {id, crystals} = requestBody;
-      await this._playerAddCrystalsUseCase.playerAddCrystals(id, crystals);
+  public async playerAddCrystals(@Body() requestBody:{id:string, crystals: number,action: string}): Promise<void> {
+      const {id, crystals,action} = requestBody;
+      await this._playerAddCrystalsUseCase.playerAddCrystals(id, crystals,action);
   }
 
   @Post('/playerMinusMoney')

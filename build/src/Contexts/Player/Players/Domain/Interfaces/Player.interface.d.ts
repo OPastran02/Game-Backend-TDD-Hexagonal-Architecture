@@ -10,9 +10,9 @@ export interface IPlayerRepository {
     playerUpdateIds(playerId: string, facebookId: string | null, googleId: string | null, appleId: string | null): Promise<void>;
     playerUpdateNames(playerId: string, nickname: string | null, lastname: string | null, appleId: string | null): Promise<void>;
     playerUpdateMail(playerId: string, playerMail: string): Promise<void>;
-    playerAddCoins(playerId: string, coins: number): Promise<void>;
-    playerAddDiamons(playerId: string, diamonds: number): Promise<void>;
-    playerAddCrystals(playerId: string, crystals: number): Promise<void>;
+    playerAddCoins(playerId: string, coins: number, action: string): Promise<void>;
+    playerAddDiamons(playerId: string, diamonds: number, action: string): Promise<void>;
+    playerAddCrystals(playerId: string, crystals: number, action: string): Promise<void>;
     playerMinusMoney(playerId: string, coins: number, diamond: number, crystals: number): Promise<void>;
     playerAddExperience(playerId: string, experience: number): Promise<void>;
     playerAddPhrase(playerId: string, phrase: string): Promise<void>;

@@ -97,16 +97,16 @@ let PlayerController = class PlayerController extends tsoa_1.Controller {
         await this._playerUpdateMail.playerUpdateMail(id, mail);
     }
     async playerAddCoins(requestBody) {
-        const { id, coins } = requestBody;
-        await this._playerAddCoinsUseCase.playerAddcoins(id, coins);
+        const { id, coins, action } = requestBody;
+        await this._playerAddCoinsUseCase.playerAddcoins(id, coins, action);
     }
     async playerAddDiamons(requestBody) {
-        const { id, diamonds } = requestBody;
-        await this._playerAddDiamonsUseCase.playerAddDiamonds(id, diamonds);
+        const { id, diamonds, action } = requestBody;
+        await this._playerAddDiamonsUseCase.playerAddDiamonds(id, diamonds, action);
     }
     async playerAddCrystals(requestBody) {
-        const { id, crystals } = requestBody;
-        await this._playerAddCrystalsUseCase.playerAddCrystals(id, crystals);
+        const { id, crystals, action } = requestBody;
+        await this._playerAddCrystalsUseCase.playerAddCrystals(id, crystals, action);
     }
     async playerMinusMoney(requestBody) {
         const { id, coins, diamond, crystals } = requestBody;

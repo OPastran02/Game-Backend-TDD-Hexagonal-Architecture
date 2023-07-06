@@ -2486,6 +2486,9 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
+                                    "action": {
+                                        "type": "string"
+                                    },
                                     "coins": {
                                         "type": "number",
                                         "format": "double"
@@ -2495,6 +2498,7 @@
                                     }
                                 },
                                 "required": [
+                                    "action",
                                     "coins",
                                     "id"
                                 ],
@@ -2521,6 +2525,9 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
+                                    "action": {
+                                        "type": "string"
+                                    },
                                     "diamonds": {
                                         "type": "number",
                                         "format": "double"
@@ -2530,6 +2537,7 @@
                                     }
                                 },
                                 "required": [
+                                    "action",
                                     "diamonds",
                                     "id"
                                 ],
@@ -2556,6 +2564,9 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
+                                    "action": {
+                                        "type": "string"
+                                    },
                                     "crystals": {
                                         "type": "number",
                                         "format": "double"
@@ -2565,6 +2576,7 @@
                                     }
                                 },
                                 "required": [
+                                    "action",
                                     "crystals",
                                     "id"
                                 ],

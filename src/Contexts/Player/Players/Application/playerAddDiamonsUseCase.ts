@@ -9,12 +9,17 @@ export class playerAddDiamonsUseCase {
     this.playerRepository = playerRepository;
   }
 
-  public async playerAddDiamonds(playerId: string, _diamonds: number): Promise<void> {
+  public async playerAddDiamonds(playerId: string, _diamonds: number,action: string): Promise<void> {
     const diamonds = new PlayerDiamonds(_diamonds);
     const player: Player | null = await this.playerRepository.playerFindById(playerId);
     if (player) {
-      player.diamonds += diamonds.getValue();
-      await this.playerRepository.playerAddDiamons(playerId, player.diamonds);
+      if (action == "sum"){
+        player.diamonds += diamonds.getValue();
+      }else{
+        player.diamonds -= diamonds.getValue();
+      }
+      
+      await this.playerRepository.playerAddDiamons(playerId, player.diamonds,action);
     }
   }
 }

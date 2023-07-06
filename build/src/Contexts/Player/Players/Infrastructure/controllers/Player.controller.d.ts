@@ -83,14 +83,17 @@ export declare class PlayerController extends Controller {
     playerAddCoins(requestBody: {
         id: string;
         coins: number;
+        action: string;
     }): Promise<void>;
     playerAddDiamons(requestBody: {
         id: string;
         diamonds: number;
+        action: string;
     }): Promise<void>;
     playerAddCrystals(requestBody: {
         id: string;
         crystals: number;
+        action: string;
     }): Promise<void>;
     playerMinusMoney(requestBody: {
         id: string;
