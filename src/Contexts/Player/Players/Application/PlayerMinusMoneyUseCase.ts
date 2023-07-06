@@ -9,20 +9,18 @@ export class PlayerMinusMoneyUseCase {
     this.playerRepository = playerRepository;
   }
 
-  public async playerMinusMoney(playerId: string, _coins:number, _diamonds:number, _crystals:number): Promise<void> {
+  public async playerMinusMoney(playerId: string, _coins:number, _diamonds:number, _crystals:number): Promise<number> {
     const coins = new PlayerCoins(_coins);
     const diamonds = new PlayerCoins(_diamonds);
     const crystals = new PlayerCoins(_crystals);
     const player: Player | null = await this.playerRepository.playerFindById(playerId);
     if (player) {
-      if ((player.coins - coins.getValue()) < 0) throw new Error('Err.1525999');
-      if ((player.diamonds - diamonds.getValue()) < 0) throw new Error('Err.1525999');
-      if ((player.crystals - crystals.getValue()) < 0) throw new Error('Err.1525999');
-
-      player.coins = player.coins - coins.getValue();
-      player.diamonds = player.diamonds - diamonds.getValue();
-      player.crystals = player.crystals - crystals.getValue();
-      await this.playerRepository.playerMinusMoney(playerId, player.coins, player.diamonds, player.crystals);
+      if ((player.coins - coins.getValue()) < 0) return 0;
+      if ((player.diamonds - diamonds.getValue()) < 0) return 0;
+      if ((player.crystals - crystals.getValue()) < 0) return 0;
+      return 1;
+    }else{
+      return 0;
     }
   }
 }

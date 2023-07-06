@@ -159,9 +159,9 @@ export class PlayerController extends Controller {
   }
 
   @Post('/playerMinusMoney')
-  public async playerMinusMoney(@Body() requestBody:{id:string, coins: number, diamond: number, crystals: number}): Promise<void> {
+  public async playerMinusMoney(@Body() requestBody:{id:string, coins: number, diamond: number, crystals: number}): Promise<number> {
       const {id,coins,diamond,crystals} = requestBody;
-      await this._playerMinusMoneyUseCase.playerMinusMoney(id,coins,diamond,crystals);
+      return await this._playerMinusMoneyUseCase.playerMinusMoney(id,coins,diamond,crystals);
   }
 
   @Post('/addExperience')

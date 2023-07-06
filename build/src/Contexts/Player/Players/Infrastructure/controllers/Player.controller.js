@@ -110,7 +110,7 @@ let PlayerController = class PlayerController extends tsoa_1.Controller {
     }
     async playerMinusMoney(requestBody) {
         const { id, coins, diamond, crystals } = requestBody;
-        await this._playerMinusMoneyUseCase.playerMinusMoney(id, coins, diamond, crystals);
+        return await this._playerMinusMoneyUseCase.playerMinusMoney(id, coins, diamond, crystals);
     }
     async playerAddExperience(requestBody) {
         const { id, experience } = requestBody;

@@ -97,7 +97,7 @@ export declare class PlayerController extends Controller {
         coins: number;
         diamond: number;
         crystals: number;
-    }): Promise<void>;
+    }): Promise<number>;
     playerAddExperience(requestBody: {
         id: string;
         experience: number;
