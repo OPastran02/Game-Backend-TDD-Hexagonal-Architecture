@@ -305,6 +305,7 @@ model players {
   loginDays        Int                @default(0)
   lastLogin        DateTime           @default(now())
   isActive         Boolean            @default(true)
+  adsViewed        Int                @default(0)
   createdAt        DateTime           @default(now())
   guildmemberships guildmemberships[]
   heroes           heroes[]

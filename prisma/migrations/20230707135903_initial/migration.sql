@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `players` ADD COLUMN `adsViewed` INTEGER NOT NULL DEFAULT 0;

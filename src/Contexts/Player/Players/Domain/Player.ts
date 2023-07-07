@@ -37,6 +37,7 @@ export class Player {
   loginDays: number;
   lastLogin: Date;
   isActive: boolean;
+  adsViewed: number;
   createdAt: Date;
 
 
@@ -62,6 +63,7 @@ export class Player {
     _loginDays: number,
     _lastLogin: Date,
     _isActive: boolean,
+    _adsViewed: number,
     _createdAt: Date,
 
   ) {
@@ -90,6 +92,7 @@ export class Player {
     this.loginDays = new PlayerLoginDays(_loginDays).getValue();
     this.lastLogin = _lastLogin;
     this.isActive = _isActive;
+    this.adsViewed = _adsViewed;
     this.createdAt = _createdAt;
   }
 }

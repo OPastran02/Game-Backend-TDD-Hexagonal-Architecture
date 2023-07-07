@@ -72,16 +72,16 @@ export class PlayerController extends Controller {
     @Body() requestBody: 
         {id:string,googleId: string, facebookId: string, appleId: string, mail: string, nickname: string, firstname: string, lastname: string, phrase: string,
           coins: number, diamonds: number, crystals:number, experience: number, level: number, avatar: string, avatarBlock: string, loginDays: number,lastLogin: Date,
-          isActive: boolean, createdAt: Date, hasBattlePass: boolean, hasYearPass: boolean
+          isActive: boolean, createdAt: Date, hasBattlePass: boolean, adsViewed: number, hasYearPass: boolean
         } 
       ): Promise<Player> {
       
         const {id,googleId,facebookId,appleId,mail,nickname,firstname,lastname,phrase,coins,diamonds,crystals,experience,
-        level, avatar, avatarBlock,hasBattlePass,hasYearPass, loginDays,lastLogin,isActive,createdAt} = requestBody;
+        level, avatar, avatarBlock,hasBattlePass,hasYearPass, loginDays,lastLogin,isActive,adsViewed,createdAt} = requestBody;
 
       return await this._playerService.addPlayer(id,
         googleId,facebookId,appleId,mail,nickname,firstname,lastname,phrase,coins,diamonds,crystals,experience,
-        level, avatar, avatarBlock,hasBattlePass,hasYearPass,loginDays,lastLogin,isActive,createdAt
+        level, avatar, avatarBlock,hasBattlePass,hasYearPass,loginDays,lastLogin,isActive,adsViewed,createdAt
       );
   }
 

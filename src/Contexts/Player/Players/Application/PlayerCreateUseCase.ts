@@ -29,6 +29,7 @@ export class PlayerCreateUseCase {
     _loginDays: number,
     _lastLogin: Date,
     _isActive: boolean,
+    _adsViewed: number,
     _createdAt: Date
   ): Promise<Player> {
     const player: Player = new Player(
@@ -53,6 +54,7 @@ export class PlayerCreateUseCase {
       _loginDays,
       _lastLogin,
       _isActive,
+      _adsViewed,
       _createdAt
     );
 
