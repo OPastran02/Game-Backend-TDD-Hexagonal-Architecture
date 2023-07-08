@@ -42,6 +42,7 @@ export declare class PlayerController extends Controller {
         isActive: boolean;
         createdAt: Date;
         hasBattlePass: boolean;
+        adsViewed: number;
         hasYearPass: boolean;
     }): Promise<Player>;
     playerFindById(requestBody: {

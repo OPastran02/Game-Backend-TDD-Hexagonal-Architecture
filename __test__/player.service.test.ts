@@ -38,6 +38,7 @@ describe('PlayerService', () => {
         1,
         new Date(2023, 5, 7),
         true,
+        0,
         new Date(2023, 5, 7)
     );
 
@@ -72,6 +73,7 @@ describe('PlayerService', () => {
       1,
       new Date(2023, 5, 7),
       true,
+      0,
       new Date(2023, 5, 7)
     );
   

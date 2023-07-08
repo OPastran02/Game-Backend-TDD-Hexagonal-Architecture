@@ -734,6 +734,10 @@
 					"isActive": {
 						"type": "boolean"
 					},
+					"adsViewed": {
+						"type": "number",
+						"format": "double"
+					},
 					"createdAt": {
 						"type": "string",
 						"format": "date-time"
@@ -761,6 +765,7 @@
 					"loginDays",
 					"lastLogin",
 					"isActive",
+					"adsViewed",
 					"createdAt"
 				],
 				"type": "object",
@@ -2042,6 +2047,10 @@
 									"hasYearPass": {
 										"type": "boolean"
 									},
+									"adsViewed": {
+										"type": "number",
+										"format": "double"
+									},
 									"hasBattlePass": {
 										"type": "boolean"
 									},
@@ -2116,6 +2125,7 @@
 								},
 								"required": [
 									"hasYearPass",
+									"adsViewed",
 									"hasBattlePass",
 									"createdAt",
 									"isActive",

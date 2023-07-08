@@ -57,8 +57,8 @@ let PlayerController = class PlayerController extends tsoa_1.Controller {
         this._playerMinusMoneyUseCase = new PlayerMinusMoneyUseCase_1.PlayerMinusMoneyUseCase(playerRepository);
     }
     async addPlayer(requestBody) {
-        const { id, googleId, facebookId, appleId, mail, nickname, firstname, lastname, phrase, coins, diamonds, crystals, experience, level, avatar, avatarBlock, hasBattlePass, hasYearPass, loginDays, lastLogin, isActive, createdAt } = requestBody;
-        return await this._playerService.addPlayer(id, googleId, facebookId, appleId, mail, nickname, firstname, lastname, phrase, coins, diamonds, crystals, experience, level, avatar, avatarBlock, hasBattlePass, hasYearPass, loginDays, lastLogin, isActive, createdAt);
+        const { id, googleId, facebookId, appleId, mail, nickname, firstname, lastname, phrase, coins, diamonds, crystals, experience, level, avatar, avatarBlock, hasBattlePass, hasYearPass, loginDays, lastLogin, isActive, adsViewed, createdAt } = requestBody;
+        return await this._playerService.addPlayer(id, googleId, facebookId, appleId, mail, nickname, firstname, lastname, phrase, coins, diamonds, crystals, experience, level, avatar, avatarBlock, hasBattlePass, hasYearPass, loginDays, lastLogin, isActive, adsViewed, createdAt);
     }
     async playerFindById(requestBody) {
         const { id } = requestBody;

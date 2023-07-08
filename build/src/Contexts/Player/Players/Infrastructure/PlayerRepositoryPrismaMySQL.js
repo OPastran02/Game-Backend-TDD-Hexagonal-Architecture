@@ -30,6 +30,7 @@ class PlayerRepositoryPrismaMySQL {
                 loginDays: player.loginDays,
                 lastLogin: player.lastLogin,
                 isActive: player.isActive,
+                adsViewed: player.adsViewed,
                 createdAt: player.createdAt
             }
         });

@@ -107,7 +107,13 @@ export class Create {
       const rarity : Rarity = await this.rarityRepository.findById(_availableHeroes.rarityId);
       const nature : Nature = await this.natureRepository.findById(_availableHeroes.natureId);
       const race   : Race = await this.raceRepository.findById(_availableHeroes.raceId);
-
+      var position: number = 0;
+      const heroesTotal : Hero[] | null = await this.repository.findbyPlayer(player.id);
+      if(heroesTotal !== null && heroesTotal.length < 5){
+        position = heroesTotal?.length+1;
+      }else if(heroesTotal == null){
+        position = 1;
+      }
       //ahora veo donde lo guardo
       const heroesExisting : Hero[] | null = await this.repository.findByRace(race.id, player.id)    
       const count = heroesExisting?.length ?? 0;
@@ -128,7 +134,7 @@ export class Create {
         type,
         stats,
         race,
-        0,
+        position,
         count > 10 ? 0 : count + 1,
         count > 10 ? true : false
       ); 
