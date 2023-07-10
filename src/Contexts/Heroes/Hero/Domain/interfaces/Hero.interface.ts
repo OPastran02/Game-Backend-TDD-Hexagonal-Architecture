@@ -19,4 +19,6 @@ export interface IHeroRepository {
     probabilities(num: number): Promise<number[]>;
 
     deleteHeroInQueue(id: string): Promise<void>;
+
+    replaceHeroInGeneralTeam(id1:string, order1:number, id2: string, order2:number): Promise<void>;
 }

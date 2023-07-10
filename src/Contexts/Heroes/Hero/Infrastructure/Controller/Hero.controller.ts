@@ -8,7 +8,7 @@ import { DeleteHeroInQueue } from "../../Application/DeleteHeroInQueue";
 import { FindByPlayerWorld } from "../../Application/FindByPlayerWorld";
 import { FindByPlayerTopFive } from "../../Application/FindByPlayerTopFive";
 import { FindbyPlayer } from "../../Application/FindByPlayer";
-
+import { ReplaceHeroInGeneralTeam } from "../../Application/ReplaceHeroInGeneralTeam";
 
 import { HeroRepositoryPrismaMySQL } from '../HeroRepositoryPrismaMySQL';
 import { TypeRepositoryPrismaMySQL } from '../../../Type/Infrastructure/TypeRepositoryPrismaMySQL'
@@ -34,6 +34,7 @@ export class HeroController extends Controller {
   private readonly _findByPlayerWorld: FindByPlayerWorld;
   private readonly _findByPlayerTopFive: FindByPlayerTopFive;
   private readonly _findbyPlayer: FindbyPlayer;
+  private readonly _replaceHeroInGeneralTeam: ReplaceHeroInGeneralTeam;
 
   constructor() {
     super();
@@ -55,6 +56,7 @@ export class HeroController extends Controller {
     this._findByPlayerWorld = new FindByPlayerWorld(_heroRepository);
     this._findByPlayerTopFive = new FindByPlayerTopFive(_heroRepository);
     this._findbyPlayer = new FindbyPlayer(_heroRepository);
+    this._replaceHeroInGeneralTeam = new ReplaceHeroInGeneralTeam(_heroRepository);
   }
 
   @Post('/add')
@@ -109,6 +111,12 @@ export class HeroController extends Controller {
   public async deleteHeroInQueue(@Body() requestBody:{id:string}): Promise<void> {
       const {id} = requestBody;
       return await this._deleteHeroInQueue.deleteHeroInQueue(id);
+  }
+
+  @Post('/replaceHeroInGeneralTeam')
+  public async replaceHeroInGeneralTeam(@Body() requestBody:{id1 : string, order1 : number, id2 : string, order2 : number}): Promise<void> {
+      const {id1,order1,id2,order2} = requestBody;
+      return await this._replaceHeroInGeneralTeam.replaceHeroInGeneralTeam(id1,order1,id2,order2);
   }
   
  }

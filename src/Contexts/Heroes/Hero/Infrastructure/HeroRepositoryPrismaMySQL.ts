@@ -146,4 +146,24 @@ export class HeroRepositoryPrismaMySQL implements IHeroRepository {
     });
   }
 
+  public async replaceHeroInGeneralTeam(id1 : string, order1 : number, id2 : string, order2 : number): Promise<void> {
+    await prisma.heroes.update({
+      data: {
+        orderInGeneralTeam: order1
+      },
+      where: {
+        id: id1
+      }
+    });
+
+    await prisma.heroes.update({
+      data: {
+        orderInGeneralTeam: order2
+      },
+      where: {
+        id: id2
+      }
+    });
+  }
+
 }
