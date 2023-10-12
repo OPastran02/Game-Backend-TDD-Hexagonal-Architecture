@@ -1,4 +1,5 @@
-## PVP Fighting game made with 
+## PVP Fighting game
+
 **Node**
 
 **TypeScript**
@@ -20,6 +21,5 @@
    npm run dev
   ```
 
-
-
+It was my first approach on Hexagonal Architecture, it works but it need to be refactorized.
 
