@@ -1,9 +1,9 @@
 ## PVP Fighting game made with 
-## Node
-## TypeScript
-## Prisma
-## MySQL
-## Unity
+**Node**
+**TypeScript**
+**Prisma**
+**MySQL**
+**Unity**
 
 :memo: **You need** NODE installed Globally
  
